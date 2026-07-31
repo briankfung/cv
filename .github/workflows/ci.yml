@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm validate
+
+      # The generated .tex is committed. If the CV data changed without
+      # regenerating, the PDFs in public/pdf are stale and this fails.
+      - name: Check generated LaTeX is current
+        run: |
+          pnpm generate:tex
+          git diff --exit-code -- latex/generated \
+            || { echo "::error::latex/generated is stale. Run 'pnpm build:pdf' and commit the result."; exit 1; }
+
+      - run: pnpm build
+
+  pdf:
+    name: Compile PDFs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile with xelatex
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: latex/generated/*.tex
+          latexmk_use_xelatex: true
+          # enumitem, titlesec, lastpage, needspace, microtype, tex-gyre.
+          extra_system_packages: ""
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdfs
+          path: "*.pdf"
+          if-no-files-found: error

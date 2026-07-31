@@ -1,0 +1,224 @@
+% Preamble for the generated CV documents.
+%
+% This file is inlined verbatim into every file in latex/generated/ so that each
+% .tex is self-contained: it can be handed to a collaborator, uploaded to
+% Overleaf, or compiled anywhere with a TeX Live installation and no other
+% files from this repository.
+%
+% Compile with xelatex (twice, so the page-count reference resolves).
+%
+% The layout mirrors the web CV (src/components/cv/): ragged-right text, muted
+% list markers, ink-colored heading links, generous space between entries and
+% sections, and an aligned label column in the skills section.
+
+% article accepts 10, 11 or 12pt only. Anything else is silently ignored.
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[
+  letterpaper,
+  top=0.72in,
+  bottom=0.82in,
+  left=0.88in,
+  right=0.88in,
+  footskip=0.42in
+]{geometry}
+
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{etoolbox}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+
+% TeX Gyre ships with every TeX Live installation, so these never fall back to
+% a substitute. Pagella is a Palatino clone; Heros is a Helvetica clone.
+%
+% Loaded by filename rather than by family name: kpathsea finds these in the
+% texmf tree on any TeX Live, whereas the family-name form additionally
+% requires the fonts to be registered with the operating system.
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic
+]
+\newfontfamily\cvsansfont{texgyreheros}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic
+]
+
+\definecolor{cvink}{HTML}{16181D}
+\definecolor{cvaccent}{HTML}{1F3A5F}
+\definecolor{cvmuted}{HTML}{5A6472}
+\definecolor{cvrule}{HTML}{B9BFC9}
+
+\color{cvink}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=cvaccent,
+  linkcolor=cvaccent,
+  breaklinks=true,
+  pdfborder={0 0 0}
+}
+
+% --- Vertical rhythm --------------------------------------------------------
+
+% Pagella sets dense at single spacing; a little extra leading opens the page.
+\linespread{1.07}
+
+% Ragged right, matching the web layout. Justifying 10pt text across a full
+% letter page produces uneven word spacing that reads as noise. \RaggedRight
+% (ragged2e) still hyphenates, so the rag stays tidy.
+\AtBeginDocument{\RaggedRight}
+
+% Never strand the first or last line of a paragraph across a page break.
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Hyphenation discipline. Capitalized words are never broken (this CV is dense
+% with acronyms and product names — "AC-CESS" is not a good look), two-letter
+% stubs like "au-" are forbidden, and consecutive hyphenated line ends or a
+% hyphen into a paragraph's short last line are heavily penalized. Ragged
+% right gives TeX enough slack that these cost nothing.
+\uchyph=0
+\lefthyphenmin=3
+\doublehyphendemerits=100000
+\finalhyphendemerits=400000
+
+\emergencystretch=1.5em
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Space between two entries. Roughly half a line: enough that heading/organi-
+% zation pairs read as one unit, clearly separate from their neighbors. The
+% first entry after a section heading suppresses it (the toggle is set by the
+% section title's after-code below), so the heading's own after-space is not
+% doubled and entry sections open as tightly as list sections.
+\newcommand{\cventrysep}{\vspace{7pt plus 2pt minus 1pt}}
+\newtoggle{cvaftersec}
+
+% --- Section headings -------------------------------------------------------
+
+\titleformat{\section}
+  {\cvsansfont\normalsize\bfseries\scshape\color{cvaccent}}
+  {}{0em}{}
+  [{\color{cvrule}\vspace{0.45ex}\titlerule[0.6pt]\global\toggletrue{cvaftersec}}]
+\titlespacing*{\section}{0pt}{3.3ex plus .6ex minus .3ex}{1.7ex}
+
+% --- Lists ------------------------------------------------------------------
+
+\setlist[itemize]{
+  leftmargin=1.15em,
+  labelsep=0.45em,
+  itemsep=0.55ex,
+  parsep=0pt,
+  topsep=0.75ex,
+  partopsep=0pt,
+  label={\color{cvmuted}\small\textbullet}
+}
+
+\setlist[enumerate]{
+  leftmargin=1.9em,
+  labelsep=0.5em,
+  itemsep=0.8ex,
+  parsep=0pt,
+  topsep=0.8ex,
+  partopsep=0pt,
+  label=\color{cvmuted}\small\arabic*.
+}
+
+% --- Page furniture ---------------------------------------------------------
+
+\providecommand{\cvfullname}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\cvsansfont\scriptsize\color{cvmuted}\cvfullname}
+% \pageref* (starred) suppresses the hyperlink: a linked page number would be
+% colored cvaccent by hyperref, leaving one navy digit in a gray footer.
+\fancyfoot[R]{\cvsansfont\scriptsize\color{cvmuted}Page \thepage\ of \pageref*{LastPage}}
+
+% --- Document furniture -----------------------------------------------------
+
+\newlength{\cvdatewidth}
+\setlength{\cvdatewidth}{1.5in}
+\newlength{\cvbodywidth}
+\setlength{\cvbodywidth}{\dimexpr\textwidth-\cvdatewidth-0.2in\relax}
+
+% \cvheader{name}{credentials}{headline}{contact line}
+\newcommand{\cvheader}[4]{%
+  \begin{center}
+    {\cvsansfont\LARGE\bfseries\color{cvink}#1}%
+    \ifstrempty{#2}{}{\\[0.45em]{\cvsansfont\normalsize\color{cvmuted}#2}}%
+    \ifstrempty{#3}{}{\\[0.55em]{\small\itshape\color{cvaccent}#3}}%
+    \ifstrempty{#4}{}{\\[0.6em]{\cvsansfont\footnotesize #4}}%
+  \end{center}
+  \vspace{0.2em}%
+}
+
+% \cventry{dates}{heading}{subheading}{location}
+% Two top-aligned boxes keep the dates flush right even when the heading wraps.
+%
+% Heading and subheading links are recolored to match their surrounding text —
+% ink and muted respectively — as on the web, where entry titles are links
+% without being loud about it. Navy stays reserved for inline links (contact
+% line, DOIs). \hypersetup color changes are local to the minipage group.
+% The struts pin the box's first-line height and last-line depth to the strut
+% size, so the gap between entries does not vary with ascenders/descenders.
+% \RaggedRight (not kernel \raggedright, which minipage resets to) keeps the
+% same tidy 2em rag and hyphenation as the surrounding text.
+\newcommand{\cventry}[4]{%
+  \par\iftoggle{cvaftersec}{\global\togglefalse{cvaftersec}}{\cventrysep}%
+  \needspace{2.5\baselineskip}\noindent
+  \begin{minipage}[t]{\cvbodywidth}%
+    \hypersetup{urlcolor=cvink}%
+    \RaggedRight\strut #2\strut%
+    \ifstrempty{#3}{}{\\[0.15em]{\hypersetup{urlcolor=cvmuted}\color{cvmuted}#3\strut}}%
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{\cvdatewidth}%
+    \raggedleft
+    % The leading \strut is taken at the body font size, before the switch to
+    % \scriptsize. Without it the smaller text has a shorter ascent, and a [t]
+    % minipage aligned on first baselines drops the date below the heading.
+    \ifstrempty{#1}{%
+      \ifstrempty{#4}{}{{\strut\cvsansfont\scriptsize\itshape\color{cvmuted}#4}}%
+    }{%
+      {\strut\cvsansfont\scriptsize\color{cvmuted}#1}%
+      \ifstrempty{#4}{}{\\[0.15em]{\cvsansfont\scriptsize\itshape\color{cvmuted}#4}}%
+    }%
+  \end{minipage}%
+  \par
+}
+
+% \cvnote{text} — a descriptive line under an entry heading, above any bullets.
+\newcommand{\cvnote}[1]{\par\vspace{0.4em}{\small #1}\par}
+
+% \cvchips{text} — inline technology labels for a project entry.
+\newcommand{\cvchips}[1]{\par\vspace{0.35em}{\cvsansfont\scriptsize\color{cvmuted}#1}\par}
+
+% \cvskill{label}{items}
+% An aligned label column, like the web's definition-list layout. The hanging
+% indent keeps wrapped item lines aligned with the column edge.
+\newlength{\cvskillcolwidth}
+\setlength{\cvskillcolwidth}{1.9in}
+\newcommand{\cvskill}[2]{%
+  \par\vspace{4pt plus 1pt}\noindent
+  \hangindent=\cvskillcolwidth\hangafter=1
+  \hbox to \cvskillcolwidth{{\bfseries #1}\hfil}#2%
+  \par
+}
+
+% \cvprose{text} — the profile summary.
+\newcommand{\cvprose}[1]{\par#1\par\smallskip}

@@ -1,0 +1,228 @@
+import type { PresentationEntry } from "@/lib/cv/types";
+
+/**
+ * Talks of every type. File order does not matter: the resolver sorts by date.
+ * Cities are generally not on record, so `location` is omitted rather than
+ * guessed, and scope is set only where the venue's reach is unambiguous.
+ */
+export const presentations: PresentationEntry[] = [
+  {
+    id: "pres-cpha-ai-2026",
+    title: "Basics of Artificial Intelligence",
+    venue: "California Pharmacists Association",
+    date: "2026-01",
+    type: "invited",
+    scope: "regional",
+    tags: ["ai", "teaching"],
+  },
+  {
+    id: "pres-cms-connectathon-2026",
+    venue: "CMS Connectathon",
+    date: "2026",
+    type: "workshop",
+    scope: "national",
+    tags: ["standards", "ai"],
+  },
+  {
+    id: "pres-clinicians-dev-2024",
+    title: "Path of the Clinician Engineer",
+    venue: "Clinicians.dev Conference",
+    date: "2024-11",
+    type: "invited",
+    tags: ["engineering", "teaching", "leadership"],
+  },
+  {
+    id: "pres-aacp-ai-institute-2024",
+    title: "Basics of Artificial Intelligence",
+    venue:
+      "Artificial Intelligence Institute, American Association of Colleges of Pharmacy",
+    date: "2024-04",
+    type: "invited",
+    scope: "national",
+    tags: ["ai", "teaching"],
+  },
+  {
+    id: "pres-onc-annual-2023",
+    title: "The Future of Pharmacy Interoperability",
+    venue: "Office of the National Coordinator for Health IT Annual Meeting",
+    date: "2023-12",
+    type: "panel",
+    scope: "national",
+    tags: ["standards", "leadership"],
+  },
+  {
+    id: "pres-rphally-2023",
+    title: "The Evolving Role of Pharmacy in Data and Digital Health",
+    venue: "RPhAlly Soiree",
+    date: "2023-07",
+    type: "invited",
+    tags: ["clinical", "leadership"],
+  },
+  {
+    id: "pres-epsa-2023",
+    title: "The Informatics Pharmacist",
+    venue: "European Pharmaceutical Students' Association",
+    date: "2023-07",
+    type: "invited",
+    scope: "international",
+    tags: ["clinical", "teaching"],
+  },
+  {
+    id: "pres-pharma-tether-nigeria-2023",
+    venue: "National Pharmacy Summit Nigeria, Pharma-Tether",
+    date: "2023-06",
+    type: "invited",
+    scope: "international",
+    tags: ["clinical", "leadership"],
+  },
+  {
+    id: "pres-ania-midwest-2022",
+    title: "Building Your Public Health Informatics Toolkit",
+    venue: "American Nursing Informatics Association Midwest",
+    date: "2022-06",
+    type: "invited",
+    scope: "regional",
+    tags: ["clinical", "teaching"],
+  },
+  {
+    id: "pres-apha-midyear-2021",
+    title:
+      "Public Health Informatics: Antimicrobial Stewardship and Infection Control",
+    venue: "American Public Health Association Midyear Meeting",
+    date: "2021-06",
+    type: "invited",
+    scope: "national",
+    tags: ["clinical", "research"],
+  },
+  {
+    id: "pres-florida-residency-conference-2014",
+    title:
+      "Identification of Barriers Associated with Timeliness of Antibiotic Administration in Febrile Pediatric Patients Presenting to the Emergency Department",
+    venue: "Florida Residency Conference",
+    date: "2014-05",
+    type: "podium",
+    scope: "regional",
+    tags: ["clinical", "research", "trainee"],
+  },
+  {
+    id: "pres-amia-symposium-2019",
+    title:
+      "Conversion of a Complex Legacy Antimicrobial Stewardship Clinical Decision Support System into Epic",
+    venue: "American Medical Informatics Association Annual Symposium",
+    date: "2019-11",
+    type: "poster",
+    scope: "national",
+    tags: ["clinical", "research", "standards"],
+  },
+  {
+    id: "pres-mshp-social-media-2019",
+    title:
+      "YouTube, Twitter, and LinkedIn: Integrating Social Media into our Professional Lives",
+    venue: "Minnesota Society of Health-System Pharmacists",
+    date: "2019-09",
+    type: "invited",
+    scope: "regional",
+    tags: ["leadership", "teaching"],
+  },
+  {
+    id: "pres-ashp-midyear-2018",
+    title: "Boring is the New Goal: Technology Implementation Keys to Success",
+    venue: "ASHP Midyear Clinical Meeting",
+    date: "2018-12",
+    type: "podium",
+    scope: "national",
+    tags: ["clinical", "standards", "leadership"],
+  },
+  {
+    id: "pres-ashp-midyear-2017",
+    title:
+      "Enhancing Quality of Care: Pharmacist Clinical Documentation in an Integrated EMR System",
+    venue: "ASHP Midyear Clinical Meeting",
+    date: "2017-12",
+    type: "podium",
+    scope: "national",
+    tags: ["clinical", "standards"],
+  },
+  {
+    id: "pres-mountain-states-renal-dosing-2015",
+    title:
+      "Renal Dosing Decision Support Post-Electronic Medical Record Implementation",
+    venue: "Mountain States Conference",
+    date: "2015-04",
+    type: "podium",
+    scope: "regional",
+    tags: ["clinical", "research", "trainee"],
+  },
+  {
+    id: "pres-utah-pharmacogenomics-2015",
+    title: "Optimizing Fate: Pharmacogenomics in Clinical Practice",
+    venue: "University of Utah Health",
+    date: "2015-03",
+    type: "continuing-education",
+    accreditation: ["ACPE"],
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-utah-meaningful-use-2014",
+    title: "Meaningful or Meaningless Use: Are We Doing This Right?",
+    venue: "University of Utah Health",
+    date: "2014-11",
+    type: "in-service",
+    tags: ["clinical", "standards", "trainee"],
+  },
+  {
+    id: "pres-smh-ed-informatics-2014",
+    title:
+      "Smarter Healthcare: Leveraging Pharmacy Informatics in the Emergency Department",
+    venue: "Sarasota Memorial Hospital",
+    date: "2014-06",
+    type: "lecture",
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-smh-mupirocin-2014",
+    title:
+      "Intranasal Mupirocin in the Prevention of Surgical Site Infections in Open-Heart Patients",
+    venue: "Sarasota Memorial Hospital",
+    date: "2014-01",
+    type: "in-service",
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-smh-gram-negatives-2013",
+    title:
+      "Nightmare Bacteria: Optimizing Treatment of Multidrug Resistant Gram-Negative Infections",
+    venue: "Sarasota Memorial Hospital",
+    date: "2013-10",
+    type: "continuing-education",
+    accreditation: ["ACPE"],
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-smh-apixaban-2013",
+    title:
+      "Good Things Come in Threes: The Role of Apixaban for Atrial Fibrillation Post-PCI",
+    venue: "Sarasota Memorial Hospital",
+    date: "2013-08",
+    type: "continuing-education",
+    accreditation: ["ANCC"],
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-shands-neurosyphilis-2013",
+    title: "Neurosyphilis: A Blinding Discovery",
+    venue: "Shands Jacksonville",
+    date: "2013-02",
+    type: "lecture",
+    tags: ["clinical", "trainee"],
+  },
+  {
+    id: "pres-smh-ivig-2012",
+    title:
+      "The Role of IVIG in Group A Streptococcal Toxic Shock Syndrome",
+    venue: "Sarasota Memorial Hospital",
+    date: "2012-06",
+    type: "lecture",
+    tags: ["clinical", "trainee"],
+  },
+];
