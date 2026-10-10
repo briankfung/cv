@@ -35,7 +35,7 @@ describe("escapeLatex", () => {
   it.each([
     ["Product, Engineering, UX & Research", "Product, Engineering, UX \\& Research"],
     ["a $1.5B enterprise program", "a \\$1.5B enterprise program"],
-    ["@ufbfung/fhir-types", "@ufbfung/fhir-types"],
+    ["@briankfung/fhir-types", "@briankfung/fhir-types"],
     ["speech_to_speech", "speech\\_to\\_speech"],
     ["top-10 Google search visibility", "top-10 Google search visibility"],
     ["100% coverage", "100\\% coverage"],
@@ -81,8 +81,8 @@ describe("escapeLatexUrl", () => {
     for (const url of [
       "https://briankfung.com",
       "https://www.linkedin.com/in/briankfung/",
-      "https://github.com/ufbfung",
-      "https://www.npmjs.com/package/@ufbfung/fhir-types",
+      "https://github.com/briankfung",
+      "https://www.npmjs.com/package/@briankfung/fhir-types",
       "https://public-fhir-server.vercel.app",
     ]) {
       expect(escapeLatexUrl(url)).toBe(url);

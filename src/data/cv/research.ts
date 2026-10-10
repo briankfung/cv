@@ -10,7 +10,7 @@ export const research: ResearchEntry[] = [
     title:
       "Phantom Codes: benchmarking hallucination, hierarchical accuracy, abstention, robustness, and cost across 24 LLM and prompting configurations for medical concept normalization",
     role: "Independent research; open evaluation harness released publicly, with retrieval, classification, and string-matching baselines.",
-    url: "https://github.com/ufbfung/phantom-codes",
+    url: "https://github.com/briankfung/phantom-codes",
     dates: { start: "2026-05", end: "2026-05" },
     tags: ["ai", "research", "engineering"],
   },

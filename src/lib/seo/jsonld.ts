@@ -1,5 +1,11 @@
 import type { CvData } from "@/lib/cv/types";
-import { SITE_URL } from "./site";
+import {
+  EXTRA_SAME_AS,
+  ORCID_ID,
+  PROFILE_HANDLE,
+  PROFILE_IMAGE_PATH,
+  SITE_URL,
+} from "./site";
 
 /**
  * schema.org ProfilePage wrapping a Person, derived from the CV data rather
@@ -42,7 +48,14 @@ export function buildProfileJsonLd(data: CvData) {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: profile.name,
+      alternateName: PROFILE_HANDLE,
       honorificSuffix: profile.credentials,
+      image: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "ORCID",
+        value: ORCID_ID,
+      },
       description: profile.summary,
       ...(currentRole ? { jobTitle: currentRole.title } : {}),
       ...(worksFor ? { worksFor } : {}),
@@ -57,7 +70,7 @@ export function buildProfileJsonLd(data: CvData) {
       alumniOf,
       hasCredential,
       knowsAbout,
-      sameAs: profile.links.map((link) => link.url),
+      sameAs: [...profile.links.map((link) => link.url), ...EXTRA_SAME_AS],
     },
   };
 }

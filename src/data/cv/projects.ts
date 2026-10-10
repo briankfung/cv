@@ -113,7 +113,7 @@ export const projects: ProjectEntry[] = [
     name: "Cardiac 3D Reconstruction",
     tagline:
       "Python project exploring 3D reconstruction of the heart from imaging modalities, focused on accessible 2D echocardiography images.",
-    url: "https://github.com/ufbfung/cardiac-3d-reconstruction",
+    url: "https://github.com/briankfung/cardiac-3d-reconstruction",
     dates: { start: "2023-06", end: "2023-06" },
     stack: ["Python"],
     tags: ["research", "engineering", "clinical"],
@@ -130,10 +130,10 @@ export const projects: ProjectEntry[] = [
   },
   {
     id: "proj-fhir-types",
-    name: "@ufbfung/fhir-types",
+    name: "@briankfung/fhir-types",
     tagline:
       "Hand-rolled FHIR R4 TypeScript types published as a public npm package.",
-    url: "https://www.npmjs.com/package/@ufbfung/fhir-types",
+    url: "https://www.npmjs.com/package/@briankfung/fhir-types",
     dates: { start: "2025-12", end: "2025-12" },
     stack: ["TypeScript"],
     tags: ["engineering", "standards"],

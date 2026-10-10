@@ -1,0 +1,27 @@
+# Brian K. Fung, PharmD, MPH
+
+> Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability & Public Policy. This site is the curriculum vitae of Brian K. Fung (handle: briankfung), a residency-trained informatics pharmacist who builds clinical AI products.
+
+Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products, including haau3, a CMS-recognized consumer caregiving platform among the first seven apps in the CMS Medicare App Library. He is the lead author of the HL7 SMART Scheduling Links FHIR implementation guide.
+
+## Curriculum vitae
+
+- [CV, web](https://cv.briankfung.com/): experience, education, credentials, publications, teaching, projects
+- [CV, PDF](https://cv.briankfung.com/pdf/brian-fung-cv.pdf): the same CV typeset with LaTeX
+
+## Profiles
+
+- [Personal site](https://briankfung.com)
+- [GitHub](https://github.com/briankfung)
+- [LinkedIn](https://www.linkedin.com/in/briankfung/)
+- [ORCID](https://orcid.org/0000-0002-5951-3770)
+- [YouTube](https://www.youtube.com/@briankfung)
+- [X](https://x.com/briankfung)
+
+## Selected work
+
+- [haau3](https://haau3.com): consumer caregiving platform recognized in the CMS Health Tech Ecosystem
+- [Unscripted Rx](https://www.unscripted-rx.com): pharmacy residency directory and tools
+- [Phantom Codes](https://github.com/briankfung/phantom-codes): benchmark of hallucination, accuracy and cost in LLM-based medical concept normalization
+- [@briankfung/fhir-types](https://www.npmjs.com/package/@briankfung/fhir-types): hand-rolled HL7 FHIR R4 TypeScript types on npm
+- [Public FHIR Server](https://public-fhir-server.vercel.app): FHIR R4 resource operations on Postgres, deployed for learning and reference

@@ -4,7 +4,7 @@ export const profile: Profile = {
   name: "Brian K. Fung",
   credentials: "PharmD, MPH, CNA",
   headline:
-    "Clinical AI Product Builder | Data Architect | Clinical Informatics & Interoperability",
+    "Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability & Public Policy",
   email: "brian@briankfung.com",
   location: "Brandon, FL",
   selfAuthor: "Fung",
@@ -21,8 +21,8 @@ export const profile: Profile = {
     },
     {
       label: "GitHub",
-      display: "github.com/ufbfung",
-      url: "https://github.com/ufbfung",
+      display: "github.com/briankfung",
+      url: "https://github.com/briankfung",
     },
   ],
   summary:
