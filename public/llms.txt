@@ -1,8 +1,8 @@
-# Brian K. Fung, PharmD, MPH
+# Brian K. Fung, PharmD, MPH, CNA
 
 > Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability & Public Policy. This site is the curriculum vitae of Brian K. Fung (handle: briankfung), a residency-trained informatics pharmacist who builds clinical AI products.
 
-Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products, including haau3, a CMS-recognized consumer caregiving platform among the first seven apps in the CMS Medicare App Library. He is the lead author of the HL7 SMART Scheduling Links FHIR implementation guide.
+Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products, including haau3, a CMS-recognized consumer caregiving platform among the first seven apps in the CMS Medicare App Library. As a member of the HL7 SMART Scheduling Links work group, he created and maintains its FHIR implementation guide.
 
 ## Curriculum vitae
 
