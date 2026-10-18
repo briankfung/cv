@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { formatPublication } from "./citations";
+import { formatPresentation, formatPublication } from "./citations";
 import { richToPlain } from "./rich";
-import type { PublicationEntry } from "./types";
+import type { PresentationEntry, PublicationEntry } from "./types";
 
 const base: PublicationEntry = {
   id: "pub-fixture",
@@ -62,5 +62,45 @@ describe("formatPublication", () => {
     expect(runs.filter((run) => run.bold).map((run) => run.text)).toEqual([
       "Roe A",
     ]);
+  });
+});
+
+describe("formatPresentation", () => {
+  const talk: PresentationEntry = {
+    id: "pres-fixture",
+    title: "On things",
+    venue: "Things Conference",
+    date: "2024-04",
+    type: "invited",
+    scope: "national",
+  };
+
+  it("links an italic title when the talk has a public URL", () => {
+    const runs = formatPresentation({ ...talk, url: "https://example.org/talk" });
+    const title = runs.find((run) => run.text === "On things");
+    expect(title).toMatchObject({ italic: true, href: "https://example.org/talk" });
+    expect(richToPlain(runs)).toBe(
+      "On things. Things Conference; Apr 2024. National invited presentation.",
+    );
+  });
+
+  it("links the venue of a titleless talk instead", () => {
+    const runs = formatPresentation({
+      ...talk,
+      title: undefined,
+      url: "https://example.org/agenda",
+    });
+    expect(runs.find((run) => run.href)?.text).toBe("Things Conference");
+    expect(richToPlain(runs)).toBe(
+      "National invited presentation. Things Conference; Apr 2024.",
+    );
+  });
+
+  it("renders unchanged without a URL", () => {
+    const runs = formatPresentation({ ...talk, location: "Denver, CO" });
+    expect(runs.some((run) => run.href)).toBe(false);
+    expect(richToPlain(runs)).toBe(
+      "On things. Things Conference; Denver, CO; Apr 2024. National invited presentation.",
+    );
   });
 });

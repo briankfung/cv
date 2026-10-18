@@ -129,10 +129,19 @@ export function formatPresentation(entry: PresentationEntry): Rich {
   const when = formatDate(entry.date);
 
   if (entry.title) {
+    // The title carries the link, so a public recording or program page is one
+    // click away without a bare URL in the citation.
+    const title = entry.url
+      ? { ...link(entry.title, entry.url), italic: true }
+      : italic(entry.title);
     return rich(
-      italic(entry.title),
+      title,
       text(`${terminator(entry.title)} ${where}; ${when}. ${role}.`),
     );
   }
-  return rich(text(`${role}. ${where}; ${when}.`));
+  return rich(
+    text(`${role}. `),
+    entry.url ? link(entry.venue, entry.url) : text(entry.venue),
+    text(`${entry.location ? `; ${entry.location}` : ""}; ${when}.`),
+  );
 }
