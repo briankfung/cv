@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   description,
   applicationName: title,
-  authors: [{ name: profile.name, url: PERSONAL_SITE }],
+  authors: [{ name: profile.name, url: new URL(PERSONAL_SITE).href }],
   creator: profile.name,
   alternates: { canonical: "/" },
   keywords: [

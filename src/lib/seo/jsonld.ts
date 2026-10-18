@@ -1,12 +1,13 @@
 import type { CvData, PositionEntry } from "@/lib/cv/types";
 import {
+  ALTERNATE_NAMES,
   EXTRA_SAME_AS,
   ORCID_ID,
   PERSON_DESCRIPTION,
   PERSON_DISAMBIGUATION,
   PERSON_ID,
+  PERSON_JOB_TITLE,
   PERSONAL_SITE,
-  PROFILE_HANDLE,
   PROFILE_IMAGE_PATH,
   SITE_URL,
 } from "./site";
@@ -16,12 +17,16 @@ export interface PersonIdentity {
   id: string;
   description?: string;
   disambiguation?: string;
+  alternateNames?: string[];
+  jobTitle?: string;
 }
 
 const SITE_IDENTITY: PersonIdentity = {
   id: PERSON_ID,
   description: PERSON_DESCRIPTION,
   disambiguation: PERSON_DISAMBIGUATION,
+  alternateNames: ALTERNATE_NAMES,
+  jobTitle: PERSON_JOB_TITLE,
 };
 
 /** A single value stays scalar; several become an array, as schema.org allows. */
@@ -50,9 +55,9 @@ export function buildProfileJsonLd(
   const currentRoles = data.experience.filter(
     (entry) => entry.dates?.end === "present",
   );
-  const jobTitle = oneOrMany(
-    Array.from(new Set(currentRoles.map((entry) => entry.title))),
-  );
+  const jobTitle =
+    identity.jobTitle ??
+    oneOrMany(Array.from(new Set(currentRoles.map((entry) => entry.title))));
   const employers = new Map<string, PositionEntry>();
   for (const role of currentRoles) {
     if (!employers.has(role.org)) employers.set(role.org, role);
@@ -109,15 +114,30 @@ export function buildProfileJsonLd(
     .split(",")
     .map((part) => part.trim());
 
+  const opening = profile.summary ?? profile.highlights?.join(" ");
+
+  // A Person shared with a personal site lists this CV among its profiles,
+  // as the site's own Person does.
+  const sharedPerson = !identity.id.startsWith(SITE_URL);
+  const sameAs = [
+    ...(sharedPerson ? [`${SITE_URL}/`] : []),
+    ...profile.links.map((link) => link.url),
+    ...EXTRA_SAME_AS,
+  ];
+
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    "@id": `${SITE_URL}/#profile`,
     url: SITE_URL,
+    ...(opening ? { description: opening } : {}),
     mainEntity: {
       "@type": "Person",
       "@id": identity.id,
       name: profile.name,
-      alternateName: PROFILE_HANDLE,
+      ...(identity.alternateNames?.length
+        ? { alternateName: oneOrMany(identity.alternateNames) }
+        : {}),
       honorificSuffix: profile.credentials,
       image: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
       identifier: {
@@ -125,10 +145,7 @@ export function buildProfileJsonLd(
         propertyID: "ORCID",
         value: ORCID_ID,
       },
-      description:
-        identity.description ??
-        profile.summary ??
-        profile.highlights?.join(" "),
+      description: identity.description ?? opening,
       ...(identity.disambiguation
         ? { disambiguatingDescription: identity.disambiguation }
         : {}),
@@ -147,7 +164,7 @@ export function buildProfileJsonLd(
       alumniOf,
       hasCredential,
       knowsAbout,
-      sameAs: [...profile.links.map((link) => link.url), ...EXTRA_SAME_AS],
+      sameAs,
     },
   };
 }

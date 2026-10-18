@@ -121,6 +121,47 @@ describe("buildProfileJsonLd", () => {
   });
 });
 
+describe("shared Person details", () => {
+  it("gives the CV page its own @id and opening description", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, summary: undefined, highlights: ["One.", "Two."] },
+    };
+    const page = buildProfileJsonLd(data, { id: "https://example.org/#person" });
+    expect(page["@id"]).toBe(`${SITE_URL}/#profile`);
+    expect(page.description).toBe("One. Two.");
+  });
+
+  it("lists the CV among the profiles of a Person shared with a personal site", () => {
+    const shared = person(cvData, { id: "https://example.org/#person" });
+    expect(shared.sameAs).toContain(`${SITE_URL}/`);
+    const standalone = person(cvData, { id: `${SITE_URL}/#person` });
+    expect(standalone.sameAs).not.toContain(`${SITE_URL}/`);
+  });
+
+  it("emits configured alternate names, one or many", () => {
+    const id = "https://example.org/#person";
+    expect(person(cvData, { id, alternateNames: ["handle"] }).alternateName).toBe("handle");
+    expect(
+      person(cvData, { id, alternateNames: ["A Name", "handle"] }).alternateName,
+    ).toEqual(["A Name", "handle"]);
+    expect(person(cvData, { id })).not.toHaveProperty("alternateName");
+  });
+
+  it("uses a configured job title over the derived roles", () => {
+    const data: CvData = {
+      ...cvData,
+      experience: [
+        role("a", "Founder", "Venture A", "present"),
+        role("b", "Founder & Lead", "Holding Co", "present"),
+      ],
+    };
+    expect(person(data, { id: "https://example.org/#person", jobTitle: "Founder" }).jobTitle).toBe(
+      "Founder",
+    );
+  });
+});
+
 describe("credential dates", () => {
   const credentials = (data: CvData) =>
     person(data).hasCredential as Record<string, unknown>[];

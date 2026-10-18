@@ -38,7 +38,9 @@ content, keep the machinery.
    already publishes a schema.org Person, set `PERSON_ID` to its `@id` so
    search engines treat the CV and the site as one person, and optionally set
    `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
-   (to separate you from a namesake). The defaults keep the CV standalone.
+   (to separate you from a namesake). `ALTERNATE_NAMES` and
+   `PERSON_JOB_TITLE` keep the shared Person consistent with the site. The
+   defaults keep the CV standalone.
    `BLOCKED_CRAWLERS` lists any crawlers robots.txt should turn away; empty
    allows everyone.
 4. Rename the PDF through the `filename` field in
