@@ -32,7 +32,9 @@ content, keep the machinery.
 2. Change `ALLOWED_EMAIL` in [`src/lib/cv/lint.ts`](src/lib/cv/lint.ts) to the
    one address you intend to publish. The privacy lint fails the build on any
    other email, so this is the first thing that breaks on a fresh fork.
-3. Update `SITE_URL`, `PERSONAL_SITE`, the handle and ORCID, and
+3. Update `SITE_URL`, `PERSONAL_SITE`, `SITE_DESCRIPTION` (the ~155-character
+   meta description; unset, it uses your summary's first sentence), the
+   handle and ORCID, and
    `EXTRA_SAME_AS` (profiles to list in the structured data) in
    [`src/lib/seo/site.ts`](src/lib/seo/site.ts). If your personal site
    already publishes a schema.org Person, set `PERSON_ID` to its `@id` so
