@@ -121,6 +121,29 @@ describe("buildProfileJsonLd", () => {
   });
 });
 
+describe("credential dates", () => {
+  const credentials = (data: CvData) =>
+    person(data).hasCredential as Record<string, unknown>[];
+
+  it("dates every credential and marks a lapsed one as expired", () => {
+    const data: CvData = {
+      ...cvData,
+      credentials: [
+        { id: "c-lapsed", name: "Lapsed", dates: { start: "2016", end: "2023" } },
+        { id: "c-once", name: "One-time", dates: { start: "2024-04", end: "2024-04" } },
+        { id: "c-current", name: "Current", dates: { start: "2013", end: "present" } },
+        { id: "c-undated", name: "Undated" },
+      ],
+    };
+    const [lapsed, once, current, undated] = credentials(data);
+    expect(lapsed).toMatchObject({ dateCreated: "2016", expires: "2023" });
+    expect(once).toMatchObject({ dateCreated: "2024-04" });
+    expect(once).not.toHaveProperty("expires");
+    expect(current).not.toHaveProperty("expires");
+    expect(undated).not.toHaveProperty("dateCreated");
+  });
+});
+
 describe("serializeJsonLd", () => {
   it("escapes < so the payload cannot close its script tag", () => {
     expect(serializeJsonLd({ a: "</script>" })).toBe('{"a":"\\u003c/script>"}');

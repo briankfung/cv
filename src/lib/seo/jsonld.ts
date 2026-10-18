@@ -80,13 +80,24 @@ export function buildProfileJsonLd(
 
   const knowsAbout = data.skills.flatMap((group) => group.items);
 
-  const hasCredential = data.credentials.map((credential) => ({
-    "@type": "EducationalOccupationalCredential",
-    name: credential.name,
-    ...(credential.issuer
-      ? { recognizedBy: { "@type": "Organization", name: credential.issuer } }
-      : {}),
-  }));
+  const hasCredential = data.credentials.map((credential) => {
+    const { dates } = credential;
+    // An end that is neither ongoing nor the year it was earned is when the
+    // credential lapsed (or will), so a lapsed one does not read as current.
+    const expires =
+      dates && dates.end !== "present" && dates.end !== dates.start
+        ? dates.end
+        : undefined;
+    return {
+      "@type": "EducationalOccupationalCredential",
+      name: credential.name,
+      ...(credential.issuer
+        ? { recognizedBy: { "@type": "Organization", name: credential.issuer } }
+        : {}),
+      ...(dates ? { dateCreated: dates.start } : {}),
+      ...(expires ? { expires } : {}),
+    };
+  });
 
   const [locality, region] = profile.location
     .split(",")
