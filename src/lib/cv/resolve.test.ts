@@ -416,3 +416,38 @@ describe("optional media section", () => {
     expect(section.entries[0].datesISO).toBe("2026-09");
   });
 });
+
+describe("profile highlights", () => {
+  const variant: VariantConfig = {
+    ...master,
+    sections: [{ section: "profile", title: "Highlights" }],
+  };
+  const withProfile = (profile: Partial<CvData["profile"]>): CvData => ({
+    ...cvData,
+    profile: { ...cvData.profile, summary: undefined, highlights: undefined, ...profile },
+  });
+
+  it("renders highlights alone as bullets with no paragraph", () => {
+    const [section] = resolveVariant(
+      withProfile({ highlights: ["Built a thing.", "Led a team."] }),
+      variant,
+    ).sections;
+    expect(section.title).toBe("Highlights");
+    expect(section.layout).toBe("prose");
+    expect(section.prose).toBeUndefined();
+    expect(section.bullets?.map(richToPlain)).toEqual(["Built a thing.", "Led a team."]);
+  });
+
+  it("renders a summary and highlights together", () => {
+    const [section] = resolveVariant(
+      withProfile({ summary: "A paragraph.", highlights: ["One line."] }),
+      variant,
+    ).sections;
+    expect(section.prose).toBe("A paragraph.");
+    expect(section.bullets).toHaveLength(1);
+  });
+
+  it("skips the profile section when it has neither", () => {
+    expect(resolveVariant(withProfile({}), variant).sections).toEqual([]);
+  });
+});

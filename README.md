@@ -64,6 +64,10 @@ it in `src/data/cv/index.ts`, and list the section in your variant config.
 | `memberships` | `MembershipEntry` | Organization, optional role, optional dates        |
 | `media`       | `MediaEntry`      | Numbered citations of podcasts, press, guest posts |
 
+The profile section can open with a `summary` paragraph, a `highlights` list of
+one-line milestones, or both (set in `profile.ts`). Rename the section in your
+variant config, e.g. `{ section: "profile", title: "Highlights" }`.
+
 Build artifacts are committed on purpose: the deployed site serves the PDF as a
 static file, so the host never needs a TeX toolchain, and CI can check the
 generated `.tex` for freshness. CI fails if `latex/generated/` is out of date,

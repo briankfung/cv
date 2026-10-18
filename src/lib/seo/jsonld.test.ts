@@ -30,10 +30,24 @@ describe("buildProfileJsonLd", () => {
   });
 
   it("falls back to the profile summary when no description is configured", () => {
-    const entity = person(cvData, { id: "https://example.org/#person" });
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, summary: "A summary.", highlights: ["One."] },
+    };
+    const entity = person(data, { id: "https://example.org/#person" });
     expect(entity["@id"]).toBe("https://example.org/#person");
-    expect(entity.description).toBe(cvData.profile.summary);
+    expect(entity.description).toBe("A summary.");
     expect(entity).not.toHaveProperty("disambiguatingDescription");
+  });
+
+  it("falls back to the highlights when there is no summary or description", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, summary: undefined, highlights: ["One.", "Two."] },
+    };
+    expect(person(data, { id: "https://example.org/#person" }).description).toBe(
+      "One. Two.",
+    );
   });
 
   it("prefers a configured description and adds a disambiguation", () => {

@@ -91,7 +91,8 @@ function renderSection(section: RenderSection): string[] {
 
   switch (section.layout) {
     case "prose":
-      lines.push(macro("cvprose", escapeLatex(section.prose ?? "")));
+      if (section.prose) lines.push(macro("cvprose", escapeLatex(section.prose)));
+      lines.push(...renderBullets(section.bullets ?? []));
       break;
 
     case "skills":

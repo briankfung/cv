@@ -108,7 +108,10 @@ export function buildProfileJsonLd(
         propertyID: "ORCID",
         value: ORCID_ID,
       },
-      description: identity.description ?? profile.summary,
+      description:
+        identity.description ??
+        profile.summary ??
+        profile.highlights?.join(" "),
       ...(identity.disambiguation
         ? { disambiguatingDescription: identity.disambiguation }
         : {}),

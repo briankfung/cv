@@ -258,7 +258,13 @@ export interface Profile {
   email: string;
   location: string;
   links: ProfileLink[];
-  summary: string;
+  /**
+   * Opening paragraph. Optional: the profile section shows the summary, the
+   * highlights, or both, and is skipped when neither is set.
+   */
+  summary?: string;
+  /** Short one-line milestones, rendered as a bulleted list. */
+  highlights?: string[];
   /** Author surname to bold in publication citations; matched as a prefix. */
   selfAuthor: string;
 }
@@ -378,6 +384,8 @@ export interface RenderSection {
   entries: RenderEntry[];
   /** Only set when `layout === "prose"`. */
   prose?: string;
+  /** Profile highlights; only set when `layout === "prose"`. */
+  bullets?: Rich[];
   /** Only set when `layout === "skills"`. */
   groups?: SkillGroup[];
 }

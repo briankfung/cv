@@ -13,7 +13,8 @@ export const PERSON_ID = `${PERSONAL_SITE}/#person`;
 
 /**
  * Short Person description for the structured data, typically the one-liner
- * your other profiles use. Undefined falls back to the CV's profile summary.
+ * your other profiles use. Undefined falls back to the CV's profile summary,
+ * or to its highlights when there is no summary.
  */
 export const PERSON_DESCRIPTION: string | undefined =
   "Clinician-engineer working to connect the world's healthcare data. Founder of haau3, a free app that gathers a loved one's health records in one place for caregivers, and of OpenClinTech, where I teach clinicians to build software. PharmD, MPH, CNA.";
