@@ -7,8 +7,8 @@ import {
   PERSON_DISAMBIGUATION,
   PERSON_ID,
   PERSON_JOB_TITLE,
+  PERSON_IMAGE,
   PERSONAL_SITE,
-  PROFILE_IMAGE_PATH,
   SITE_URL,
 } from "./site";
 
@@ -19,6 +19,7 @@ export interface PersonIdentity {
   disambiguation?: string;
   alternateNames?: string[];
   jobTitle?: string;
+  image?: { url: string; id?: string };
 }
 
 const SITE_IDENTITY: PersonIdentity = {
@@ -27,6 +28,7 @@ const SITE_IDENTITY: PersonIdentity = {
   disambiguation: PERSON_DISAMBIGUATION,
   alternateNames: ALTERNATE_NAMES,
   jobTitle: PERSON_JOB_TITLE,
+  image: PERSON_IMAGE,
 };
 
 /** A single value stays scalar; several become an array, as schema.org allows. */
@@ -142,7 +144,18 @@ export function buildProfileJsonLd(
         ? { alternateName: oneOrMany(identity.alternateNames) }
         : {}),
       honorificSuffix: profile.credentials,
-      image: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
+      ...(identity.image
+        ? {
+            image: identity.image.id
+              ? {
+                  "@type": "ImageObject",
+                  "@id": identity.image.id,
+                  url: identity.image.url,
+                  contentUrl: identity.image.url,
+                }
+              : identity.image.url,
+          }
+        : {}),
       identifier: {
         "@type": "PropertyValue",
         propertyID: "ORCID",

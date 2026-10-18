@@ -184,6 +184,34 @@ describe("profile page dates", () => {
   });
 });
 
+describe("person image", () => {
+  const id = "https://example.org/#person";
+
+  it("emits a plain URL by default", () => {
+    expect(person(cvData, { id, image: { url: "https://example.org/me.png" } }).image).toBe(
+      "https://example.org/me.png",
+    );
+  });
+
+  it("references a personal site's headshot by @id when given one", () => {
+    expect(
+      person(cvData, {
+        id,
+        image: { url: "https://example.org/me.jpg", id: "https://example.org/#headshot" },
+      }).image,
+    ).toEqual({
+      "@type": "ImageObject",
+      "@id": "https://example.org/#headshot",
+      url: "https://example.org/me.jpg",
+      contentUrl: "https://example.org/me.jpg",
+    });
+  });
+
+  it("omits the image when none is configured", () => {
+    expect(person(cvData, { id })).not.toHaveProperty("image");
+  });
+});
+
 describe("credential dates", () => {
   const credentials = (data: CvData) =>
     person(data).hasCredential as Record<string, unknown>[];

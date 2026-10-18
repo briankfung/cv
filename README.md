@@ -39,7 +39,8 @@ content, keep the machinery.
    search engines treat the CV and the site as one person, and optionally set
    `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
    (to separate you from a namesake). `ALTERNATE_NAMES` and
-   `PERSON_JOB_TITLE` keep the shared Person consistent with the site. The
+   `PERSON_JOB_TITLE` keep the shared Person consistent with the site, and
+   `PERSON_IMAGE` can point at the site's headshot so both use one image. The
    defaults keep the CV standalone.
    `BLOCKED_CRAWLERS` lists any crawlers robots.txt should turn away; empty
    allows everyone.
