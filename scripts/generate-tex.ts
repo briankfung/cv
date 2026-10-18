@@ -11,14 +11,22 @@ import { cvData } from "@/data/cv";
 import { variants } from "@/data/variants";
 import { resolveVariant } from "@/lib/cv/resolve";
 import { renderLatexDocument } from "@/lib/latex/render";
+import { documentDescription, documentTitle } from "@/lib/seo/meta";
 import { GENERATED_DIR, PREAMBLE_PATH, texPath } from "./paths";
 
 const preamble = readFileSync(PREAMBLE_PATH, "utf8");
+
+// The PDF carries the same title and description as the web page.
+const metadata = {
+  title: documentTitle(cvData.profile),
+  author: cvData.profile.name,
+  subject: documentDescription(cvData.profile),
+};
 mkdirSync(GENERATED_DIR, { recursive: true });
 
 for (const variant of variants) {
   const resolved = resolveVariant(cvData, variant);
-  const document = renderLatexDocument(resolved, preamble);
+  const document = renderLatexDocument(resolved, preamble, metadata);
   const path = texPath(variant);
   writeFileSync(path, document, "utf8");
   console.log(
