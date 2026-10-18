@@ -10,10 +10,10 @@ export const experience: PositionEntry[] = [
     dates: { start: "2025-11", end: "present" },
     tags: ["ai", "product", "engineering", "clinical", "standards"],
     summary:
-      "Sole builder of a free caregiving app and the healthcare API platform behind it, started during a period of full-time family caregiving.",
+      "Consumer caregiving app and the B2B healthcare API platform behind it, started during a period of full-time family caregiving.",
     bullets: [
       {
-        text: "Conceived and built haau3 as its sole engineer: a free, FHIR-native app that gathers a loved one's health records in one place, explains them in plain language, and shares exactly what the caregiver chooses with care teams.",
+        text: "Conceived and built haau3, a FHIR-native app that gathers a loved one's health records in one place, explains them in plain language, and shares exactly what the caregiver chooses with care teams.",
       },
       {
         text: "Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026, and listed it in the CMS Medicare App Library; earned the DiMe Seal in April 2026.",
