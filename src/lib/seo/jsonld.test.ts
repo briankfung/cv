@@ -188,7 +188,19 @@ describe("profile page dates", () => {
       profile: { ...cvData.profile, created: "2024-01-15", updated: "2026-10-18" },
     };
     const page = buildProfileJsonLd(data);
-    expect(page).toMatchObject({ dateCreated: "2024-01-15", dateModified: "2026-10-18" });
+    // Google rejects bare dates here, so they become full date-times.
+    expect(page).toMatchObject({
+      dateCreated: "2024-01-15T00:00:00Z",
+      dateModified: "2026-10-18T00:00:00Z",
+    });
+  });
+
+  it("passes a full date-time with its offset through unchanged", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, updated: "2026-10-18T14:05:00-04:00" },
+    };
+    expect(buildProfileJsonLd(data).dateModified).toBe("2026-10-18T14:05:00-04:00");
   });
 
   it("omits the dates when they are not set", () => {

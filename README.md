@@ -55,7 +55,8 @@ content, keep the machinery.
 
 1. Edit the relevant file in [`src/data/cv/`](src/data/cv/) — one file per
    section (`experience.ts`, `publications.ts`, and so on).
-2. Set `updated` in `profile.ts` to today's date (`YYYY-MM-DD`); it becomes
+2. Set `updated` in `profile.ts` to the current date-time with its offset
+   (`2026-10-18T14:00:00-04:00`; a bare `YYYY-MM-DD` also works). It becomes
    the sitemap's `lastmod` and the ProfilePage's `dateModified`, so search
    engines see when the content changed. (`created`, also optional, records
    when the CV page first went live.)
