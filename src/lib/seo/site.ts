@@ -29,6 +29,16 @@ export const PERSON_DISAMBIGUATION: string | undefined =
 /** Public handle, identical on GitHub, LinkedIn, YouTube, X and Instagram. */
 export const PROFILE_HANDLE = "briankfung";
 
+/** Other names the Person is known by, for schema.org `alternateName`. */
+export const ALTERNATE_NAMES: string[] = [PROFILE_HANDLE];
+
+/**
+ * schema.org `jobTitle`. Undefined derives it from every ongoing role in
+ * Experience; set it when a personal site already states one title, so the
+ * shared Person does not carry two.
+ */
+export const PERSON_JOB_TITLE: string | undefined = undefined;
+
 export const ORCID_ID = "0000-0002-5951-3770";
 
 /** Profiles that belong in the Person's sameAs but are not shown in the CV header. */
@@ -40,6 +50,12 @@ export const EXTRA_SAME_AS = [
   "https://x.com/briankfung",
   "https://www.instagram.com/briankfung/",
 ];
+
+/**
+ * Crawlers to turn away in robots.txt, e.g. bulk scrapers and training-data
+ * collectors. Everything else, search engines included, stays allowed.
+ */
+export const BLOCKED_CRAWLERS: string[] = [];
 
 /** Headshot served from /public; referenced as the Person image in the structured data. */
 export const PROFILE_IMAGE_PATH = "/brian-k-fung.png";

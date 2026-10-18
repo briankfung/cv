@@ -69,7 +69,8 @@ describe("buildProfileJsonLd", () => {
         role("c", "Engineer", "Old Employer", "2019"),
       ],
     };
-    const entity = person(data);
+    // An identity with no configured title, so the roles decide it.
+    const entity = person(data, { id: "https://example.org/#person" });
     expect(entity.jobTitle).toEqual(["Founder", "Founder & Lead"]);
     expect(entity.worksFor).toEqual([
       { "@type": "Organization", name: "Venture A", url: "https://a.example" },
@@ -82,7 +83,7 @@ describe("buildProfileJsonLd", () => {
       ...cvData,
       experience: [role("a", "Founder", "Venture A", "present")],
     };
-    const entity = person(data);
+    const entity = person(data, { id: "https://example.org/#person" });
     expect(entity.jobTitle).toBe("Founder");
     expect(entity.worksFor).toEqual({ "@type": "Organization", name: "Venture A" });
   });
@@ -118,6 +119,93 @@ describe("buildProfileJsonLd", () => {
   it("omits memberOf when there are no memberships", () => {
     const data: CvData = { ...cvData, memberships: [] };
     expect(person(data)).not.toHaveProperty("memberOf");
+  });
+});
+
+describe("shared Person details", () => {
+  it("gives the CV page its own @id and opening description", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, summary: undefined, highlights: ["One.", "Two."] },
+    };
+    const page = buildProfileJsonLd(data, { id: "https://example.org/#person" });
+    expect(page["@id"]).toBe(`${SITE_URL}/#profile`);
+    expect(page.description).toBe("One. Two.");
+  });
+
+  it("lists the CV among the profiles of a Person shared with a personal site", () => {
+    const shared = person(cvData, { id: "https://example.org/#person" });
+    expect(shared.sameAs).toContain(`${SITE_URL}/`);
+    const standalone = person(cvData, { id: `${SITE_URL}/#person` });
+    expect(standalone.sameAs).not.toContain(`${SITE_URL}/`);
+  });
+
+  it("emits configured alternate names, one or many", () => {
+    const id = "https://example.org/#person";
+    expect(person(cvData, { id, alternateNames: ["handle"] }).alternateName).toBe("handle");
+    expect(
+      person(cvData, { id, alternateNames: ["A Name", "handle"] }).alternateName,
+    ).toEqual(["A Name", "handle"]);
+    expect(person(cvData, { id })).not.toHaveProperty("alternateName");
+  });
+
+  it("uses a configured job title over the derived roles", () => {
+    const data: CvData = {
+      ...cvData,
+      experience: [
+        role("a", "Founder", "Venture A", "present"),
+        role("b", "Founder & Lead", "Holding Co", "present"),
+      ],
+    };
+    expect(person(data, { id: "https://example.org/#person", jobTitle: "Founder" }).jobTitle).toBe(
+      "Founder",
+    );
+  });
+});
+
+describe("credential dates", () => {
+  const credentials = (data: CvData) =>
+    person(data).hasCredential as Record<string, unknown>[];
+
+  it("dates every credential and marks a lapsed one as expired", () => {
+    const data: CvData = {
+      ...cvData,
+      credentials: [
+        { id: "c-lapsed", name: "Lapsed", dates: { start: "2016", end: "2023" } },
+        { id: "c-once", name: "One-time", dates: { start: "2024-04", end: "2024-04" } },
+        { id: "c-current", name: "Current", dates: { start: "2013", end: "present" } },
+        { id: "c-undated", name: "Undated" },
+      ],
+    };
+    const [lapsed, once, current, undated] = credentials(data);
+    expect(lapsed).toMatchObject({ dateCreated: "2016", expires: "2023" });
+    expect(once).toMatchObject({ dateCreated: "2024-04" });
+    expect(once).not.toHaveProperty("expires");
+    expect(current).not.toHaveProperty("expires");
+    expect(undated).not.toHaveProperty("dateCreated");
+  });
+});
+
+describe("alumniOf", () => {
+  it("lists only finished education", () => {
+    const edu = (id: string, institution: string, status?: "planned" | "in-progress") => ({
+      id,
+      degree: "Degree",
+      institution,
+      dates: { start: "2020", end: "2022" },
+      status,
+    });
+    const data: CvData = {
+      ...cvData,
+      education: [
+        edu("e1", "Finished U"),
+        edu("e2", "Planned U", "planned"),
+        edu("e3", "Ongoing U", "in-progress"),
+      ],
+    };
+    expect(person(data).alumniOf).toEqual([
+      { "@type": "CollegeOrUniversity", name: "Finished U" },
+    ]);
   });
 });
 

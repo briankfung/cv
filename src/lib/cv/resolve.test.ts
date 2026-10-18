@@ -451,3 +451,33 @@ describe("profile highlights", () => {
     expect(resolveVariant(withProfile({}), variant).sections).toEqual([]);
   });
 });
+
+describe("unfinished education", () => {
+  const variant: VariantConfig = { ...master, sections: [{ section: "education" }] };
+  const program = (status?: "planned" | "in-progress") => ({
+    id: `edu-${status ?? "done"}`,
+    degree: "Program",
+    institution: "Some University",
+    dates: { start: "2027-05", end: "2027-06" },
+    status,
+  });
+
+  it("shows a planned program as admitted, with its start", () => {
+    const data: CvData = { ...cvData, education: [program("planned")] };
+    const [entry] = resolveVariant(data, variant).sections[0].entries;
+    expect(entry.dates).toBe("Admitted, begins May 2027");
+    expect(entry.datesISO).toBe("2027-05");
+  });
+
+  it("shows an in-progress program with its expected finish", () => {
+    const data: CvData = { ...cvData, education: [program("in-progress")] };
+    const [entry] = resolveVariant(data, variant).sections[0].entries;
+    expect(entry.dates).toBe("May 2027 – expected Jun 2027");
+  });
+
+  it("leaves finished education as a plain range", () => {
+    const data: CvData = { ...cvData, education: [program()] };
+    const [entry] = resolveVariant(data, variant).sections[0].entries;
+    expect(entry.dates).toBe("May 2027 – Jun 2027");
+  });
+});

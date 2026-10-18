@@ -38,7 +38,11 @@ content, keep the machinery.
    already publishes a schema.org Person, set `PERSON_ID` to its `@id` so
    search engines treat the CV and the site as one person, and optionally set
    `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
-   (to separate you from a namesake). The defaults keep the CV standalone.
+   (to separate you from a namesake). `ALTERNATE_NAMES` and
+   `PERSON_JOB_TITLE` keep the shared Person consistent with the site. The
+   defaults keep the CV standalone.
+   `BLOCKED_CRAWLERS` lists any crawlers robots.txt should turn away; empty
+   allows everyone.
 4. Rename the PDF through the `filename` field in
    [`src/data/variants/master.ts`](src/data/variants/master.ts).
 5. Swap out the Google Search Console verification — the token in
@@ -50,8 +54,10 @@ content, keep the machinery.
 
 1. Edit the relevant file in [`src/data/cv/`](src/data/cv/) — one file per
    section (`experience.ts`, `publications.ts`, and so on).
-2. Run `pnpm build:pdf` to regenerate the `.tex` files and recompile the PDFs.
-3. Commit the data change together with `latex/generated/` and `public/pdf/`.
+2. Set `updated` in `profile.ts` to today's date (`YYYY-MM-DD`); it becomes
+   the sitemap's `lastmod`, so search engines see when the content changed.
+3. Run `pnpm build:pdf` to regenerate the `.tex` files and recompile the PDFs.
+4. Commit the data change together with `latex/generated/` and `public/pdf/`.
 
 ### Optional sections
 
@@ -108,7 +114,7 @@ of `package.json`). Run `pnpm install` first.
 | `pnpm build`        | Validate the data, then build the site                                     |
 | `pnpm build:pdf`    | Regenerate `.tex` and compile the PDF                                      |
 | `pnpm generate:tex` | Regenerate `.tex` only                                                     |
-| `pnpm validate`     | Schema, cross-entry, and privacy checks on the data                        |
+| `pnpm validate`     | Schema, cross-entry, privacy, and canonical-link checks on the data        |
 | `pnpm test`         | Unit tests for the escaper, resolver, citations, privacy lint, and JSON-LD |
 | `pnpm typecheck`    | `tsc --noEmit`                                                             |
 | `pnpm lint`         | ESLint                                                                     |

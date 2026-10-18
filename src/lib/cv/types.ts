@@ -78,6 +78,13 @@ export interface EducationEntry extends Taggable {
   location?: string;
   dates: DateRange;
   note?: string;
+  /**
+   * `planned`: admitted but not started. `in-progress`: underway, with `end`
+   * as the expected finish. Either way the entry is shown as unfinished and
+   * kept out of the structured data's alumniOf, so it never implies a
+   * completed program. Omit for finished education.
+   */
+  status?: "planned" | "in-progress";
 }
 
 export interface CredentialEntry extends Taggable {
@@ -267,6 +274,12 @@ export interface Profile {
   highlights?: string[];
   /** Author surname to bold in publication citations; matched as a prefix. */
   selfAuthor: string;
+  /**
+   * `YYYY-MM-DD` the CV content last changed, published as the sitemap's
+   * lastmod. Set by hand with each content update, never from the clock, so
+   * a rebuild with no new content does not claim a fresh page.
+   */
+  updated?: string;
 }
 
 export const SECTION_IDS = [

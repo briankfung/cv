@@ -81,6 +81,8 @@ export function formatPublication(
         link(pub.pmid, `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`),
       ]
     : null;
+  // A public page for the item (an abstract, a full text) links its title.
+  const title = pub.url ? link(pub.title, pub.url) : text(pub.title);
 
   if (pub.type === "chapter") {
     // AMA order: authors. Chapter title. In: Editors, ed. Book title. Edition.
@@ -93,7 +95,9 @@ export function formatPublication(
     const publisher = imprint ? `${imprint}; ` : "";
     return rich(
       authors,
-      text(`. ${pub.title}${terminator(pub.title)} In: `),
+      text(". "),
+      title,
+      text(`${terminator(pub.title)} In: `),
       editors,
       italic(pub.venue),
       text(". "),
@@ -105,13 +109,13 @@ export function formatPublication(
   }
 
   const label = PUBLICATION_LABEL[pub.type];
-  const title = label
-    ? `${pub.title} [${label}].`
-    : `${pub.title}${terminator(pub.title)}`;
+  const afterTitle = label ? ` [${label}].` : terminator(pub.title);
 
   return rich(
     authors,
-    text(`. ${title} `),
+    text(". "),
+    title,
+    text(`${afterTitle} `),
     italic(pub.venue),
     text(`. ${journalTail(pub)}`),
     doi,

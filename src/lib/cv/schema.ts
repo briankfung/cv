@@ -48,6 +48,7 @@ const educationEntry = z.object({
   location: z.string().optional(),
   dates: dateRange,
   note: z.string().optional(),
+  status: z.enum(["planned", "in-progress"]).optional(),
 });
 
 const credentialEntry = z.object({
@@ -168,6 +169,7 @@ const profile = z.object({
   summary: z.string().min(1).optional(),
   highlights: z.array(z.string().min(1)).nonempty().optional(),
   selfAuthor: z.string().min(1),
+  updated: z.iso.date().optional(),
 });
 
 export const cvDataSchema = z.object({

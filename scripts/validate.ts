@@ -11,6 +11,7 @@ import { cvData } from "@/data/cv";
 import { variants } from "@/data/variants";
 import { lintCv } from "@/lib/cv/lint";
 import { cvDataSchema, variantConfigSchema } from "@/lib/cv/schema";
+import { PERSONAL_SITE } from "@/lib/seo/site";
 
 const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
@@ -45,7 +46,7 @@ for (const variant of variants) {
   }
 }
 
-const issues = lintCv(cvData);
+const issues = lintCv(cvData, { personalSite: PERSONAL_SITE });
 if (issues.length > 0) {
   fail(
     "CV data failed lint checks:",
