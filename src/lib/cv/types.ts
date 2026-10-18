@@ -93,7 +93,17 @@ export interface CredentialEntry extends Taggable {
   items?: string[];
 }
 
-export type PublicationType = "journal-article" | "chapter" | "preprint";
+/**
+ * `letter` and `abstract` cite like a journal article but carry a bracketed
+ * label, so a reader can tell correspondence and published conference
+ * abstracts apart from peer-reviewed articles.
+ */
+export type PublicationType =
+  | "journal-article"
+  | "letter"
+  | "abstract"
+  | "chapter"
+  | "preprint";
 
 export interface PublicationEntry extends Taggable {
   type: PublicationType;
@@ -114,6 +124,8 @@ export interface PublicationEntry extends Taggable {
   publisher?: string;
   edition?: string;
   doi?: string;
+  /** PubMed identifier, rendered after the DOI as a link to PubMed. */
+  pmid?: string;
   url?: string;
 }
 
@@ -164,6 +176,24 @@ export interface PresentationEntry extends Taggable {
   url?: string;
 }
 
+export type MediaKind = "podcast" | "press" | "guest-post";
+
+/**
+ * An appearance in someone else's outlet: a podcast interview, a press piece
+ * about the CV owner, or a guest post. Optional as a section.
+ */
+export interface MediaEntry extends Taggable {
+  kind: MediaKind;
+  /** Episode, article, or post title as published. */
+  title: string;
+  /** Show, publication, or site. */
+  outlet: string;
+  date: CvDate;
+  url?: string;
+  /** One short sentence of context, printed after the citation. */
+  note?: string;
+}
+
 export interface HonorEntry extends Taggable {
   title: string;
   org?: string;
@@ -175,6 +205,19 @@ export interface HonorEntry extends Taggable {
   dates?: DateRange;
   note?: string;
   /** Public record of the award, where one exists. */
+  url?: string;
+}
+
+/**
+ * A professional society or organization membership. Optional as a section:
+ * a CV without memberships simply omits the data and the section.
+ */
+export interface MembershipEntry extends Taggable {
+  org: string;
+  /** Optional because many memberships have no recorded term. */
+  dates?: DateRange;
+  /** A held position such as "Fellow"; omit for ordinary membership. */
+  role?: string;
   url?: string;
 }
 
@@ -230,8 +273,10 @@ export const SECTION_IDS = [
   "publications",
   "research",
   "presentations",
+  "media",
   "teaching",
   "service",
+  "memberships",
   "honors",
   "projects",
   "skills",
@@ -248,8 +293,12 @@ export interface CvData {
   publications: PublicationEntry[];
   research: ResearchEntry[];
   presentations: PresentationEntry[];
+  /** Optional section; omit or leave empty to drop it from every variant. */
+  media?: MediaEntry[];
   teaching: PositionEntry[];
   service: PositionEntry[];
+  /** Optional section; omit or leave empty to drop it from every variant. */
+  memberships?: MembershipEntry[];
   honors: HonorEntry[];
   projects: ProjectEntry[];
   skills: SkillGroup[];

@@ -5,7 +5,7 @@
  * PDF and the web page stay in lockstep.
  */
 
-import { formatPresentation, formatPublication } from "./citations";
+import { formatMedia, formatPresentation, formatPublication } from "./citations";
 import { dateSortKey, formatOccurrences, formatRange } from "./dates";
 import { bold, link, rich, text } from "./rich";
 import type {
@@ -35,8 +35,10 @@ export const DEFAULT_SECTION_TITLES: Record<SectionId, string> = {
   publications: "Publications",
   research: "Research",
   presentations: "Presentations",
+  media: "Media & Podcasts",
   teaching: "Teaching",
   service: "Professional Service & Leadership",
+  memberships: "Professional Memberships",
   honors: "Honors & Awards",
   projects: "Projects & Product Portfolio",
   skills: "Skills",
@@ -52,8 +54,10 @@ const SECTION_LAYOUTS: Record<SectionId, SectionLayout> = {
   publications: "numbered",
   research: "entries",
   presentations: "numbered",
+  media: "numbered",
   teaching: "entries",
   service: "entries",
+  memberships: "entries",
   honors: "entries",
   projects: "entries",
   skills: "skills",
@@ -82,8 +86,10 @@ const CHRONOLOGICAL: ReadonlySet<SectionId> = new Set([
   "research",
   "publications",
   "presentations",
+  "media",
   "teaching",
   "service",
+  "memberships",
   "honors",
   "projects",
 ]);
@@ -253,6 +259,15 @@ function buildEntries(
         ...dateFields(entry.dates),
       }));
 
+    case "memberships":
+      return selectEntries(chronological(data.memberships ?? [], section), config).map((entry) => ({
+        id: entry.id,
+        heading: headingRuns(entry.org, entry.url),
+        subheading: entry.role ? rich(text(entry.role)) : undefined,
+        bullets: [],
+        ...dateFields(entry.dates),
+      }));
+
     case "projects": {
       const names = new Map(data.projects.map((p) => [p.id, p.name]));
       return selectEntries(groupByParent(chronological(data.projects, section)), config).map((entry) => ({
@@ -290,6 +305,14 @@ function buildEntries(
       return selectEntries(chronological(data.presentations, section), config).map((entry) => ({
         id: entry.id,
         heading: formatPresentation(entry),
+        bullets: [],
+        datesISO: entry.date,
+      }));
+
+    case "media":
+      return selectEntries(chronological(data.media ?? [], section), config).map((entry) => ({
+        id: entry.id,
+        heading: formatMedia(entry),
         bullets: [],
         datesISO: entry.date,
       }));

@@ -61,7 +61,7 @@ const credentialEntry = z.object({
 
 const publicationEntry = z.object({
   ...identified,
-  type: z.enum(["journal-article", "chapter", "preprint"]),
+  type: z.enum(["journal-article", "letter", "abstract", "chapter", "preprint"]),
   authors: z.array(z.string().min(1)).nonempty(),
   title: z.string().min(1),
   venue: z.string().min(1),
@@ -74,6 +74,7 @@ const publicationEntry = z.object({
   publisher: z.string().optional(),
   edition: z.string().optional(),
   doi: z.string().optional(),
+  pmid: z.string().regex(/^\d+$/, "PMIDs are digits only").optional(),
   url: z.url().optional(),
 });
 
@@ -107,12 +108,30 @@ const presentationEntry = z.object({
   url: z.url().optional(),
 });
 
+const mediaEntry = z.object({
+  ...identified,
+  kind: z.enum(["podcast", "press", "guest-post"]),
+  title: z.string().min(1),
+  outlet: z.string().min(1),
+  date: cvDate,
+  url: z.url().optional(),
+  note: z.string().optional(),
+});
+
 const honorEntry = z.object({
   ...identified,
   title: z.string().min(1),
   org: z.string().optional(),
   dates: dateRange.optional(),
   note: z.string().optional(),
+  url: z.url().optional(),
+});
+
+const membershipEntry = z.object({
+  ...identified,
+  org: z.string().min(1),
+  dates: dateRange.optional(),
+  role: z.string().optional(),
   url: z.url().optional(),
 });
 
@@ -160,8 +179,10 @@ export const cvDataSchema = z.object({
   publications: z.array(publicationEntry),
   research: z.array(researchEntry),
   presentations: z.array(presentationEntry),
+  media: z.array(mediaEntry).optional(),
   teaching: z.array(positionEntry),
   service: z.array(positionEntry),
+  memberships: z.array(membershipEntry).optional(),
   honors: z.array(honorEntry),
   projects: z.array(projectEntry),
   skills: z.array(skillGroup),

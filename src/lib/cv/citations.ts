@@ -6,6 +6,8 @@
 import { formatDate } from "./dates";
 import { bold, italic, link, rich, text } from "./rich";
 import type {
+  MediaEntry,
+  MediaKind,
   PresentationEntry,
   PresentationScope,
   PresentationType,
@@ -47,13 +49,23 @@ function authorRuns(authors: string[], selfAuthor: string): Rich {
   });
 }
 
+/**
+ * AMA locator. Proceedings abstracts often have pages but no volume, which AMA
+ * writes as `2019:1582` rather than `2019;:1582`.
+ */
 function journalTail(pub: PublicationEntry): string {
   const volume = pub.volume ?? "";
   const issue = pub.issue ? `(${pub.issue})` : "";
   const pages = pub.pages ? `:${pub.pages}` : "";
-  const locator = `${volume}${issue}${pages}`;
-  return locator ? `${pub.year};${locator}.` : `${pub.year}.`;
+  if (!volume && !issue) return `${pub.year}${pages}.`;
+  return `${pub.year};${volume}${issue}${pages}.`;
 }
+
+/** Bracketed after the title, so the kind of item is visible in the citation. */
+const PUBLICATION_LABEL: Partial<Record<PublicationEntry["type"], string>> = {
+  letter: "letter",
+  abstract: "abstract",
+};
 
 export function formatPublication(
   pub: PublicationEntry,
@@ -63,10 +75,16 @@ export function formatPublication(
   const doi = pub.doi
     ? [text(" "), link(`doi:${pub.doi}`, `https://doi.org/${pub.doi}`)]
     : null;
+  const pmid = pub.pmid
+    ? [
+        text(" PMID: "),
+        link(pub.pmid, `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`),
+      ]
+    : null;
 
   if (pub.type === "chapter") {
     // AMA order: authors. Chapter title. In: Editors, ed. Book title. Edition.
-    // Publisher; year.
+    // Publisher; year:pages.
     const editors = pub.editors?.length
       ? text(`${pub.editors.join(", ")}, ed${pub.editors.length > 1 ? "s" : ""}. `)
       : null;
@@ -80,17 +98,24 @@ export function formatPublication(
       italic(pub.venue),
       text(". "),
       edition,
-      text(`${publisher}${pub.year}.`),
+      text(`${publisher}${pub.year}${pub.pages ? `:${pub.pages}` : ""}.`),
       doi,
+      pmid,
     );
   }
 
+  const label = PUBLICATION_LABEL[pub.type];
+  const title = label
+    ? `${pub.title} [${label}].`
+    : `${pub.title}${terminator(pub.title)}`;
+
   return rich(
     authors,
-    text(`. ${pub.title}${terminator(pub.title)} `),
+    text(`. ${title} `),
     italic(pub.venue),
     text(`. ${journalTail(pub)}`),
     doi,
+    pmid,
   );
 }
 
@@ -106,10 +131,41 @@ export function formatPresentation(entry: PresentationEntry): Rich {
   const when = formatDate(entry.date);
 
   if (entry.title) {
+    // The title carries the link, so a public recording or program page is one
+    // click away without a bare URL in the citation.
+    const title = entry.url
+      ? { ...link(entry.title, entry.url), italic: true }
+      : italic(entry.title);
     return rich(
-      italic(entry.title),
+      title,
       text(`${terminator(entry.title)} ${where}; ${when}. ${role}.`),
     );
   }
-  return rich(text(`${role}. ${where}; ${when}.`));
+  return rich(
+    text(`${role}. `),
+    entry.url ? link(entry.venue, entry.url) : text(entry.venue),
+    text(`${entry.location ? `; ${entry.location}` : ""}; ${when}.`),
+  );
+}
+
+const MEDIA_ROLE: Record<MediaKind, string> = {
+  podcast: "Podcast guest",
+  press: "Press feature",
+  "guest-post": "Guest post",
+};
+
+/** Mirrors a presentation citation: linked italic title, outlet, date, role. */
+export function formatMedia(entry: MediaEntry): Rich {
+  const title = entry.url
+    ? { ...link(entry.title, entry.url), italic: true }
+    : italic(entry.title);
+  const note = entry.note
+    ? ` ${entry.note.trim()}${terminator(entry.note)}`
+    : "";
+  return rich(
+    title,
+    text(
+      `${terminator(entry.title)} ${entry.outlet}; ${formatDate(entry.date)}. ${MEDIA_ROLE[entry.kind]}.${note}`,
+    ),
+  );
 }
