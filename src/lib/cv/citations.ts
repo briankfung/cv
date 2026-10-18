@@ -47,13 +47,23 @@ function authorRuns(authors: string[], selfAuthor: string): Rich {
   });
 }
 
+/**
+ * AMA locator. Proceedings abstracts often have pages but no volume, which AMA
+ * writes as `2019:1582` rather than `2019;:1582`.
+ */
 function journalTail(pub: PublicationEntry): string {
   const volume = pub.volume ?? "";
   const issue = pub.issue ? `(${pub.issue})` : "";
   const pages = pub.pages ? `:${pub.pages}` : "";
-  const locator = `${volume}${issue}${pages}`;
-  return locator ? `${pub.year};${locator}.` : `${pub.year}.`;
+  if (!volume && !issue) return `${pub.year}${pages}.`;
+  return `${pub.year};${volume}${issue}${pages}.`;
 }
+
+/** Bracketed after the title, so the kind of item is visible in the citation. */
+const PUBLICATION_LABEL: Partial<Record<PublicationEntry["type"], string>> = {
+  letter: "letter",
+  abstract: "abstract",
+};
 
 export function formatPublication(
   pub: PublicationEntry,
@@ -62,6 +72,12 @@ export function formatPublication(
   const authors = authorRuns(pub.authors, selfAuthor);
   const doi = pub.doi
     ? [text(" "), link(`doi:${pub.doi}`, `https://doi.org/${pub.doi}`)]
+    : null;
+  const pmid = pub.pmid
+    ? [
+        text(" PMID: "),
+        link(pub.pmid, `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`),
+      ]
     : null;
 
   if (pub.type === "chapter") {
@@ -82,15 +98,22 @@ export function formatPublication(
       edition,
       text(`${publisher}${pub.year}.`),
       doi,
+      pmid,
     );
   }
 
+  const label = PUBLICATION_LABEL[pub.type];
+  const title = label
+    ? `${pub.title} [${label}].`
+    : `${pub.title}${terminator(pub.title)}`;
+
   return rich(
     authors,
-    text(`. ${pub.title}${terminator(pub.title)} `),
+    text(`. ${title} `),
     italic(pub.venue),
     text(`. ${journalTail(pub)}`),
     doi,
+    pmid,
   );
 }
 

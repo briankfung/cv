@@ -93,7 +93,17 @@ export interface CredentialEntry extends Taggable {
   items?: string[];
 }
 
-export type PublicationType = "journal-article" | "chapter" | "preprint";
+/**
+ * `letter` and `abstract` cite like a journal article but carry a bracketed
+ * label, so a reader can tell correspondence and published conference
+ * abstracts apart from peer-reviewed articles.
+ */
+export type PublicationType =
+  | "journal-article"
+  | "letter"
+  | "abstract"
+  | "chapter"
+  | "preprint";
 
 export interface PublicationEntry extends Taggable {
   type: PublicationType;
@@ -114,6 +124,8 @@ export interface PublicationEntry extends Taggable {
   publisher?: string;
   edition?: string;
   doi?: string;
+  /** PubMed identifier, rendered after the DOI as a link to PubMed. */
+  pmid?: string;
   url?: string;
 }
 

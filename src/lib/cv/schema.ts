@@ -61,7 +61,7 @@ const credentialEntry = z.object({
 
 const publicationEntry = z.object({
   ...identified,
-  type: z.enum(["journal-article", "chapter", "preprint"]),
+  type: z.enum(["journal-article", "letter", "abstract", "chapter", "preprint"]),
   authors: z.array(z.string().min(1)).nonempty(),
   title: z.string().min(1),
   venue: z.string().min(1),
@@ -74,6 +74,7 @@ const publicationEntry = z.object({
   publisher: z.string().optional(),
   edition: z.string().optional(),
   doi: z.string().optional(),
+  pmid: z.string().regex(/^\d+$/, "PMIDs are digits only").optional(),
   url: z.url().optional(),
 });
 
