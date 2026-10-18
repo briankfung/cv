@@ -84,7 +84,7 @@ export function formatPublication(
 
   if (pub.type === "chapter") {
     // AMA order: authors. Chapter title. In: Editors, ed. Book title. Edition.
-    // Publisher; year.
+    // Publisher; year:pages.
     const editors = pub.editors?.length
       ? text(`${pub.editors.join(", ")}, ed${pub.editors.length > 1 ? "s" : ""}. `)
       : null;
@@ -98,7 +98,7 @@ export function formatPublication(
       italic(pub.venue),
       text(". "),
       edition,
-      text(`${publisher}${pub.year}.`),
+      text(`${publisher}${pub.year}${pub.pages ? `:${pub.pages}` : ""}.`),
       doi,
       pmid,
     );

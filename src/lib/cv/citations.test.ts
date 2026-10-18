@@ -57,6 +57,25 @@ describe("formatPublication", () => {
     );
   });
 
+  it("prints a chapter's page range after the year", () => {
+    expect(
+      cite({
+        type: "chapter",
+        title: "A chapter",
+        venue: "A Book",
+        editors: ["Ed A", "Ed B"],
+        edition: "2nd ed",
+        publisher: "Publisher",
+        volume: undefined,
+        issue: undefined,
+        pages: "69-77",
+        year: 2022,
+      }),
+    ).toBe(
+      "Doe J, Roe A. A chapter. In: Ed A, Ed B, eds. A Book. 2nd ed. Publisher; 2022:69-77.",
+    );
+  });
+
   it("bolds the CV owner whatever the publication type", () => {
     const runs = formatPublication({ ...base, type: "abstract" }, "Roe");
     expect(runs.filter((run) => run.bold).map((run) => run.text)).toEqual([
