@@ -55,6 +55,7 @@ export const publications: PublicationEntry[] = [
     venue: "AMIA Annual Symposium Proceedings",
     year: 2019,
     pages: "1582",
+    url: "https://www.briankfung.com/publications/legacy-antimicrobial-stewardship-cds-to-epic",
     tags: ["clinical", "research", "standards"],
   },
   {
@@ -75,6 +76,7 @@ export const publications: PublicationEntry[] = [
     venue: "AMIA Annual Symposium Proceedings",
     year: 2019,
     pages: "1566",
+    url: "https://www.briankfung.com/publications/antimicrobial-stewardship-cds-customization",
     tags: ["clinical", "research"],
   },
 ];
