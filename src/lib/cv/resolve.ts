@@ -37,6 +37,7 @@ export const DEFAULT_SECTION_TITLES: Record<SectionId, string> = {
   presentations: "Presentations",
   teaching: "Teaching",
   service: "Professional Service & Leadership",
+  memberships: "Professional Memberships",
   honors: "Honors & Awards",
   projects: "Projects & Product Portfolio",
   skills: "Skills",
@@ -54,6 +55,7 @@ const SECTION_LAYOUTS: Record<SectionId, SectionLayout> = {
   presentations: "numbered",
   teaching: "entries",
   service: "entries",
+  memberships: "entries",
   honors: "entries",
   projects: "entries",
   skills: "skills",
@@ -84,6 +86,7 @@ const CHRONOLOGICAL: ReadonlySet<SectionId> = new Set([
   "presentations",
   "teaching",
   "service",
+  "memberships",
   "honors",
   "projects",
 ]);
@@ -249,6 +252,15 @@ function buildEntries(
         heading: headingRuns(entry.title, entry.url),
         subheading: entry.org ? rich(text(entry.org)) : undefined,
         summary: entry.note,
+        bullets: [],
+        ...dateFields(entry.dates),
+      }));
+
+    case "memberships":
+      return selectEntries(chronological(data.memberships ?? [], section), config).map((entry) => ({
+        id: entry.id,
+        heading: headingRuns(entry.org, entry.url),
+        subheading: entry.role ? rich(text(entry.role)) : undefined,
         bullets: [],
         ...dateFields(entry.dates),
       }));

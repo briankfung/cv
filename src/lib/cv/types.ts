@@ -190,6 +190,19 @@ export interface HonorEntry extends Taggable {
   url?: string;
 }
 
+/**
+ * A professional society or organization membership. Optional as a section:
+ * a CV without memberships simply omits the data and the section.
+ */
+export interface MembershipEntry extends Taggable {
+  org: string;
+  /** Optional because many memberships have no recorded term. */
+  dates?: DateRange;
+  /** A held position such as "Fellow"; omit for ordinary membership. */
+  role?: string;
+  url?: string;
+}
+
 export interface ProjectEntry extends Taggable {
   name: string;
   tagline: string;
@@ -244,6 +257,7 @@ export const SECTION_IDS = [
   "presentations",
   "teaching",
   "service",
+  "memberships",
   "honors",
   "projects",
   "skills",
@@ -262,6 +276,8 @@ export interface CvData {
   presentations: PresentationEntry[];
   teaching: PositionEntry[];
   service: PositionEntry[];
+  /** Optional section; omit or leave empty to drop it from every variant. */
+  memberships?: MembershipEntry[];
   honors: HonorEntry[];
   projects: ProjectEntry[];
   skills: SkillGroup[];

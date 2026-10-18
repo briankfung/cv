@@ -117,6 +117,14 @@ const honorEntry = z.object({
   url: z.url().optional(),
 });
 
+const membershipEntry = z.object({
+  ...identified,
+  org: z.string().min(1),
+  dates: dateRange.optional(),
+  role: z.string().optional(),
+  url: z.url().optional(),
+});
+
 const projectEntry = z.object({
   ...identified,
   name: z.string().min(1),
@@ -163,6 +171,7 @@ export const cvDataSchema = z.object({
   presentations: z.array(presentationEntry),
   teaching: z.array(positionEntry),
   service: z.array(positionEntry),
+  memberships: z.array(membershipEntry).optional(),
   honors: z.array(honorEntry),
   projects: z.array(projectEntry),
   skills: z.array(skillGroup),

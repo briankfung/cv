@@ -324,3 +324,62 @@ describe("resolveVariant", () => {
     expect(smart?.dates).toBeUndefined();
   });
 });
+
+describe("optional memberships section", () => {
+  const variant: VariantConfig = {
+    ...master,
+    sections: [{ section: "memberships" }],
+  };
+
+  it("is skipped when the data has no memberships", () => {
+    const withoutMemberships: CvData = { ...cvData };
+    delete withoutMemberships.memberships;
+    expect(resolveVariant(withoutMemberships, variant).sections).toEqual([]);
+    expect(
+      resolveVariant({ ...cvData, memberships: [] }, variant).sections,
+    ).toEqual([]);
+  });
+
+  it("orders ongoing first, then by end date, with undated entries last", () => {
+    const data: CvData = {
+      ...cvData,
+      memberships: [
+        { id: "m-undated", org: "Undated Society" },
+        { id: "m-old", org: "Old Society", dates: { start: "2011", end: "2015" } },
+        { id: "m-current", org: "Current Society", dates: { start: "2016", end: "present" } },
+        { id: "m-recent", org: "Recent Society", dates: { start: "2013", end: "2020" } },
+      ],
+    };
+    const section = resolveVariant(data, variant).sections[0];
+    expect(section.title).toBe("Professional Memberships");
+    expect(section.layout).toBe("entries");
+    expect(section.entries.map((e) => e.id)).toEqual([
+      "m-current",
+      "m-recent",
+      "m-old",
+      "m-undated",
+    ]);
+    expect(section.entries[3].dates).toBeUndefined();
+  });
+
+  it("links the organization and shows a held role", () => {
+    const data: CvData = {
+      ...cvData,
+      memberships: [
+        {
+          id: "m-fellow",
+          org: "Some Society",
+          role: "Fellow",
+          url: "https://example.org",
+          dates: { start: "2020", end: "present" },
+        },
+      ],
+    };
+    const [entry] = resolveVariant(data, variant).sections[0].entries;
+    expect(entry.heading).toEqual([
+      { text: "Some Society", href: "https://example.org", bold: true },
+    ]);
+    expect(richToPlain(entry.subheading!)).toBe("Fellow");
+    expect(entry.dates).toBe("2020 – Present");
+  });
+});

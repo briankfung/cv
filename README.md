@@ -48,6 +48,16 @@ content, keep the machinery.
 2. Run `pnpm build:pdf` to regenerate the `.tex` files and recompile the PDFs.
 3. Commit the data change together with `latex/generated/` and `public/pdf/`.
 
+### Optional sections
+
+Some sections are optional: leave their data out and they disappear from every
+variant. To use one, add a data file in [`src/data/cv/`](src/data/cv/), register
+it in `src/data/cv/index.ts`, and list the section in your variant config.
+
+| Section       | Data shape        | Renders as                                  |
+| ------------- | ----------------- | ------------------------------------------- |
+| `memberships` | `MembershipEntry` | Organization, optional role, optional dates |
+
 Build artifacts are committed on purpose: the deployed site serves the PDF as a
 static file, so the host never needs a TeX toolchain, and CI can check the
 generated `.tex` for freshness. CI fails if `latex/generated/` is out of date,
