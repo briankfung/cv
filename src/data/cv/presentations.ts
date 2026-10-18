@@ -7,12 +7,23 @@ import type { PresentationEntry } from "@/lib/cv/types";
  */
 export const presentations: PresentationEntry[] = [
   {
+    id: "pres-health-samurai-agents-on-fhir-2026",
+    title:
+      "haau3: A Caregiver-Facing FHIR PHR, and the Debate on AI Liability and De-skilling",
+    venue: "Agents on FHIR, Health Samurai",
+    date: "2026-09",
+    type: "invited",
+    url: "https://www.health-samurai.io/events/agents-on-fhir/2026-09-17-meeting",
+    tags: ["ai", "standards", "product"],
+  },
+  {
     id: "pres-cpha-ai-2026",
-    title: "Basics of Artificial Intelligence",
+    title: "The Basics of Artificial Intelligence",
     venue: "California Pharmacists Association",
     date: "2026-01",
     type: "invited",
     scope: "regional",
+    url: "https://cpha.com/2026/01/ai-is-changing-health-care-start-with-the-basics-on-january-27/",
     tags: ["ai", "teaching"],
   },
   {
@@ -29,16 +40,19 @@ export const presentations: PresentationEntry[] = [
     venue: "Clinicians.dev Conference",
     date: "2024-11",
     type: "invited",
+    url: "https://web.archive.org/web/20250124130053/https://www.clinicians.dev/",
     tags: ["engineering", "teaching", "leadership"],
   },
   {
     id: "pres-aacp-ai-institute-2024",
-    title: "Basics of Artificial Intelligence",
+    title:
+      "Introduction to Digital Health, Artificial Intelligence (AI), and the Importance to Pharmacy Education",
     venue:
       "Artificial Intelligence Institute, American Association of Colleges of Pharmacy",
     date: "2024-04",
     type: "invited",
     scope: "national",
+    url: "https://www.aacp.org/article/2024-artificial-intelligence-institute-ce",
     tags: ["ai", "teaching"],
   },
   {
@@ -48,6 +62,7 @@ export const presentations: PresentationEntry[] = [
     date: "2023-12",
     type: "panel",
     scope: "national",
+    url: "https://healthit.gov/wp-content/uploads/2023/04/The-Future-of-Pharmacy-Interoperability_508.pdf",
     tags: ["standards", "leadership"],
   },
   {
@@ -105,6 +120,27 @@ export const presentations: PresentationEntry[] = [
     tags: ["clinical", "research", "trainee"],
   },
   {
+    id: "pres-amia-symposium-2019-asp-customization",
+    title:
+      "Customization of an Antimicrobial Stewardship Clinical Decision Support Module: Reducing the Noise and Improving Reporting",
+    venue: "American Medical Informatics Association Annual Symposium",
+    date: "2019-11",
+    type: "poster",
+    scope: "national",
+    tags: ["clinical", "research"],
+  },
+  {
+    id: "pres-onc-pdmp-symposium-2019",
+    title: "Symposium Overview and Audience Engagement",
+    venue:
+      "ONC Symposium on Patient Matching and the Interoperability of Prescription Data for PDMPs",
+    date: "2019-09",
+    type: "podium",
+    scope: "national",
+    url: "https://event.capconcorp.com/wp/prescription-drug-management-program/agenda/",
+    tags: ["standards", "leadership"],
+  },
+  {
     id: "pres-amia-symposium-2019",
     title:
       "Conversion of a Complex Legacy Antimicrobial Stewardship Clinical Decision Support System into Epic",
@@ -126,11 +162,12 @@ export const presentations: PresentationEntry[] = [
   },
   {
     id: "pres-ashp-midyear-2018",
-    title: "Boring is the New Goal: Technology Implementation Keys to Success",
+    title: "Boring Is the New Goal: Technology Implementation Keys to Success",
     venue: "ASHP Midyear Clinical Meeting",
     date: "2018-12",
     type: "podium",
     scope: "national",
+    url: "https://www.eventscribe.com/upload/planner/links/MCM18AJHPProgram_FINAL_64.pdf",
     tags: ["clinical", "standards", "leadership"],
   },
   {
@@ -141,6 +178,7 @@ export const presentations: PresentationEntry[] = [
     date: "2017-12",
     type: "podium",
     scope: "national",
+    url: "https://web.archive.org/web/20250831054657/https://midyear.ashp.org/-/media/midyear-conference/docs/MCM17-Onsite-Program.pdf",
     tags: ["clinical", "standards"],
   },
   {

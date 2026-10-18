@@ -123,8 +123,10 @@ describe("resolveVariant", () => {
       "publications",
       "research",
       "presentations",
+      "media",
       "teaching",
       "service",
+      "memberships",
       "honors",
       "projects",
       "skills",
@@ -205,7 +207,9 @@ describe("resolveVariant", () => {
     const chapter = pubs!.entries.find(
       (e) => e.id === "pub-nursing-informatics-chapter-2022",
     );
-    expect(richToPlain(chapter!.heading)).toContain("In: Ball MJ, ed.");
+    expect(richToPlain(chapter!.heading)).toContain(
+      "In: Hübner UH, Mustata Wilson G, Morawski TS, Ball MJ, eds.",
+    );
   });
 
   it("assigns each section a layout", () => {
@@ -252,9 +256,8 @@ describe("resolveVariant", () => {
       .entries.map((e) => e.id);
     // Earned Jan 2026, so it leads despite Epic and licensure running to present.
     expect(ids[0]).toBe("cna-florida");
-    expect(ids.indexOf("fhir-foundation-implementer")).toBeLessThan(
-      ids.indexOf("hl7-fhir-r4-proficiency"),
-    );
+    expect(ids.indexOf("hl7-fhir-foundation")).toBeGreaterThan(-1);
+    expect(ids.indexOf("hl7-fhir-foundation")).toBeLessThan(ids.indexOf("bcps"));
   });
 
   it("keeps data-file order for entries that tie", () => {

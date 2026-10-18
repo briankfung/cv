@@ -4,6 +4,8 @@ import { credentials } from "./credentials";
 import { education } from "./education";
 import { experience } from "./experience";
 import { honors } from "./honors";
+import { media } from "./media";
+import { memberships } from "./memberships";
 import { presentations } from "./presentations";
 import { profile } from "./profile";
 import { projects } from "./projects";
@@ -24,8 +26,10 @@ export const cvData: CvData = {
   publications,
   research,
   presentations,
+  media,
   teaching,
   service,
+  memberships,
   honors,
   projects,
   skills,
