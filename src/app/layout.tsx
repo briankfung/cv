@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cvData } from "@/data/cv";
+import { documentDescription, documentTitle } from "@/lib/seo/meta";
 import { PERSONAL_SITE, SITE_URL } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -25,8 +26,8 @@ const sourceSerif = Source_Serif_4({
 
 const { profile } = cvData;
 
-const title = `${profile.name} — Curriculum Vitae`;
-const description = `${profile.credentials}. ${profile.headline}. Full curriculum vitae covering experience, publications, teaching, and product work in applied AI, clinical informatics, and health interoperability.`;
+const title = documentTitle(profile);
+const description = documentDescription(profile);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

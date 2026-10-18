@@ -281,14 +281,16 @@ export interface Profile {
   /** Author surname to bold in publication citations; matched as a prefix. */
   selfAuthor: string;
   /**
-   * `YYYY-MM-DD` the CV content last changed, published as the sitemap's
-   * lastmod. Set by hand with each content update, never from the clock, so
-   * a rebuild with no new content does not claim a fresh page.
+   * When the CV content last changed: an ISO 8601 date-time with offset
+   * (`2026-10-18T14:00:00-04:00`, preferred) or a bare `YYYY-MM-DD`.
+   * Published as the sitemap's lastmod and the ProfilePage's dateModified.
+   * Set by hand with each content update, never from the clock, so a rebuild
+   * with no new content does not claim a fresh page.
    */
   updated?: string;
   /**
-   * `YYYY-MM-DD` the CV page first went live, published as the ProfilePage's
-   * dateCreated. Optional; omit when unknown.
+   * When the CV page first went live, in the same formats; published as the
+   * ProfilePage's dateCreated. Optional; omit when unknown.
    */
   created?: string;
 }

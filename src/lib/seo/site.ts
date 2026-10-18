@@ -1,5 +1,11 @@
 export const SITE_URL = "https://cv.briankfung.com";
 
+/**
+ * The page's meta description. Search results show about 155 characters, so
+ * keep it near that. Undefined uses the first sentence of the profile summary.
+ */
+export const SITE_DESCRIPTION: string | undefined = undefined;
+
 /** Kept in sync with the source site so canonical links point somewhere real. */
 export const PERSONAL_SITE = "https://www.briankfung.com";
 

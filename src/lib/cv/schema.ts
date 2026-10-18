@@ -160,6 +160,9 @@ const profileLink = z.object({
   url: z.url(),
 });
 
+/** A bare date, or a full ISO 8601 date-time that states its offset. */
+const contentDate = z.union([z.iso.date(), z.iso.datetime({ offset: true })]);
+
 const profile = z.object({
   name: z.string().min(1),
   credentials: z.string(),
@@ -170,8 +173,8 @@ const profile = z.object({
   summary: z.string().min(1).optional(),
   highlights: z.array(z.string().min(1)).nonempty().optional(),
   selfAuthor: z.string().min(1),
-  updated: z.iso.date().optional(),
-  created: z.iso.date().optional(),
+  updated: contentDate.optional(),
+  created: contentDate.optional(),
 });
 
 export const cvDataSchema = z.object({

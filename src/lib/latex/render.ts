@@ -136,9 +136,29 @@ function renderContactLine(resolved: ResolvedCv): string {
   return parts.join(SEPARATOR);
 }
 
+/**
+ * PDF document properties. Search engines often show a PDF's title property
+ * as its result headline; without one they guess from the first page.
+ */
+export interface PdfMetadata {
+  title: string;
+  author: string;
+  subject?: string;
+}
+
+function renderPdfMetadata(metadata: PdfMetadata): string[] {
+  const fields = [
+    `  pdftitle={${escapeLatex(metadata.title)}}`,
+    `  pdfauthor={${escapeLatex(metadata.author)}}`,
+    ...(metadata.subject ? [`  pdfsubject={${escapeLatex(metadata.subject)}}`] : []),
+  ];
+  return ["", "\\hypersetup{", fields.join(",\n"), "}"];
+}
+
 export function renderLatexDocument(
   resolved: ResolvedCv,
   preamble: string,
+  metadata?: PdfMetadata,
 ): string {
   const { profile } = resolved;
 
@@ -148,6 +168,7 @@ export function renderLatexDocument(
     `% Compile: xelatex -interaction=nonstopmode <file>.tex  (run twice)`,
     "",
     preamble.trimEnd(),
+    ...(metadata ? renderPdfMetadata(metadata) : []),
     "",
     macro("renewcommand", "\\cvfullname", escapeLatex(profile.name)),
     "",

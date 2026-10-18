@@ -31,6 +31,14 @@ const SITE_IDENTITY: PersonIdentity = {
   image: PERSON_IMAGE,
 };
 
+/**
+ * Google validates ProfilePage dates as full date-times, so a bare date is
+ * published as the start of that day in UTC.
+ */
+export function toDateTime(value: string): string {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00Z` : value;
+}
+
 /** A single value stays scalar; several become an array, as schema.org allows. */
 function oneOrMany<T>(values: T[]): T | T[] | undefined {
   if (values.length === 0) return undefined;
@@ -141,8 +149,8 @@ export function buildProfileJsonLd(
     url: SITE_URL,
     ...(opening ? { description: opening } : {}),
     // Google's recommended ProfilePage dates, both set by hand in profile.ts.
-    ...(profile.created ? { dateCreated: profile.created } : {}),
-    ...(profile.updated ? { dateModified: profile.updated } : {}),
+    ...(profile.created ? { dateCreated: toDateTime(profile.created) } : {}),
+    ...(profile.updated ? { dateModified: toDateTime(profile.updated) } : {}),
     mainEntity: {
       "@type": "Person",
       "@id": identity.id,
