@@ -1,4 +1,5 @@
 import type { RenderSection } from "@/lib/cv/types";
+import { cn } from "@/lib/utils";
 import { CvEntry } from "./cv-entry";
 import { RichText } from "./rich-text";
 
@@ -18,10 +19,25 @@ export function CvSection({ section }: { section: RenderSection }) {
         {section.title}
       </h2>
 
-      {section.layout === "prose" && (
+      {section.layout === "prose" && section.prose && (
         <p className="text-[0.95rem] leading-relaxed text-foreground/90">
           {section.prose}
         </p>
+      )}
+
+      {section.layout === "prose" && section.bullets && (
+        <ul
+          className={cn(
+            "ml-4 list-outside list-disc space-y-1.5 text-[0.95rem] leading-relaxed text-foreground/90 marker:text-muted-foreground",
+            section.prose && "mt-3",
+          )}
+        >
+          {section.bullets.map((bullet, index) => (
+            <li key={index} className="pl-1">
+              <RichText runs={bullet} />
+            </li>
+          ))}
+        </ul>
       )}
 
       {section.layout === "skills" && (

@@ -165,7 +165,8 @@ const profile = z.object({
   email: z.email(),
   location: z.string().min(1),
   links: z.array(profileLink),
-  summary: z.string().min(1),
+  summary: z.string().min(1).optional(),
+  highlights: z.array(z.string().min(1)).nonempty().optional(),
   selfAuthor: z.string().min(1),
 });
 

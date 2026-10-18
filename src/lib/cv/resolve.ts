@@ -360,8 +360,16 @@ export function resolveVariant(
     const layout = SECTION_LAYOUTS[id];
 
     if (id === "profile") {
-      if (!profile.summary) continue;
-      sections.push({ id, title, layout, entries: [], prose: profile.summary });
+      const bullets = (profile.highlights ?? []).map((line) => rich(text(line)));
+      if (!profile.summary && bullets.length === 0) continue;
+      sections.push({
+        id,
+        title,
+        layout,
+        entries: [],
+        ...(profile.summary ? { prose: profile.summary } : {}),
+        ...(bullets.length > 0 ? { bullets } : {}),
+      });
       continue;
     }
 
