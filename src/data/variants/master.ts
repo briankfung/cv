@@ -11,7 +11,7 @@ export const master: VariantConfig = {
   filename: "brian-fung-cv",
   description: "Complete academic curriculum vitae",
   sections: [
-    { section: "profile" },
+    { section: "profile", title: "Highlights" },
     { section: "education" },
     { section: "training", title: "Postgraduate Training" },
     { section: "credentials", title: "Licensure & Certifications" },
