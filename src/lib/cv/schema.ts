@@ -38,6 +38,7 @@ const positionEntry = z.object({
   summary: z.string().optional(),
   bullets: z.array(bullet).optional(),
   url: z.url().optional(),
+  orgId: z.url().optional(),
 });
 
 const educationEntry = z.object({
@@ -170,6 +171,7 @@ const profile = z.object({
   highlights: z.array(z.string().min(1)).nonempty().optional(),
   selfAuthor: z.string().min(1),
   updated: z.iso.date().optional(),
+  created: z.iso.date().optional(),
 });
 
 export const cvDataSchema = z.object({

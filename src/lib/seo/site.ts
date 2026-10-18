@@ -72,3 +72,13 @@ export const BLOCKED_CRAWLERS: string[] = [
 
 /** Headshot served from /public; referenced as the Person image in the structured data. */
 export const PROFILE_IMAGE_PATH = "/brian-k-fung.png";
+
+/**
+ * The Person's image in the structured data. Defaults to the headshot above.
+ * When a personal site already publishes the shared Person's headshot, point
+ * at it (and at its ImageObject `@id`, if it has one) so search engines see
+ * one image for the person rather than two competing ones.
+ */
+export const PERSON_IMAGE: { url: string; id?: string } = {
+  url: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
+};

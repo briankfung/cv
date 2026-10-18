@@ -7,8 +7,8 @@ import {
   PERSON_DISAMBIGUATION,
   PERSON_ID,
   PERSON_JOB_TITLE,
+  PERSON_IMAGE,
   PERSONAL_SITE,
-  PROFILE_IMAGE_PATH,
   SITE_URL,
 } from "./site";
 
@@ -19,6 +19,7 @@ export interface PersonIdentity {
   disambiguation?: string;
   alternateNames?: string[];
   jobTitle?: string;
+  image?: { url: string; id?: string };
 }
 
 const SITE_IDENTITY: PersonIdentity = {
@@ -27,6 +28,7 @@ const SITE_IDENTITY: PersonIdentity = {
   disambiguation: PERSON_DISAMBIGUATION,
   alternateNames: ALTERNATE_NAMES,
   jobTitle: PERSON_JOB_TITLE,
+  image: PERSON_IMAGE,
 };
 
 /** A single value stays scalar; several become an array, as schema.org allows. */
@@ -35,8 +37,13 @@ function oneOrMany<T>(values: T[]): T | T[] | undefined {
   return values.length === 1 ? values[0] : values;
 }
 
-function organization(name: string, url?: string) {
-  return { "@type": "Organization", name, ...(url ? { url } : {}) };
+function organization(name: string, url?: string, id?: string) {
+  return {
+    "@type": "Organization",
+    ...(id ? { "@id": id } : {}),
+    name,
+    ...(url ? { url } : {}),
+  };
 }
 
 /**
@@ -63,7 +70,9 @@ export function buildProfileJsonLd(
     if (!employers.has(role.org)) employers.set(role.org, role);
   }
   const worksFor = oneOrMany(
-    [...employers.values()].map((role) => organization(role.org, role.url)),
+    [...employers.values()].map((role) =>
+      organization(role.org, role.url, role.orgId),
+    ),
   );
 
   // A Role carries the membership term, which a bare Organization cannot.
@@ -131,6 +140,9 @@ export function buildProfileJsonLd(
     "@id": `${SITE_URL}/#profile`,
     url: SITE_URL,
     ...(opening ? { description: opening } : {}),
+    // Google's recommended ProfilePage dates, both set by hand in profile.ts.
+    ...(profile.created ? { dateCreated: profile.created } : {}),
+    ...(profile.updated ? { dateModified: profile.updated } : {}),
     mainEntity: {
       "@type": "Person",
       "@id": identity.id,
@@ -139,7 +151,18 @@ export function buildProfileJsonLd(
         ? { alternateName: oneOrMany(identity.alternateNames) }
         : {}),
       honorificSuffix: profile.credentials,
-      image: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
+      ...(identity.image
+        ? {
+            image: identity.image.id
+              ? {
+                  "@type": "ImageObject",
+                  "@id": identity.image.id,
+                  url: identity.image.url,
+                  contentUrl: identity.image.url,
+                }
+              : identity.image.url,
+          }
+        : {}),
       identifier: {
         "@type": "PropertyValue",
         propertyID: "ORCID",

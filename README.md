@@ -39,7 +39,8 @@ content, keep the machinery.
    search engines treat the CV and the site as one person, and optionally set
    `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
    (to separate you from a namesake). `ALTERNATE_NAMES` and
-   `PERSON_JOB_TITLE` keep the shared Person consistent with the site. The
+   `PERSON_JOB_TITLE` keep the shared Person consistent with the site, and
+   `PERSON_IMAGE` can point at the site's headshot so both use one image. The
    defaults keep the CV standalone.
    `BLOCKED_CRAWLERS` lists any crawlers robots.txt should turn away; empty
    allows everyone.
@@ -55,7 +56,9 @@ content, keep the machinery.
 1. Edit the relevant file in [`src/data/cv/`](src/data/cv/) — one file per
    section (`experience.ts`, `publications.ts`, and so on).
 2. Set `updated` in `profile.ts` to today's date (`YYYY-MM-DD`); it becomes
-   the sitemap's `lastmod`, so search engines see when the content changed.
+   the sitemap's `lastmod` and the ProfilePage's `dateModified`, so search
+   engines see when the content changed. (`created`, also optional, records
+   when the CV page first went live.)
 3. Run `pnpm build:pdf` to regenerate the `.tex` files and recompile the PDFs.
 4. Commit the data change together with `latex/generated/` and `public/pdf/`.
 

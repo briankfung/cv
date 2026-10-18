@@ -78,6 +78,24 @@ describe("buildProfileJsonLd", () => {
     ]);
   });
 
+  it("references an organization another site defines by its @id", () => {
+    const data: CvData = {
+      ...cvData,
+      experience: [
+        {
+          ...role("a", "Founder", "Venture A", "present", "https://a.example"),
+          orgId: "https://a.example/#organization",
+        },
+      ],
+    };
+    expect(person(data, { id: "https://example.org/#person" }).worksFor).toEqual({
+      "@type": "Organization",
+      "@id": "https://a.example/#organization",
+      name: "Venture A",
+      url: "https://a.example",
+    });
+  });
+
   it("keeps a single ongoing role scalar", () => {
     const data: CvData = {
       ...cvData,
@@ -160,6 +178,55 @@ describe("shared Person details", () => {
     expect(person(data, { id: "https://example.org/#person", jobTitle: "Founder" }).jobTitle).toBe(
       "Founder",
     );
+  });
+});
+
+describe("profile page dates", () => {
+  it("publishes the content dates Google recommends for a ProfilePage", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, created: "2024-01-15", updated: "2026-10-18" },
+    };
+    const page = buildProfileJsonLd(data);
+    expect(page).toMatchObject({ dateCreated: "2024-01-15", dateModified: "2026-10-18" });
+  });
+
+  it("omits the dates when they are not set", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, created: undefined, updated: undefined },
+    };
+    const page = buildProfileJsonLd(data);
+    expect(page).not.toHaveProperty("dateCreated");
+    expect(page).not.toHaveProperty("dateModified");
+  });
+});
+
+describe("person image", () => {
+  const id = "https://example.org/#person";
+
+  it("emits a plain URL by default", () => {
+    expect(person(cvData, { id, image: { url: "https://example.org/me.png" } }).image).toBe(
+      "https://example.org/me.png",
+    );
+  });
+
+  it("references a personal site's headshot by @id when given one", () => {
+    expect(
+      person(cvData, {
+        id,
+        image: { url: "https://example.org/me.jpg", id: "https://example.org/#headshot" },
+      }).image,
+    ).toEqual({
+      "@type": "ImageObject",
+      "@id": "https://example.org/#headshot",
+      url: "https://example.org/me.jpg",
+      contentUrl: "https://example.org/me.jpg",
+    });
+  });
+
+  it("omits the image when none is configured", () => {
+    expect(person(cvData, { id })).not.toHaveProperty("image");
   });
 });
 

@@ -69,6 +69,12 @@ export interface PositionEntry extends Taggable {
   summary?: string;
   bullets?: Bullet[];
   url?: string;
+  /**
+   * schema.org `@id` of the organization, when another site already defines
+   * it (e.g. `https://example.com/#organization`). Structured data only:
+   * worksFor then points at that node, joining the two graphs.
+   */
+  orgId?: string;
 }
 
 export interface EducationEntry extends Taggable {
@@ -280,6 +286,11 @@ export interface Profile {
    * a rebuild with no new content does not claim a fresh page.
    */
   updated?: string;
+  /**
+   * `YYYY-MM-DD` the CV page first went live, published as the ProfilePage's
+   * dateCreated. Optional; omit when unknown.
+   */
+  created?: string;
 }
 
 export const SECTION_IDS = [
