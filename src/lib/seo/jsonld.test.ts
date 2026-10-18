@@ -69,7 +69,8 @@ describe("buildProfileJsonLd", () => {
         role("c", "Engineer", "Old Employer", "2019"),
       ],
     };
-    const entity = person(data);
+    // An identity with no configured title, so the roles decide it.
+    const entity = person(data, { id: "https://example.org/#person" });
     expect(entity.jobTitle).toEqual(["Founder", "Founder & Lead"]);
     expect(entity.worksFor).toEqual([
       { "@type": "Organization", name: "Venture A", url: "https://a.example" },
@@ -82,7 +83,7 @@ describe("buildProfileJsonLd", () => {
       ...cvData,
       experience: [role("a", "Founder", "Venture A", "present")],
     };
-    const entity = person(data);
+    const entity = person(data, { id: "https://example.org/#person" });
     expect(entity.jobTitle).toBe("Founder");
     expect(entity.worksFor).toEqual({ "@type": "Organization", name: "Venture A" });
   });
