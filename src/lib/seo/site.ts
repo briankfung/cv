@@ -80,5 +80,6 @@ export const PROFILE_IMAGE_PATH = "/brian-k-fung.png";
  * one image for the person rather than two competing ones.
  */
 export const PERSON_IMAGE: { url: string; id?: string } = {
-  url: `${SITE_URL}${PROFILE_IMAGE_PATH}`,
+  url: "https://www.briankfung.com/images/pages/home/brian-k-fung-portrait.jpg",
+  id: "https://www.briankfung.com/#headshot",
 };
