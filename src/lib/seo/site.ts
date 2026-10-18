@@ -4,7 +4,8 @@ export const SITE_URL = "https://cv.briankfung.com";
  * The page's meta description. Search results show about 155 characters, so
  * keep it near that. Undefined uses the first sentence of the profile summary.
  */
-export const SITE_DESCRIPTION: string | undefined = undefined;
+export const SITE_DESCRIPTION: string | undefined =
+  "CV of Brian K. Fung, PharmD, MPH, CNA: founder of haau3, former Staff Clinical Informatics Data Architect at Verily, and Mayo Clinic informatics pharmacist.";
 
 /** Kept in sync with the source site so canonical links point somewhere real. */
 export const PERSONAL_SITE = "https://www.briankfung.com";
