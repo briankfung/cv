@@ -280,6 +280,11 @@ export interface Profile {
    * a rebuild with no new content does not claim a fresh page.
    */
   updated?: string;
+  /**
+   * `YYYY-MM-DD` the CV page first went live, published as the ProfilePage's
+   * dateCreated. Optional; omit when unknown.
+   */
+  created?: string;
 }
 
 export const SECTION_IDS = [

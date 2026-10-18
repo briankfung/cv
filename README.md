@@ -55,7 +55,9 @@ content, keep the machinery.
 1. Edit the relevant file in [`src/data/cv/`](src/data/cv/) — one file per
    section (`experience.ts`, `publications.ts`, and so on).
 2. Set `updated` in `profile.ts` to today's date (`YYYY-MM-DD`); it becomes
-   the sitemap's `lastmod`, so search engines see when the content changed.
+   the sitemap's `lastmod` and the ProfilePage's `dateModified`, so search
+   engines see when the content changed. (`created`, also optional, records
+   when the CV page first went live.)
 3. Run `pnpm build:pdf` to regenerate the `.tex` files and recompile the PDFs.
 4. Commit the data change together with `latex/generated/` and `public/pdf/`.
 

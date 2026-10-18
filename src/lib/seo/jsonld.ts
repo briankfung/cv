@@ -131,6 +131,9 @@ export function buildProfileJsonLd(
     "@id": `${SITE_URL}/#profile`,
     url: SITE_URL,
     ...(opening ? { description: opening } : {}),
+    // Google's recommended ProfilePage dates, both set by hand in profile.ts.
+    ...(profile.created ? { dateCreated: profile.created } : {}),
+    ...(profile.updated ? { dateModified: profile.updated } : {}),
     mainEntity: {
       "@type": "Person",
       "@id": identity.id,

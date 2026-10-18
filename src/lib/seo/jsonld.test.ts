@@ -163,6 +163,27 @@ describe("shared Person details", () => {
   });
 });
 
+describe("profile page dates", () => {
+  it("publishes the content dates Google recommends for a ProfilePage", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, created: "2024-01-15", updated: "2026-10-18" },
+    };
+    const page = buildProfileJsonLd(data);
+    expect(page).toMatchObject({ dateCreated: "2024-01-15", dateModified: "2026-10-18" });
+  });
+
+  it("omits the dates when they are not set", () => {
+    const data: CvData = {
+      ...cvData,
+      profile: { ...cvData.profile, created: undefined, updated: undefined },
+    };
+    const page = buildProfileJsonLd(data);
+    expect(page).not.toHaveProperty("dateCreated");
+    expect(page).not.toHaveProperty("dateModified");
+  });
+});
+
 describe("credential dates", () => {
   const credentials = (data: CvData) =>
     person(data).hasCredential as Record<string, unknown>[];
