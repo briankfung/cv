@@ -274,6 +274,12 @@ export interface Profile {
   highlights?: string[];
   /** Author surname to bold in publication citations; matched as a prefix. */
   selfAuthor: string;
+  /**
+   * `YYYY-MM-DD` the CV content last changed, published as the sitemap's
+   * lastmod. Set by hand with each content update, never from the clock, so
+   * a rebuild with no new content does not claim a fresh page.
+   */
+  updated?: string;
 }
 
 export const SECTION_IDS = [

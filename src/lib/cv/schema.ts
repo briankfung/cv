@@ -169,6 +169,7 @@ const profile = z.object({
   summary: z.string().min(1).optional(),
   highlights: z.array(z.string().min(1)).nonempty().optional(),
   selfAuthor: z.string().min(1),
+  updated: z.iso.date().optional(),
 });
 
 export const cvDataSchema = z.object({
