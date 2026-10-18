@@ -7,6 +7,7 @@ export const education: EducationEntry[] = [
     institution: "Stanford University School of Medicine",
     location: "Stanford, CA",
     dates: { start: "2027-05", end: "2027-06" },
+    status: "planned",
     tags: ["ai", "clinical", "leadership"],
     note: "A hybrid Stanford executive program for healthcare leaders focused on AI innovation, implementation, and strategy.",
   },
