@@ -55,7 +55,7 @@ export const experience: PositionEntry[] = [
     dates: { start: "2025-06", end: "present" },
     tags: ["ai", "product", "engineering", "leadership"],
     summary:
-      "Parent company of haau3, and home to independent products and advisory work.",
+      "Parent company of haau3, and home to independent products and advisory work. Part-time alongside full-time caregiving until January 2026.",
     bullets: [
       {
         text: "Launched Unscripted Rx from 0-to-1 in August 2025 as a modern pharmacy residency directory on a knowledge graph of 30,000+ connected entities, including 3,000+ programs and 1,700+ organizations, with a ranked shortlist, crowd rankings, and claimable person pages.",
@@ -71,6 +71,21 @@ export const experience: PositionEntry[] = [
       },
       {
         text: "Advise CEOs, CTOs, CPOs, and product and engineering leaders on AI-enabled product strategy, platform architecture, and EHR-integrated workflows.",
+      },
+    ],
+  },
+  {
+    id: "family-caregiver",
+    title: "Full-time Family Caregiver",
+    org: "Career break",
+    location: "Brandon, FL",
+    dates: { start: "2025-03", end: "2026-01" },
+    tags: ["clinical"],
+    summary:
+      "Took family medical leave from Verily in March 2025, then left in June to care full-time for a grandparent at home.",
+    bullets: [
+      {
+        text: "Trained as a nursing assistant and became a Florida Certified Nursing Assistant in January 2026 to provide hands-on care at home.",
       },
     ],
   },
