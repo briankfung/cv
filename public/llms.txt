@@ -1,27 +1,34 @@
 # Brian K. Fung, PharmD, MPH, CNA
 
-> Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability & Public Policy. This site is the curriculum vitae of Brian K. Fung (handle: briankfung), a residency-trained informatics pharmacist who builds clinical AI products.
+> Clinician-engineer working to connect the world's healthcare data. Founder of haau3, a free app that gathers a loved one's health records in one place for caregivers, and of OpenClinTech, where I teach clinicians to build software. PharmD, MPH, CNA.
 
-Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products, including haau3, a CMS-recognized consumer caregiving platform among the first seven apps in the CMS Medicare App Library. As a member of the HL7 SMART Scheduling Links work group, he created and maintains its FHIR implementation guide.
+This site is the curriculum vitae of Brian K. Fung (handle: briankfung), a residency-trained informatics pharmacist who builds clinical AI products. Not the technology journalist of the same name.
+
+Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products. The largest is haau3, a CMS-recognized caregiving app listed in the CMS Medicare App Library, built on the haau3 platform: six FHIR APIs for scheduling, terminology, provider directory, questionnaires, medication reconciliation, and plan benefits that other builders can use too. As a member of the HL7 SMART Scheduling Links work group, he created and maintains its FHIR implementation guide.
 
 ## Curriculum vitae
 
-- [CV, web](https://cv.briankfung.com/): experience, education, credentials, publications, teaching, projects
+- [CV, web](https://cv.briankfung.com/): experience, education, credentials, publications, presentations, media, teaching, projects
 - [CV, PDF](https://cv.briankfung.com/pdf/brian-fung-cv.pdf): the same CV typeset with LaTeX
 
 ## Profiles
 
-- [Personal site](https://briankfung.com)
+- [Personal site](https://www.briankfung.com/)
 - [GitHub](https://github.com/briankfung)
 - [LinkedIn](https://www.linkedin.com/in/briankfung/)
 - [ORCID](https://orcid.org/0000-0002-5951-3770)
+- [Google Scholar](https://scholar.google.com/citations?user=y4XyGLwAAAAJ)
+- [Wikidata](https://www.wikidata.org/wiki/Q141756710)
 - [YouTube](https://www.youtube.com/@briankfung)
 - [X](https://x.com/briankfung)
+- [Instagram](https://www.instagram.com/briankfung/)
 
 ## Selected work
 
-- [haau3](https://haau3.com): consumer caregiving platform recognized in the CMS Health Tech Ecosystem
-- [Unscripted Rx](https://www.unscripted-rx.com): pharmacy residency directory and tools
+- [haau3](https://haau3.com): caregiving app recognized in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library
+- [haau3 platform](https://platform.haau3.com): six FHIR APIs, in preview, that power haau3 and are open to other builders
+- [haau3 FHIR Implementation Guide](https://fhir.haau3.com): profiles, extensions, and operations behind the haau3 app and platform
+- [Unscripted Rx](https://www.unscripted-rx.com): modern pharmacy residency directory and recruiting events platform
 - [Phantom Codes](https://github.com/briankfung/phantom-codes): benchmark of hallucination, accuracy and cost in LLM-based medical concept normalization
 - [@briankfung/fhir-types](https://www.npmjs.com/package/@briankfung/fhir-types): hand-rolled HL7 FHIR R4 TypeScript types on npm
 - [Public FHIR Server](https://public-fhir-server.vercel.app): FHIR R4 resource operations on Postgres, deployed for learning and reference

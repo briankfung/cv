@@ -7,7 +7,7 @@ export const training: PositionEntry[] = [
     title: "PGY-2 Pharmacy Informatics Resident",
     org: "University of Utah Health",
     location: "Salt Lake City, UT",
-    dates: { start: "2014-07", end: "2015-06" },
+    dates: { start: "2014-07", end: "2015-07" },
     tags: ["clinical", "leadership"],
     bullets: [
       {
@@ -18,7 +18,7 @@ export const training: PositionEntry[] = [
   {
     id: "pgy1-sarasota",
     title: "PGY-1 Pharmacy Practice Resident",
-    org: "Sarasota Memorial Hospital",
+    org: "Sarasota Memorial Health Care System",
     location: "Sarasota, FL",
     dates: { start: "2013-06", end: "2014-06" },
     tags: ["clinical"],

@@ -123,8 +123,10 @@ describe("resolveVariant", () => {
       "publications",
       "research",
       "presentations",
+      "media",
       "teaching",
       "service",
+      "memberships",
       "honors",
       "projects",
       "skills",
@@ -205,7 +207,9 @@ describe("resolveVariant", () => {
     const chapter = pubs!.entries.find(
       (e) => e.id === "pub-nursing-informatics-chapter-2022",
     );
-    expect(richToPlain(chapter!.heading)).toContain("In: Ball MJ, ed.");
+    expect(richToPlain(chapter!.heading)).toContain(
+      "In: Hübner UH, Mustata Wilson G, Morawski TS, Ball MJ, eds.",
+    );
   });
 
   it("assigns each section a layout", () => {
@@ -252,9 +256,8 @@ describe("resolveVariant", () => {
       .entries.map((e) => e.id);
     // Earned Jan 2026, so it leads despite Epic and licensure running to present.
     expect(ids[0]).toBe("cna-florida");
-    expect(ids.indexOf("fhir-foundation-implementer")).toBeLessThan(
-      ids.indexOf("hl7-fhir-r4-proficiency"),
-    );
+    expect(ids.indexOf("hl7-fhir-foundation")).toBeGreaterThan(-1);
+    expect(ids.indexOf("hl7-fhir-foundation")).toBeLessThan(ids.indexOf("bcps"));
   });
 
   it("keeps data-file order for entries that tie", () => {
@@ -310,9 +313,11 @@ describe("resolveVariant", () => {
       .sections.find((s) => s.id === "projects")!
       .entries.map((e) => e.id);
     expect(ids.indexOf("proj-cora")).toBe(ids.indexOf("proj-haau3") + 1);
-    // Ovant (Jul 2026) outranks medlistIQ (Apr 2026) outranks haau3 (Nov 2025).
-    expect(ids.indexOf("proj-ovant")).toBeLessThan(ids.indexOf("proj-medlistiq"));
-    expect(ids.indexOf("proj-medlistiq")).toBeLessThan(ids.indexOf("proj-haau3"));
+    // Ongoing projects outrank finished ones: Ovant (Jul 2026 – present)
+    // outranks haau3 (Nov 2025 – present), which outranks medlistIQ (ended
+    // May 2026) even though medlistIQ started later.
+    expect(ids.indexOf("proj-ovant")).toBeLessThan(ids.indexOf("proj-haau3"));
+    expect(ids.indexOf("proj-haau3")).toBeLessThan(ids.indexOf("proj-medlistiq"));
   });
 
   it("omits dates for an entry that has none on record", () => {

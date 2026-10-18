@@ -8,7 +8,7 @@ export const honors: HonorEntry[] = [
     org: "Centers for Medicare & Medicaid Services",
     dates: { start: "2026-07", end: "2026-07" },
     note: "Awarded to haau3 for reaching general availability as a patient-facing app in the Conversational AI and Kill the Clipboard categories.",
-    url: "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/early-adopters-all-pledgees/health-care-keeps-up-you/haau3",
+    url: "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/pledge-demo-showcase/haau3",
     tags: ["ai", "product", "standards"],
   },
   {
@@ -16,7 +16,7 @@ export const honors: HonorEntry[] = [
     title: "Early Adopter Recognition, Health Tech Ecosystem",
     org: "Centers for Medicare & Medicaid Services",
     dates: { start: "2026-07", end: "2026-07" },
-    note: "Awarded for pledging two Year 2 categories, advanced scheduling and consumer real-time benefits.",
+    note: "Awarded for pledging two new use cases, Modern Scheduling and Real-Time Benefits.",
     tags: ["standards", "leadership"],
   },
   {

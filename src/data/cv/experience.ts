@@ -2,29 +2,72 @@ import type { PositionEntry } from "@/lib/cv/types";
 
 export const experience: PositionEntry[] = [
   {
+    id: "founder-haau3",
+    title: "Founder",
+    org: "haau3",
+    location: "Brandon, FL",
+    url: "https://haau3.com",
+    dates: { start: "2025-11", end: "present" },
+    tags: ["ai", "product", "engineering", "clinical", "standards"],
+    summary:
+      "Sole builder of a free caregiving app and the healthcare API platform behind it, started during a period of full-time family caregiving.",
+    bullets: [
+      {
+        text: "Conceived and built haau3 as its sole engineer: a free, FHIR-native app that gathers a loved one's health records in one place, explains them in plain language, and shares exactly what the caregiver chooses with care teams.",
+      },
+      {
+        text: "Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026, and listed it in the CMS Medicare App Library; earned the DiMe Seal in April 2026.",
+      },
+      {
+        text: "Shipped Kill the Clipboard sharing, which sends a curated record summary to a provider as an encrypted SMART Health Link or QR code, drawing on records retrieved through a partner connected to TEFCA and a CMS Aligned Network.",
+      },
+      {
+        text: "Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.",
+      },
+      {
+        text: "Launched the haau3 platform in preview with a free developer plan: six FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.",
+      },
+      {
+        text: "Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.",
+      },
+      {
+        text: "Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, and a pinned RxNorm release.",
+      },
+      {
+        text: "Evolved medlistIQ into the platform's MedList API, which turns one patient's medication records into a single reconciled FHIR medication list with the source records behind every entry.",
+      },
+      {
+        text: "Authored the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, defining 39 profiles, 16 extensions, 3 operations, and 40 code systems and value sets behind the app and platform.",
+      },
+      {
+        text: "Built Cora, haau3's English and Spanish text and voice assistant on Google Gemini under a HIPAA business associate agreement, grounded in a person's own records and vetted public reference material and storing no conversations; moved its UX from text to speech-to-speech on caregiver feedback.",
+      },
+      {
+        text: "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
+      },
+    ],
+  },
+  {
     id: "founder-bkf-media",
     title: "Founder & AI Product Lead",
-    org: "Brian K Fung Media, LLC",
+    org: "Brian K. Fung Media LLC",
     location: "Brandon, FL",
     dates: { start: "2025-06", end: "present" },
     tags: ["ai", "product", "engineering", "leadership"],
     summary:
-      "Independent product work, started during a period of full-time family caregiving, which is where haau3 originated.",
+      "Parent company of haau3, and home to independent products and advisory work.",
     bullets: [
       {
-        text: "Conceived and built haau3, a consumer caregiving platform that unifies longitudinal health records and helps patients and caregivers securely access, understand, and share health information; sole builder from concept through general availability, setting the roadmap across identity, interoperability, conversational AI, and caregiver workflows.",
+        text: "Launched Unscripted Rx from 0-to-1 in August 2025 as a modern pharmacy residency directory on a knowledge graph of 30,000+ connected entities, including 3,000+ programs and 1,700+ organizations, with a ranked shortlist, crowd rankings, and claimable person pages.",
       },
       {
-        text: "Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026; among the first seven apps listed in the CMS Medicare App Library, sourcing records through a TEFCA QHIN and CMS Aligned Network.",
+        text: "Grew Unscripted Rx organically to 36,000+ people and 80,000+ pages read in the twelve months to August 2026, with top-10 Google search visibility, weekly-refreshed stipend benchmarks by program type and state, and NAPLEX pass-rate comparisons by school.",
       },
       {
-        text: "Built and iterated Cora, a multilingual text- and voice-based conversational AI assistant grounded in patient-authorized records; combined Gemini Live, RAG, deterministic knowledge retrieval, and source-linked explanations, evolving the UX from text to speech-to-text to speech-to-speech based on caregiver feedback.",
+        text: "Built the Unscripted Rx organization side: free page claiming checked by a person, a recruiting events calendar listing 259 events across 80 organizations, program analytics, and a Standard plan adding event registration, reminders, and attendance lists.",
       },
       {
-        text: "Launched Unscripted Rx from 0-to-1 as a pharmacy workforce and recruiting discovery product with 30,000+ connected entities; grew it organically to 10,000+ monthly views with top-10 Google search visibility and built AI-assisted job-posting ingestion and content normalization to reduce manual population and improve coverage.",
-      },
-      {
-        text: "Built medlistIQ, an auditable medication-reconciliation API that normalizes and deduplicates fragmented medication data; owned product concept, UX, data model, architecture, and implementation end to end.",
+        text: "Built Ovant, a job search tool open to everyone: candidates talk or type about each role once, then get a resume written for any job they paste, an application tracker, the terms their saved postings reward, and warm-intro paths.",
       },
       {
         text: "Advise CEOs, CTOs, CPOs, and product and engineering leaders on AI-enabled product strategy, platform architecture, and EHR-integrated workflows.",
@@ -117,7 +160,7 @@ export const experience: PositionEntry[] = [
     title: "Clinical Informatics Pharmacist",
     org: "Mayo Clinic",
     location: "Rochester, MN",
-    dates: { start: "2015-06", end: "2022-04" },
+    dates: { start: "2015-07", end: "2022-04" },
     tags: ["clinical", "product", "standards", "leadership"],
     bullets: [
       {
