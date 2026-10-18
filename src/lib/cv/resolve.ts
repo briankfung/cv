@@ -6,7 +6,12 @@
  */
 
 import { formatMedia, formatPresentation, formatPublication } from "./citations";
-import { dateSortKey, formatOccurrences, formatRange } from "./dates";
+import {
+  dateSortKey,
+  formatOccurrences,
+  formatRange,
+  formatUnfinished,
+} from "./dates";
 import { bold, link, rich, text } from "./rich";
 import type {
   Bullet,
@@ -234,6 +239,9 @@ function buildEntries(
         summary: entry.note,
         bullets: [],
         ...dateFields(entry.dates),
+        ...(entry.status
+          ? { dates: formatUnfinished(entry.dates, entry.status) }
+          : {}),
       }));
 
     case "credentials":

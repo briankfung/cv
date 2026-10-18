@@ -48,6 +48,7 @@ const educationEntry = z.object({
   location: z.string().optional(),
   dates: dateRange,
   note: z.string().optional(),
+  status: z.enum(["planned", "in-progress"]).optional(),
 });
 
 const credentialEntry = z.object({

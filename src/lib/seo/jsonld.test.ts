@@ -144,6 +144,29 @@ describe("credential dates", () => {
   });
 });
 
+describe("alumniOf", () => {
+  it("lists only finished education", () => {
+    const edu = (id: string, institution: string, status?: "planned" | "in-progress") => ({
+      id,
+      degree: "Degree",
+      institution,
+      dates: { start: "2020", end: "2022" },
+      status,
+    });
+    const data: CvData = {
+      ...cvData,
+      education: [
+        edu("e1", "Finished U"),
+        edu("e2", "Planned U", "planned"),
+        edu("e3", "Ongoing U", "in-progress"),
+      ],
+    };
+    expect(person(data).alumniOf).toEqual([
+      { "@type": "CollegeOrUniversity", name: "Finished U" },
+    ]);
+  });
+});
+
 describe("serializeJsonLd", () => {
   it("escapes < so the payload cannot close its script tag", () => {
     expect(serializeJsonLd({ a: "</script>" })).toBe('{"a":"\\u003c/script>"}');

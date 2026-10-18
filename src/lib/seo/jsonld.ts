@@ -74,8 +74,14 @@ export function buildProfileJsonLd(
     })),
   );
 
+  // Planned or unfinished programs would read as completed here, so only
+  // finished education counts.
   const alumniOf = Array.from(
-    new Set(data.education.map((entry) => entry.institution)),
+    new Set(
+      data.education
+        .filter((entry) => !entry.status)
+        .map((entry) => entry.institution),
+    ),
   ).map((name) => ({ "@type": "CollegeOrUniversity", name }));
 
   const knowsAbout = data.skills.flatMap((group) => group.items);

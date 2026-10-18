@@ -49,6 +49,16 @@ export function formatRange(range: DateRange): string {
   return `${start} ${RANGE_DASH} ${end}`;
 }
 
+/** Dates for education that has not finished: admitted, or underway. */
+export function formatUnfinished(
+  range: DateRange,
+  status: "planned" | "in-progress",
+): string {
+  const start = formatDate(range.start);
+  if (status === "planned") return `Admitted, begins ${start}`;
+  return `${start} ${RANGE_DASH} expected ${formatDate(range.end)}`;
+}
+
 /** The value for an HTML `<time dateTime>` attribute. */
 export function toISO(value: CvDate): string {
   return value;
