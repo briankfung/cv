@@ -76,6 +76,17 @@ describe("formatPublication", () => {
     );
   });
 
+  it("links the title to a public page when the item has a url", () => {
+    const runs = formatPublication(
+      { ...base, type: "abstract", url: "https://example.org/abstract" },
+      "Roe",
+    );
+    expect(runs.find((run) => run.href === "https://example.org/abstract")?.text).toBe(
+      "A study of things",
+    );
+    expect(richToPlain(runs)).toContain("A study of things [abstract]. Journal of Things.");
+  });
+
   it("bolds the CV owner whatever the publication type", () => {
     const runs = formatPublication({ ...base, type: "abstract" }, "Roe");
     expect(runs.filter((run) => run.bold).map((run) => run.text)).toEqual([
