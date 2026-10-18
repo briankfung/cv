@@ -231,11 +231,11 @@
 
 \begin{document}
 
-\cvheader{Brian K. Fung}{PharmD, MPH, CNA}{Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability \& Public Policy}{\href{mailto:brian@briankfung.com}{brian@briankfung.com} \textbullet{} Brandon, FL \textbullet{} \href{https://briankfung.com}{briankfung.com} \textbullet{} \href{https://www.linkedin.com/in/briankfung/}{linkedin.com/in/briankfung} \textbullet{} \href{https://github.com/briankfung}{github.com/briankfung}}
+\cvheader{Brian K. Fung}{PharmD, MPH, CNA}{Clinician-Engineer · Founder · Clinical AI, Informatics, Interoperability \& Public Policy}{\href{mailto:brian@briankfung.com}{brian@briankfung.com} \textbullet{} Brandon, FL \textbullet{} \href{https://www.briankfung.com/}{briankfung.com} \textbullet{} \href{https://www.linkedin.com/in/briankfung/}{linkedin.com/in/briankfung} \textbullet{} \href{https://github.com/briankfung}{github.com/briankfung}}
 
 \needspace{6.5\baselineskip}
 \section{Profile}
-\cvprose{Entrepreneurial clinical AI product builder and technical product leader with 13+ years taking complex products, platforms, and workflows from ambiguous problems to launch. Residency-trained informatics pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily; now a founder, full-stack engineer, and certified nursing assistant who shipped multiple 0-to-1 AI products in the past year, including haau3, a CMS-recognized consumer caregiving platform among the first seven apps in the CMS Medicare App Library. Four years applying AI to product development and evaluation across multilingual conversational AI, retrieval-augmented generation, workflow automation, clinical decision support, and frontier-model benchmarking, with deep roots in health-data standards and interoperability. Equally fluent in clinical and technical domains: translates ambiguous clinical needs into precise specifications, data models, and shipped software, and technical tradeoffs back into terms clinical teams can act on.}
+\cvprose{Entrepreneurial clinical AI product builder and technical product leader with 13+ years taking complex products, platforms, and workflows from ambiguous problems to launch. Residency-trained informatics pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily; now a founder, full-stack engineer, and certified nursing assistant who shipped multiple 0-to-1 AI products in the past year. The largest is haau3, a CMS-recognized caregiving app listed in the CMS Medicare App Library, built solo on its own platform of six FHIR APIs that other builders can use. Four years applying AI to product development and evaluation across multilingual conversational AI, retrieval-augmented generation, workflow automation, clinical decision support, and frontier-model benchmarking, with deep roots in health-data standards and interoperability. Equally fluent in clinical and technical domains: translates ambiguous clinical needs into precise specifications, data models, and shipped software, and technical tradeoffs back into terms clinical teams can act on.}
 
 \needspace{6.5\baselineskip}
 \section{Education}
@@ -279,14 +279,28 @@
 
 \needspace{6.5\baselineskip}
 \section{Professional Experience}
-\cventry{Jun 2025 – Present}{\textbf{Founder \& AI Product Lead}}{Brian K Fung Media, LLC}{Brandon, FL}
-\cvnote{Independent product work, started during a period of full-time family caregiving, which is where haau3 originated.}
+\cventry{Nov 2025 – Present}{\textbf{Founder}}{\href{https://haau3.com}{haau3}}{Brandon, FL}
+\cvnote{Sole builder of a free caregiving app and the healthcare API platform behind it, started during a period of full-time family caregiving.}
 \begin{itemize}
-  \item Conceived and built haau3, a consumer caregiving platform that unifies longitudinal health records and helps patients and caregivers securely access, understand, and share health information; sole builder from concept through general availability, setting the roadmap across identity, interoperability, conversational AI, and caregiver workflows.
-  \item Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026; among the first seven apps listed in the CMS Medicare App Library, sourcing records through a TEFCA QHIN and CMS Aligned Network.
-  \item Built and iterated Cora, a multilingual text- and voice-based conversational AI assistant grounded in patient-authorized records; combined Gemini Live, RAG, deterministic knowledge retrieval, and source-linked explanations, evolving the UX from text to speech-to-text to speech-to-speech based on caregiver feedback.
-  \item Launched Unscripted Rx from 0-to-1 as a pharmacy workforce and recruiting discovery product with 30,000+ connected entities; grew it organically to 10,000+ monthly views with top-10 Google search visibility and built AI-assisted job-posting ingestion and content normalization to reduce manual population and improve coverage.
-  \item Built medlistIQ, an auditable medication-reconciliation API that normalizes and deduplicates fragmented medication data; owned product concept, UX, data model, architecture, and implementation end to end.
+  \item Conceived and built haau3 as its sole engineer: a free, FHIR-native app that gathers a loved one's health records in one place, explains them in plain language, and shares exactly what the caregiver chooses with care teams.
+  \item Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026, and listed it in the CMS Medicare App Library; earned the DiMe Seal in April 2026.
+  \item Shipped Kill the Clipboard sharing, which sends a curated record summary to a provider as an encrypted SMART Health Link or QR code, drawing on records retrieved through a partner connected to TEFCA and a CMS Aligned Network.
+  \item Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.
+  \item Launched the haau3 platform in preview with a free developer plan: six FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.
+  \item Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.
+  \item Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, and a pinned RxNorm release.
+  \item Evolved medlistIQ into the platform's MedList API, which turns one patient's medication records into a single reconciled FHIR medication list with the source records behind every entry.
+  \item Authored the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, defining 39 profiles, 16 extensions, 3 operations, and 40 code systems and value sets behind the app and platform.
+  \item Built Cora, haau3's English and Spanish text and voice assistant on Google Gemini under a HIPAA business associate agreement, grounded in a person's own records and vetted public reference material and storing no conversations; moved its UX from text to speech-to-speech on caregiver feedback.
+  \item Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.
+\end{itemize}
+\cventry{Jun 2025 – Present}{\textbf{Founder \& AI Product Lead}}{Brian K. Fung Media LLC}{Brandon, FL}
+\cvnote{Parent company of haau3, and home to independent products and advisory work.}
+\begin{itemize}
+  \item Launched Unscripted Rx from 0-to-1 in August 2025 as a modern pharmacy residency directory on a knowledge graph of 30,000+ connected entities, including 3,000+ programs and 1,700+ organizations, with a ranked shortlist, crowd rankings, and claimable person pages.
+  \item Grew Unscripted Rx organically to 36,000+ people and 80,000+ pages read in the twelve months to August 2026, with top-10 Google search visibility, weekly-refreshed stipend benchmarks by program type and state, and NAPLEX pass-rate comparisons by school.
+  \item Built the Unscripted Rx organization side: free page claiming checked by a person, a recruiting events calendar listing 259 events across 80 organizations, program analytics, and a Standard plan adding event registration, reminders, and attendance lists.
+  \item Built Ovant, a job search tool open to everyone: candidates talk or type about each role once, then get a resume written for any job they paste, an application tracker, the terms their saved postings reward, and warm-intro paths.
   \item Advise CEOs, CTOs, CPOs, and product and engineering leaders on AI-enabled product strategy, platform architecture, and EHR-integrated workflows.
 \end{itemize}
 \cventry{Sep 2024 – Jun 2025}{\textbf{Staff Clinical Informatics Data Architect}}{Verily}{Fairfax, VA}
@@ -316,7 +330,7 @@
   \item Organized and mapped 145 clinical concepts from the Mayo care-pathway program to UMLS, controlled vocabularies, and HL7 FHIR within the first months of joining, reconciling Mayo's existing decision models to eliminate duplicated mapping work.
   \item Served as Verily's pharmacist subject-matter expert for medications, pharmacy, and clinical workflows, consulting across product areas and delivering pharmacy cost-savings analyses, including IV-to-PO conversion opportunities for cardiac surgery populations.
 \end{itemize}
-\cventry{Jun 2015 – Apr 2022}{\textbf{Clinical Informatics Pharmacist}}{Mayo Clinic}{Rochester, MN}
+\cventry{Jul 2015 – Apr 2022}{\textbf{Clinical Informatics Pharmacist}}{Mayo Clinic}{Rochester, MN}
 \begin{itemize}
   \item Led end-to-end product and workflow transformation across four Epic module implementations, covering antimicrobial stewardship, infection control, clinical decision support, and Willow pharmacy, spanning 80 hospitals and clinics within a \$1.5B enterprise program, from discovery and requirements through validation, training, rollout, and iteration.
   \item Modernized a 25+ year rules-based antimicrobial monitoring platform, converting 75+ custom legacy rules from CBAM and TheraDoc into Epic through 2.5 years of system discovery, workflow redesign, decision-support configuration, testing, and production deployment.
@@ -400,7 +414,7 @@
 \needspace{6.5\baselineskip}
 \section{Professional Service \& Leadership}
 \cventry{Jan 2026 – Present}{\textbf{Pledgee}}{CMS Health Tech Ecosystem}{}
-\cvnote{Pledged the Kill the Clipboard and Conversational AI use cases, both of which reached general availability, and the Year 2 advanced scheduling and consumer real-time benefits categories.}
+\cvnote{Pledged the Kill the Clipboard and Conversational AI use cases, both of which reached general availability, and joined the new Modern Scheduling and Real-Time Benefits use cases as an early adopter.}
 \cventry{2019 – Present}{\textbf{Panelist, Pharmacy Forecast}}{ASHP Foundation}{}
 \cventry{2023 – 2025}{\textbf{Task Force Member, Policy and Advocacy Workstream}}{American Medical Informatics Association 25x5 Task Force}{}
 \cventry{2022 – 2025}{\textbf{Committee Member, Value Sets}}{Pharmacy HIT Collaborative}{}
@@ -412,10 +426,10 @@
 
 \needspace{6.5\baselineskip}
 \section{Honors \& Awards}
-\cventry{Jul 2026}{\href{https://www.cms.gov/initiatives/health-technology-ecosystem/overview/early-adopters-all-pledgees/health-care-keeps-up-you/haau3}{\textbf{General Availability Recognition, Health Tech Ecosystem}}}{Centers for Medicare \& Medicaid Services}{}
+\cventry{Jul 2026}{\href{https://www.cms.gov/initiatives/health-technology-ecosystem/overview/pledge-demo-showcase/haau3}{\textbf{General Availability Recognition, Health Tech Ecosystem}}}{Centers for Medicare \& Medicaid Services}{}
 \cvnote{Awarded to haau3 for reaching general availability as a patient-facing app in the Conversational AI and Kill the Clipboard categories.}
 \cventry{Jul 2026}{\textbf{Early Adopter Recognition, Health Tech Ecosystem}}{Centers for Medicare \& Medicaid Services}{}
-\cvnote{Awarded for pledging two Year 2 categories, advanced scheduling and consumer real-time benefits.}
+\cvnote{Awarded for pledging two new use cases, Modern Scheduling and Real-Time Benefits.}
 \cventry{Dec 2024}{\textbf{Verily Values Award, Respect Individuals}}{Verily}{}
 \cventry{Nov 2022}{\textbf{LinkedIn Top Voice}}{LinkedIn}{}
 \cventry{Jan 2022}{\textbf{Top 15 Healthcare Creators}}{LinkedIn}{}
@@ -428,53 +442,59 @@
 \needspace{6.5\baselineskip}
 \section{Projects \& Product Portfolio}
 \cventry{Jul 2026 – Present}{\href{https://www.ovant.org}{\textbf{Ovant}}}{}{}
-\cvnote{Job search product that builds a structured record of a candidate's experience through conversational AI interviews, then writes resumes tailored to a specific role from it, tracks applications, surfaces the keywords a posting rewards, and finds warm referral paths.}
+\cvnote{Job search tool, open to everyone, that builds a knowledge base of a candidate's career from an imported resume and what they say or type about each role, then writes a resume for any job they paste, tracks applications, ranks the terms their saved postings reward, and finds warm-intro paths.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} Postgres \textperiodcentered{} Anthropic API}
-\cventry{May 2026 – Present}{\href{https://platform.haau3.com}{\textbf{haau3 platform}}}{}{}
-\cvnote{B2B platform of microservice APIs that powers haau3 and is available to other organizations. Ships a scheduling slot aggregator conforming to the HL7 SMART Scheduling Links implementation guide, and a FHIR terminology service.}
-\cvchips{FHIR \textperiodcentered{} SMART Scheduling Links \textperiodcentered{} LOINC \textperiodcentered{} TypeScript}
-\cventry{Apr 2026 – Present}{\href{https://medlistiq.com}{\textbf{medlistIQ}}}{}{}
-\cvnote{API that embeds informatics pharmacist expertise to turn messy, multi-source FHIR medication data into a clean, inferred medication list.}
-\cvchips{FHIR \textperiodcentered{} RxNorm \textperiodcentered{} TypeScript}
-\cventry{Dec 2025 – Present}{\href{https://tecc.dev}{\textbf{Technology-Enabled Chronic Care}}}{}{}
-\cvnote{Cardio-kidney-metabolic care using FHIR, CDS Hooks, and programmatic terminology services, aligned with CMS ACCESS and FDA TEMPO.}
-\cvchips{FHIR \textperiodcentered{} CDS Hooks}
+\cventry{Jul 2026 – Present}{\href{https://github.com/briankfung/cv}{\textbf{CV Web App}}}{}{}
+\cvnote{Open-source CV pipeline that renders one typed data source as both an indexable website and a LaTeX-typeset PDF, published as a reference implementation others can fork.}
+\cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} LaTeX \textperiodcentered{} Vercel}
+\cventry{Jun 2026 – Present}{\href{https://platform.haau3.com}{\textbf{haau3 platform}}}{}{}
+\cvnote{Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: six FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.}
+\cvchips{FHIR \textperiodcentered{} SMART Scheduling Links \textperiodcentered{} LOINC \textperiodcentered{} RxNorm \textperiodcentered{} OpenAPI \textperiodcentered{} TypeScript}
+\cventry{May 2026 – Present}{\href{https://fhir.haau3.com}{\textbf{haau3 FHIR Implementation Guide}}}{Component of haau3 platform}{}
+\cvnote{FHIR implementation guide on US Core 6.1.0 and SDC 4.0.0 defining the profiles, extensions, operations, and terminology behind the haau3 app and platform.}
+\cvchips{FHIR \textperiodcentered{} US Core \textperiodcentered{} SDC \textperiodcentered{} FHIR Shorthand}
 \cventry{Nov 2025 – Present}{\href{https://haau3.com}{\textbf{haau3}}}{}{}
 \cvnote{FHIR-native, AI-powered care management that unifies longitudinal health records so caregivers can focus on the human side of care. Generally available and listed in the CMS Medicare App Library.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} FHIR \textperiodcentered{} GCP}
 \cventry{Nov 2025 – Present}{\textbf{Cora}}{Component of haau3}{}
-\cvnote{Multilingual text and voice conversational AI assistant grounded in patient-authorized records, with source-linked explanations. Deployed independently on GCP and integrated into haau3.}
+\cvnote{English and Spanish text and voice assistant that explains a person's own health records in plain language, grounded in vetted public reference material. Evaluated with the Smart 40 suite.}
 \cvchips{Gemini Live \textperiodcentered{} RAG \textperiodcentered{} TypeScript}
-\cventry{Aug 2025 – Present}{\href{https://unscripted-rx.com}{\textbf{Unscripted Rx}}}{}{}
-\cvnote{Pharmacy workforce and recruiting discovery product with 30,000+ connected entities and AI-assisted job-posting ingestion.}
+\cventry{Aug 2025 – Present}{\href{https://www.unscripted-rx.com}{\textbf{Unscripted Rx}}}{}{}
+\cvnote{Modern pharmacy residency directory and recruiting events platform on a knowledge graph of 30,000+ connected entities, including 3,000+ programs and 1,700+ organizations.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} Vercel}
-\cventry{Apr 2025 – Present}{\href{https://terminology-service.vercel.app/}{\textbf{Healthcare Terminology Server}}}{}{}
-\cvnote{Web application for clinicians and informaticists to run terminology server operations in a modern UI, covering RxNorm, SNOMED CT, NPI, and LOINC.}
-\cvchips{TypeScript \textperiodcentered{} SNOMED CT \textperiodcentered{} LOINC \textperiodcentered{} RxNorm}
 \cventry{Apr 2025 – Present}{\textbf{NPI Directory}}{}{}
 \cvnote{Lookup for clinicians by National Provider Identifier or name, exposed both as an interactive frontend and as a FHIR terminology service \$lookup endpoint.}
 \cvchips{TypeScript \textperiodcentered{} FHIR}
 \cventry{2023 – Present}{\href{https://openclintech.com}{\textbf{OpenClinTech}}}{}{}
 \cvnote{Open and accessible initiative training the next generation of clinician engineers.}
+\cventry{Apr 2026 – May 2026}{\href{https://medlistiq.com}{\textbf{medlistIQ}}}{}{}
+\cvnote{API that embeds informatics pharmacist expertise to turn messy, multi-source FHIR medication data into a clean, inferred medication list. Evolved into the haau3 platform's MedList API.}
+\cvchips{FHIR \textperiodcentered{} RxNorm \textperiodcentered{} TypeScript}
+\cventry{Dec 2025}{\href{https://tecc.dev}{\textbf{Technology-Enabled Chronic Care}}}{}{}
+\cvnote{Cardio-kidney-metabolic care using FHIR, CDS Hooks, and programmatic terminology services, aligned with CMS ACCESS and FDA TEMPO.}
+\cvchips{FHIR \textperiodcentered{} CDS Hooks}
 \cventry{Dec 2025}{\href{https://public-fhir-server.vercel.app}{\textbf{Public FHIR Server}}}{}{}
 \cvnote{TypeScript and Postgres implementation of core FHIR R4 resource operations, deployed publicly for learning and reference.}
 \cvchips{TypeScript \textperiodcentered{} Neon Postgres \textperiodcentered{} Vercel}
 \cventry{Dec 2025}{\href{https://www.npmjs.com/package/@briankfung/fhir-types}{\textbf{@briankfung/\allowbreak{}fhir-types}}}{}{}
 \cvnote{Hand-rolled FHIR R4 TypeScript types published as a public npm package.}
 \cvchips{TypeScript}
+\cventry{Apr 2025}{\href{https://terminology-service.vercel.app/}{\textbf{Healthcare Terminology Server}}}{}{}
+\cvnote{Web application for clinicians and informaticists to run terminology server operations in a modern UI, covering RxNorm, SNOMED CT, NPI, and LOINC.}
+\cvchips{TypeScript \textperiodcentered{} SNOMED CT \textperiodcentered{} LOINC \textperiodcentered{} RxNorm}
 \cventry{2024}{\textbf{PubMed AI}}{}{}
 \cvnote{Retrieval-augmented literature search and summarization over the PubMed corpus, answering a question with cited sources.}
 \cvchips{Python \textperiodcentered{} RAG}
 \cventry{Jun 2023}{\href{https://github.com/briankfung/cardiac-3d-reconstruction}{\textbf{Cardiac 3D Reconstruction}}}{}{}
-\cvnote{Python project exploring 3D reconstruction of the heart from imaging modalities, focused on accessible 2D echocardiography images.}
+\cvnote{Python imaging project exploring methods for 3D reconstruction of the heart from 3D echocardiography images to predict ejection fraction.}
 \cvchips{Python}
 
 \needspace{19\baselineskip}
 \section{Skills}
 \cvskill{Product}{Product strategy, Discovery, Roadmaps, User research, Rapid prototyping, Experimentation, Success metrics, Go-to-market, Product-led growth, Executive communication}
-\cvskill{AI and machine learning}{LLMs, RAG, Conversational and multimodal AI, Model evaluation, Benchmark design, Prompt and model orchestration, Agentic workflows, Synthetic data, Clinical NLP, Fine-tuning}
+\cvskill{AI and machine learning}{LLMs, RAG, Conversational and multimodal AI, Model evaluation, LLM evaluation design, Benchmark design, Prompt and model orchestration, Agentic workflows, Synthetic data, Clinical NLP, Fine-tuning, Gemini, Vertex AI}
 \cvskill{Engineering}{Python, TypeScript, SQL, Go, R, Next.js, Tailwind CSS, Prisma, Supabase, FastAPI, PyTorch, REST APIs, GCP, BigQuery, Cloud Healthcare API, Cloud Storage, Cloud Run, Vercel, Docker, OpenTofu, CI/CD, OAuth 2.0}
-\cvskill{Data and healthcare}{Semantic modeling, Knowledge graphs, ETL pipelines, FHIR, SMART on FHIR, SMART Health Links, CDS Hooks, C-CDA, NCPDP SCRIPT, BPM+, CMMN, BPMN, DMN, SNOMED CT, LOINC, RxNorm, UMLS, ICD-10, WHO ATC, NDC}
+\cvskill{Data and healthcare}{Semantic modeling, Knowledge graphs, ETL pipelines, FHIR, US Core, SDC, FHIR Shorthand, SMART on FHIR, SMART Health Links, SMART Health Check-in, SMART Scheduling Links, CDS Hooks, C-CDA, NCPDP SCRIPT, BPM+, CMMN, BPMN, DMN, SNOMED CT, LOINC, RxNorm, UMLS, ICD-10, WHO ATC, NDC}
 \cvskill{Electronic health records}{Epic, Cerner, McKesson, Allscripts}
 
 \end{document}

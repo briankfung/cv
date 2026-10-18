@@ -19,7 +19,7 @@ export const service: PositionEntry[] = [
     dates: { start: "2026-01", end: "present" },
     tags: ["standards", "ai"],
     summary:
-      "Pledged the Kill the Clipboard and Conversational AI use cases, both of which reached general availability, and the Year 2 advanced scheduling and consumer real-time benefits categories.",
+      "Pledged the Kill the Clipboard and Conversational AI use cases, both of which reached general availability, and joined the new Modern Scheduling and Real-Time Benefits use cases as an early adopter.",
   },
   {
     id: "svc-amia-25x5",

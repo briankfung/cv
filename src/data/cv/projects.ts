@@ -5,7 +5,7 @@ export const projects: ProjectEntry[] = [
     id: "proj-ovant",
     name: "Ovant",
     tagline:
-      "Job search product that builds a structured record of a candidate's experience through conversational AI interviews, then writes resumes tailored to a specific role from it, tracks applications, surfaces the keywords a posting rewards, and finds warm referral paths.",
+      "Job search tool, open to everyone, that builds a knowledge base of a candidate's career from an imported resume and what they say or type about each role, then writes a resume for any job they paste, tracks applications, ranks the terms their saved postings reward, and finds warm-intro paths.",
     url: "https://www.ovant.org",
     dates: { start: "2026-07", end: "present" },
     stack: ["Next.js", "TypeScript", "Postgres", "Anthropic API"],
@@ -15,11 +15,22 @@ export const projects: ProjectEntry[] = [
     id: "proj-haau3-platform",
     name: "haau3 platform",
     tagline:
-      "B2B platform of microservice APIs that powers haau3 and is available to other organizations. Ships a scheduling slot aggregator conforming to the HL7 SMART Scheduling Links implementation guide, and a FHIR terminology service.",
+      "Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: six FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.",
     url: "https://platform.haau3.com",
-    dates: { start: "2026-05", end: "present" },
-    stack: ["FHIR", "SMART Scheduling Links", "LOINC", "TypeScript"],
+    dates: { start: "2026-06", end: "present" },
+    stack: ["FHIR", "SMART Scheduling Links", "LOINC", "RxNorm", "OpenAPI", "TypeScript"],
     tags: ["standards", "engineering", "product"],
+  },
+  {
+    id: "proj-haau3-ig",
+    name: "haau3 FHIR Implementation Guide",
+    partOf: "proj-haau3-platform",
+    tagline:
+      "FHIR implementation guide on US Core 6.1.0 and SDC 4.0.0 defining the profiles, extensions, operations, and terminology behind the haau3 app and platform.",
+    url: "https://fhir.haau3.com",
+    dates: { start: "2026-05", end: "present" },
+    stack: ["FHIR", "US Core", "SDC", "FHIR Shorthand"],
+    tags: ["standards", "engineering"],
   },
   {
     id: "proj-haau3",
@@ -36,7 +47,7 @@ export const projects: ProjectEntry[] = [
     name: "Cora",
     partOf: "proj-haau3",
     tagline:
-      "Multilingual text and voice conversational AI assistant grounded in patient-authorized records, with source-linked explanations. Deployed independently on GCP and integrated into haau3.",
+      "English and Spanish text and voice assistant that explains a person's own health records in plain language, grounded in vetted public reference material. Evaluated with the Smart 40 suite.",
     dates: { start: "2025-11", end: "present" },
     stack: ["Gemini Live", "RAG", "TypeScript"],
     tags: ["ai", "product", "clinical"],
@@ -45,21 +56,31 @@ export const projects: ProjectEntry[] = [
     id: "proj-unscripted-rx",
     name: "Unscripted Rx",
     tagline:
-      "Pharmacy workforce and recruiting discovery product with 30,000+ connected entities and AI-assisted job-posting ingestion.",
-    url: "https://unscripted-rx.com",
+      "Modern pharmacy residency directory and recruiting events platform on a knowledge graph of 30,000+ connected entities, including 3,000+ programs and 1,700+ organizations.",
+    url: "https://www.unscripted-rx.com",
     dates: { start: "2025-08", end: "present" },
     stack: ["Next.js", "TypeScript", "Vercel"],
-    tags: ["ai", "product", "engineering"],
+    tags: ["product", "engineering"],
   },
   {
     id: "proj-medlistiq",
     name: "medlistIQ",
     tagline:
-      "API that embeds informatics pharmacist expertise to turn messy, multi-source FHIR medication data into a clean, inferred medication list.",
+      "API that embeds informatics pharmacist expertise to turn messy, multi-source FHIR medication data into a clean, inferred medication list. Evolved into the haau3 platform's MedList API.",
     url: "https://medlistiq.com",
-    dates: { start: "2026-04", end: "present" },
+    dates: { start: "2026-04", end: "2026-05" },
     stack: ["FHIR", "RxNorm", "TypeScript"],
     tags: ["clinical", "engineering", "standards"],
+  },
+  {
+    id: "proj-cv-web-app",
+    name: "CV Web App",
+    tagline:
+      "Open-source CV pipeline that renders one typed data source as both an indexable website and a LaTeX-typeset PDF, published as a reference implementation others can fork.",
+    url: "https://github.com/briankfung/cv",
+    dates: { start: "2026-07", end: "present" },
+    stack: ["Next.js", "TypeScript", "LaTeX", "Vercel"],
+    tags: ["engineering", "product"],
   },
   {
     id: "proj-openclintech",
@@ -76,7 +97,7 @@ export const projects: ProjectEntry[] = [
     tagline:
       "Cardio-kidney-metabolic care using FHIR, CDS Hooks, and programmatic terminology services, aligned with CMS ACCESS and FDA TEMPO.",
     url: "https://tecc.dev",
-    dates: { start: "2025-12", end: "present" },
+    dates: { start: "2025-12", end: "2025-12" },
     stack: ["FHIR", "CDS Hooks"],
     tags: ["clinical", "standards", "research"],
   },
@@ -95,7 +116,7 @@ export const projects: ProjectEntry[] = [
     tagline:
       "Web application for clinicians and informaticists to run terminology server operations in a modern UI, covering RxNorm, SNOMED CT, NPI, and LOINC.",
     url: "https://terminology-service.vercel.app/",
-    dates: { start: "2025-04", end: "present" },
+    dates: { start: "2025-04", end: "2025-04" },
     stack: ["TypeScript", "SNOMED CT", "LOINC", "RxNorm"],
     tags: ["standards", "engineering", "clinical"],
   },
@@ -112,7 +133,7 @@ export const projects: ProjectEntry[] = [
     id: "proj-cardiac-3d",
     name: "Cardiac 3D Reconstruction",
     tagline:
-      "Python project exploring 3D reconstruction of the heart from imaging modalities, focused on accessible 2D echocardiography images.",
+      "Python imaging project exploring methods for 3D reconstruction of the heart from 3D echocardiography images to predict ejection fraction.",
     url: "https://github.com/briankfung/cardiac-3d-reconstruction",
     dates: { start: "2023-06", end: "2023-06" },
     stack: ["Python"],
