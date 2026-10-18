@@ -383,3 +383,31 @@ describe("optional memberships section", () => {
     expect(entry.dates).toBe("2020 – Present");
   });
 });
+
+describe("optional media section", () => {
+  const variant: VariantConfig = {
+    ...master,
+    sections: [{ section: "media" }],
+  };
+
+  it("is skipped when the data has no media", () => {
+    const withoutMedia: CvData = { ...cvData };
+    delete withoutMedia.media;
+    expect(resolveVariant(withoutMedia, variant).sections).toEqual([]);
+  });
+
+  it("renders a numbered list, newest first", () => {
+    const data: CvData = {
+      ...cvData,
+      media: [
+        { id: "media-old", kind: "podcast", title: "Old", outlet: "Show", date: "2017-12" },
+        { id: "media-new", kind: "press", title: "New", outlet: "Paper", date: "2026-09" },
+      ],
+    };
+    const section = resolveVariant(data, variant).sections[0];
+    expect(section.title).toBe("Media & Podcasts");
+    expect(section.layout).toBe("numbered");
+    expect(section.entries.map((e) => e.id)).toEqual(["media-new", "media-old"]);
+    expect(section.entries[0].datesISO).toBe("2026-09");
+  });
+});

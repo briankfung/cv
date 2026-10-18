@@ -54,9 +54,10 @@ Some sections are optional: leave their data out and they disappear from every
 variant. To use one, add a data file in [`src/data/cv/`](src/data/cv/), register
 it in `src/data/cv/index.ts`, and list the section in your variant config.
 
-| Section       | Data shape        | Renders as                                  |
-| ------------- | ----------------- | ------------------------------------------- |
-| `memberships` | `MembershipEntry` | Organization, optional role, optional dates |
+| Section       | Data shape        | Renders as                                         |
+| ------------- | ----------------- | -------------------------------------------------- |
+| `memberships` | `MembershipEntry` | Organization, optional role, optional dates        |
+| `media`       | `MediaEntry`      | Numbered citations of podcasts, press, guest posts |
 
 Build artifacts are committed on purpose: the deployed site serves the PDF as a
 static file, so the host never needs a TeX toolchain, and CI can check the

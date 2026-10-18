@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { formatPresentation, formatPublication } from "./citations";
+import { formatMedia, formatPresentation, formatPublication } from "./citations";
 import { richToPlain } from "./rich";
-import type { PresentationEntry, PublicationEntry } from "./types";
+import type { MediaEntry, PresentationEntry, PublicationEntry } from "./types";
 
 const base: PublicationEntry = {
   id: "pub-fixture",
@@ -102,5 +102,40 @@ describe("formatPresentation", () => {
     expect(richToPlain(runs)).toBe(
       "On things. Things Conference; Denver, CO; Apr 2024. National invited presentation.",
     );
+  });
+});
+
+describe("formatMedia", () => {
+  const episode: MediaEntry = {
+    id: "media-fixture",
+    kind: "podcast",
+    title: "Episode 12: On things",
+    outlet: "Things Podcast",
+    date: "2023-08",
+  };
+
+  it("cites a podcast with a role label", () => {
+    expect(richToPlain(formatMedia(episode))).toBe(
+      "Episode 12: On things. Things Podcast; Aug 2023. Podcast guest.",
+    );
+  });
+
+  it("links the italic title and appends a note", () => {
+    const runs = formatMedia({
+      ...episode,
+      kind: "press",
+      url: "https://example.org/a",
+      note: "Profile of the author's work",
+    });
+    expect(runs[0]).toMatchObject({ italic: true, href: "https://example.org/a" });
+    expect(richToPlain(runs)).toBe(
+      "Episode 12: On things. Things Podcast; Aug 2023. Press feature. Profile of the author's work.",
+    );
+  });
+
+  it("does not double punctuation after a question title", () => {
+    expect(
+      richToPlain(formatMedia({ ...episode, kind: "guest-post", title: "Why things?" })),
+    ).toBe("Why things? Things Podcast; Aug 2023. Guest post.");
   });
 });

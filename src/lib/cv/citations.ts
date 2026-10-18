@@ -6,6 +6,8 @@
 import { formatDate } from "./dates";
 import { bold, italic, link, rich, text } from "./rich";
 import type {
+  MediaEntry,
+  MediaKind,
   PresentationEntry,
   PresentationScope,
   PresentationType,
@@ -143,5 +145,27 @@ export function formatPresentation(entry: PresentationEntry): Rich {
     text(`${role}. `),
     entry.url ? link(entry.venue, entry.url) : text(entry.venue),
     text(`${entry.location ? `; ${entry.location}` : ""}; ${when}.`),
+  );
+}
+
+const MEDIA_ROLE: Record<MediaKind, string> = {
+  podcast: "Podcast guest",
+  press: "Press feature",
+  "guest-post": "Guest post",
+};
+
+/** Mirrors a presentation citation: linked italic title, outlet, date, role. */
+export function formatMedia(entry: MediaEntry): Rich {
+  const title = entry.url
+    ? { ...link(entry.title, entry.url), italic: true }
+    : italic(entry.title);
+  const note = entry.note
+    ? ` ${entry.note.trim()}${terminator(entry.note)}`
+    : "";
+  return rich(
+    title,
+    text(
+      `${terminator(entry.title)} ${entry.outlet}; ${formatDate(entry.date)}. ${MEDIA_ROLE[entry.kind]}.${note}`,
+    ),
   );
 }

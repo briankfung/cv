@@ -108,6 +108,16 @@ const presentationEntry = z.object({
   url: z.url().optional(),
 });
 
+const mediaEntry = z.object({
+  ...identified,
+  kind: z.enum(["podcast", "press", "guest-post"]),
+  title: z.string().min(1),
+  outlet: z.string().min(1),
+  date: cvDate,
+  url: z.url().optional(),
+  note: z.string().optional(),
+});
+
 const honorEntry = z.object({
   ...identified,
   title: z.string().min(1),
@@ -169,6 +179,7 @@ export const cvDataSchema = z.object({
   publications: z.array(publicationEntry),
   research: z.array(researchEntry),
   presentations: z.array(presentationEntry),
+  media: z.array(mediaEntry).optional(),
   teaching: z.array(positionEntry),
   service: z.array(positionEntry),
   memberships: z.array(membershipEntry).optional(),

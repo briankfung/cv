@@ -5,7 +5,7 @@
  * PDF and the web page stay in lockstep.
  */
 
-import { formatPresentation, formatPublication } from "./citations";
+import { formatMedia, formatPresentation, formatPublication } from "./citations";
 import { dateSortKey, formatOccurrences, formatRange } from "./dates";
 import { bold, link, rich, text } from "./rich";
 import type {
@@ -35,6 +35,7 @@ export const DEFAULT_SECTION_TITLES: Record<SectionId, string> = {
   publications: "Publications",
   research: "Research",
   presentations: "Presentations",
+  media: "Media & Podcasts",
   teaching: "Teaching",
   service: "Professional Service & Leadership",
   memberships: "Professional Memberships",
@@ -53,6 +54,7 @@ const SECTION_LAYOUTS: Record<SectionId, SectionLayout> = {
   publications: "numbered",
   research: "entries",
   presentations: "numbered",
+  media: "numbered",
   teaching: "entries",
   service: "entries",
   memberships: "entries",
@@ -84,6 +86,7 @@ const CHRONOLOGICAL: ReadonlySet<SectionId> = new Set([
   "research",
   "publications",
   "presentations",
+  "media",
   "teaching",
   "service",
   "memberships",
@@ -302,6 +305,14 @@ function buildEntries(
       return selectEntries(chronological(data.presentations, section), config).map((entry) => ({
         id: entry.id,
         heading: formatPresentation(entry),
+        bullets: [],
+        datesISO: entry.date,
+      }));
+
+    case "media":
+      return selectEntries(chronological(data.media ?? [], section), config).map((entry) => ({
+        id: entry.id,
+        heading: formatMedia(entry),
         bullets: [],
         datesISO: entry.date,
       }));

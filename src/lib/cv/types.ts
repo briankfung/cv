@@ -176,6 +176,24 @@ export interface PresentationEntry extends Taggable {
   url?: string;
 }
 
+export type MediaKind = "podcast" | "press" | "guest-post";
+
+/**
+ * An appearance in someone else's outlet: a podcast interview, a press piece
+ * about the CV owner, or a guest post. Optional as a section.
+ */
+export interface MediaEntry extends Taggable {
+  kind: MediaKind;
+  /** Episode, article, or post title as published. */
+  title: string;
+  /** Show, publication, or site. */
+  outlet: string;
+  date: CvDate;
+  url?: string;
+  /** One short sentence of context, printed after the citation. */
+  note?: string;
+}
+
 export interface HonorEntry extends Taggable {
   title: string;
   org?: string;
@@ -255,6 +273,7 @@ export const SECTION_IDS = [
   "publications",
   "research",
   "presentations",
+  "media",
   "teaching",
   "service",
   "memberships",
@@ -274,6 +293,8 @@ export interface CvData {
   publications: PublicationEntry[];
   research: ResearchEntry[];
   presentations: PresentationEntry[];
+  /** Optional section; omit or leave empty to drop it from every variant. */
+  media?: MediaEntry[];
   teaching: PositionEntry[];
   service: PositionEntry[];
   /** Optional section; omit or leave empty to drop it from every variant. */
