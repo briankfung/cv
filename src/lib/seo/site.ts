@@ -41,5 +41,11 @@ export const EXTRA_SAME_AS = [
   "https://www.instagram.com/briankfung/",
 ];
 
+/**
+ * Crawlers to turn away in robots.txt, e.g. bulk scrapers and training-data
+ * collectors. Everything else, search engines included, stays allowed.
+ */
+export const BLOCKED_CRAWLERS: string[] = [];
+
 /** Headshot served from /public; referenced as the Person image in the structured data. */
 export const PROFILE_IMAGE_PATH = "/brian-k-fung.png";

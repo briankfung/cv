@@ -39,6 +39,8 @@ content, keep the machinery.
    search engines treat the CV and the site as one person, and optionally set
    `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
    (to separate you from a namesake). The defaults keep the CV standalone.
+   `BLOCKED_CRAWLERS` lists any crawlers robots.txt should turn away; empty
+   allows everyone.
 4. Rename the PDF through the `filename` field in
    [`src/data/variants/master.ts`](src/data/variants/master.ts).
 5. Swap out the Google Search Console verification — the token in
