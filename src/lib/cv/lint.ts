@@ -132,10 +132,49 @@ export function lintProjectParents(data: CvData): LintIssue[] {
     }));
 }
 
-export function lintCv(data: CvData): LintIssue[] {
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/**
+ * Links to the personal site must use its canonical origin. The same page
+ * reached as both `briankfung.com` and `www.briankfung.com`, or over plain
+ * http, splits search engines' picture of one site in two. Text without a
+ * scheme, such as a link's display label, is not a link and is left alone.
+ */
+export function lintCanonicalSite(
+  data: unknown,
+  personalSite: string,
+): LintIssue[] {
+  const { host } = new URL(personalSite);
+  const otherHost = host.startsWith("www.") ? host.slice(4) : `www.${host}`;
+  const end = "(?![\\w.-])";
+  const wrongHost = new RegExp(`https?://${escapeRegExp(otherHost)}${end}`, "i");
+  const plainHttp = new RegExp(`http://${escapeRegExp(host)}${end}`, "i");
+
+  const issues: LintIssue[] = [];
+  for (const { path, value } of walkStrings(data)) {
+    if (wrongHost.test(value) || plainHttp.test(value)) {
+      issues.push({
+        path,
+        message: `links the personal site off its canonical origin; use https://${host}`,
+      });
+    }
+  }
+  return issues;
+}
+
+export interface LintOptions {
+  /** Canonical personal-site URL; enables the canonical-link check. */
+  personalSite?: string;
+}
+
+export function lintCv(data: CvData, options: LintOptions = {}): LintIssue[] {
   return [
     ...lintPrivacy(data),
     ...lintUniqueIds(data),
     ...lintProjectParents(data),
+    ...(options.personalSite
+      ? lintCanonicalSite(data, options.personalSite)
+      : []),
   ];
 }

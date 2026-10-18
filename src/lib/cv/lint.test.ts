@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { cvData } from "@/data/cv";
-import { lintPrivacy, lintUniqueIds } from "./lint";
+import { lintCanonicalSite, lintPrivacy, lintUniqueIds } from "./lint";
+import { PERSONAL_SITE } from "@/lib/seo/site";
 import type { CvData } from "./types";
 
 const leaks = (value: unknown) => lintPrivacy(value).map((i) => i.message);
@@ -55,5 +56,37 @@ describe("lintUniqueIds", () => {
     } as unknown as CvData;
     expect(lintUniqueIds(data)).toHaveLength(1);
     expect(lintUniqueIds(data)[0].message).toContain('duplicate id "verily"');
+  });
+});
+
+describe("lintCanonicalSite", () => {
+  const flagged = (value: string, site = "https://www.example.com") =>
+    lintCanonicalSite({ field: value }, site).length > 0;
+
+  it("passes the real CV data", () => {
+    expect(lintCanonicalSite(cvData, PERSONAL_SITE)).toEqual([]);
+  });
+
+  it.each([
+    "https://example.com",
+    "https://example.com/",
+    "see http://example.com/page",
+    "http://www.example.com",
+  ])("flags %s when the site is www", (value) => {
+    expect(flagged(value)).toBe(true);
+  });
+
+  it.each([
+    "https://www.example.com/",
+    "https://cv.example.com",
+    "https://example.com.au",
+    "example.com",
+  ])("allows %s when the site is www", (value) => {
+    expect(flagged(value)).toBe(false);
+  });
+
+  it("flags the www form when the canonical site is the bare domain", () => {
+    expect(flagged("https://www.example.com", "https://example.com")).toBe(true);
+    expect(flagged("https://example.com/about", "https://example.com")).toBe(false);
   });
 });

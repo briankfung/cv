@@ -112,7 +112,7 @@ of `package.json`). Run `pnpm install` first.
 | `pnpm build`        | Validate the data, then build the site                                     |
 | `pnpm build:pdf`    | Regenerate `.tex` and compile the PDF                                      |
 | `pnpm generate:tex` | Regenerate `.tex` only                                                     |
-| `pnpm validate`     | Schema, cross-entry, and privacy checks on the data                        |
+| `pnpm validate`     | Schema, cross-entry, privacy, and canonical-link checks on the data        |
 | `pnpm test`         | Unit tests for the escaper, resolver, citations, privacy lint, and JSON-LD |
 | `pnpm typecheck`    | `tsc --noEmit`                                                             |
 | `pnpm lint`         | ESLint                                                                     |
