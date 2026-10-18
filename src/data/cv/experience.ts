@@ -7,6 +7,7 @@ export const experience: PositionEntry[] = [
     org: "haau3",
     location: "Brandon, FL",
     url: "https://haau3.com",
+    orgId: "https://haau3.com/#organization",
     dates: { start: "2025-11", end: "present" },
     tags: ["ai", "product", "engineering", "clinical", "standards"],
     summary:
@@ -52,6 +53,7 @@ export const experience: PositionEntry[] = [
     title: "Founder & AI Product Lead",
     org: "Brian K. Fung Media LLC",
     location: "Brandon, FL",
+    orgId: "https://www.briankfung.com/#organization",
     dates: { start: "2025-06", end: "present" },
     tags: ["ai", "product", "engineering", "leadership"],
     summary:
