@@ -32,8 +32,13 @@ content, keep the machinery.
 2. Change `ALLOWED_EMAIL` in [`src/lib/cv/lint.ts`](src/lib/cv/lint.ts) to the
    one address you intend to publish. The privacy lint fails the build on any
    other email, so this is the first thing that breaks on a fresh fork.
-3. Update `SITE_URL` and `PERSONAL_SITE` in
-   [`src/lib/seo/site.ts`](src/lib/seo/site.ts).
+3. Update `SITE_URL`, `PERSONAL_SITE`, the handle and ORCID, and
+   `EXTRA_SAME_AS` (profiles to list in the structured data) in
+   [`src/lib/seo/site.ts`](src/lib/seo/site.ts). If your personal site
+   already publishes a schema.org Person, set `PERSON_ID` to its `@id` so
+   search engines treat the CV and the site as one person, and optionally set
+   `PERSON_DESCRIPTION` (a short one-liner) and `PERSON_DISAMBIGUATION`
+   (to separate you from a namesake). The defaults keep the CV standalone.
 4. Rename the PDF through the `filename` field in
    [`src/data/variants/master.ts`](src/data/variants/master.ts).
 5. Swap out the Google Search Console verification — the token in
@@ -93,16 +98,16 @@ ones, and register it in [`src/data/variants/index.ts`](src/data/variants/index.
 Requires Node 24 and pnpm (the version is pinned in the `packageManager` field
 of `package.json`). Run `pnpm install` first.
 
-| Command             | Does                                                   |
-| ------------------- | ------------------------------------------------------ |
-| `pnpm dev`          | Run the site locally                                   |
-| `pnpm build`        | Validate the data, then build the site                 |
-| `pnpm build:pdf`    | Regenerate `.tex` and compile the PDF                  |
-| `pnpm generate:tex` | Regenerate `.tex` only                                 |
-| `pnpm validate`     | Schema, cross-entry, and privacy checks on the data    |
-| `pnpm test`         | Unit tests for the escaper, resolver, and privacy lint |
-| `pnpm typecheck`    | `tsc --noEmit`                                         |
-| `pnpm lint`         | ESLint                                                 |
+| Command             | Does                                                                       |
+| ------------------- | -------------------------------------------------------------------------- |
+| `pnpm dev`          | Run the site locally                                                       |
+| `pnpm build`        | Validate the data, then build the site                                     |
+| `pnpm build:pdf`    | Regenerate `.tex` and compile the PDF                                      |
+| `pnpm generate:tex` | Regenerate `.tex` only                                                     |
+| `pnpm validate`     | Schema, cross-entry, and privacy checks on the data                        |
+| `pnpm test`         | Unit tests for the escaper, resolver, citations, privacy lint, and JSON-LD |
+| `pnpm typecheck`    | `tsc --noEmit`                                                             |
+| `pnpm lint`         | ESLint                                                                     |
 
 ## Building the PDFs locally
 
