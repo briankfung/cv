@@ -18,18 +18,23 @@ function firstSentence(text: string | undefined): string | undefined {
 }
 
 /**
- * The meta description. Search results show roughly the first 155
+ * Picks the meta description. Search results show roughly the first 155
  * characters, so an explicit one is best; otherwise the opening sentence of
  * the summary (or the first highlight) stands in.
  */
-export function documentDescription(
+export function describeProfile(
   profile: Profile,
-  override: string | undefined = SITE_DESCRIPTION,
+  configured: string | undefined,
 ): string {
   return (
-    override ??
+    configured ??
     firstSentence(profile.summary) ??
     profile.highlights?.[0] ??
     `Curriculum vitae of ${profile.name}.`
   );
+}
+
+/** The meta description, using SITE_DESCRIPTION when it is set. */
+export function documentDescription(profile: Profile): string {
+  return describeProfile(profile, SITE_DESCRIPTION);
 }

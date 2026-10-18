@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { cvData } from "@/data/cv";
 import type { Profile } from "@/lib/cv/types";
-import { documentDescription, documentTitle } from "./meta";
+import { describeProfile, documentTitle } from "./meta";
 
 const profile = (overrides: Partial<Profile>): Profile => ({
   ...cvData.profile,
@@ -24,24 +24,24 @@ describe("documentTitle", () => {
   });
 });
 
-describe("documentDescription", () => {
+describe("describeProfile", () => {
   it("prefers the configured description", () => {
-    expect(documentDescription(profile({ summary: "A. B." }), "Configured.")).toBe(
+    expect(describeProfile(profile({ summary: "A. B." }), "Configured.")).toBe(
       "Configured.",
     );
   });
 
   it("falls back to the summary's first sentence", () => {
     expect(
-      documentDescription(profile({ summary: "First sentence here. Second one." }), undefined),
+      describeProfile(profile({ summary: "First sentence here. Second one." }), undefined),
     ).toBe("First sentence here.");
   });
 
   it("falls back to the first highlight, then to a generic line", () => {
-    expect(documentDescription(profile({ highlights: ["Did a thing."] }), undefined)).toBe(
+    expect(describeProfile(profile({ highlights: ["Did a thing."] }), undefined)).toBe(
       "Did a thing.",
     );
-    expect(documentDescription(profile({ name: "Jane Doe" }), undefined)).toBe(
+    expect(describeProfile(profile({ name: "Jane Doe" }), undefined)).toBe(
       "Curriculum vitae of Jane Doe.",
     );
   });
