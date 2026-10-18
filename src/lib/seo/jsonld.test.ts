@@ -78,6 +78,24 @@ describe("buildProfileJsonLd", () => {
     ]);
   });
 
+  it("references an organization another site defines by its @id", () => {
+    const data: CvData = {
+      ...cvData,
+      experience: [
+        {
+          ...role("a", "Founder", "Venture A", "present", "https://a.example"),
+          orgId: "https://a.example/#organization",
+        },
+      ],
+    };
+    expect(person(data, { id: "https://example.org/#person" }).worksFor).toEqual({
+      "@type": "Organization",
+      "@id": "https://a.example/#organization",
+      name: "Venture A",
+      url: "https://a.example",
+    });
+  });
+
   it("keeps a single ongoing role scalar", () => {
     const data: CvData = {
       ...cvData,

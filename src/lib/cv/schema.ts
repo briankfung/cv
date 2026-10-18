@@ -38,6 +38,7 @@ const positionEntry = z.object({
   summary: z.string().optional(),
   bullets: z.array(bullet).optional(),
   url: z.url().optional(),
+  orgId: z.url().optional(),
 });
 
 const educationEntry = z.object({

@@ -37,8 +37,13 @@ function oneOrMany<T>(values: T[]): T | T[] | undefined {
   return values.length === 1 ? values[0] : values;
 }
 
-function organization(name: string, url?: string) {
-  return { "@type": "Organization", name, ...(url ? { url } : {}) };
+function organization(name: string, url?: string, id?: string) {
+  return {
+    "@type": "Organization",
+    ...(id ? { "@id": id } : {}),
+    name,
+    ...(url ? { url } : {}),
+  };
 }
 
 /**
@@ -65,7 +70,9 @@ export function buildProfileJsonLd(
     if (!employers.has(role.org)) employers.set(role.org, role);
   }
   const worksFor = oneOrMany(
-    [...employers.values()].map((role) => organization(role.org, role.url)),
+    [...employers.values()].map((role) =>
+      organization(role.org, role.url, role.orgId),
+    ),
   );
 
   // A Role carries the membership term, which a bare Organization cannot.

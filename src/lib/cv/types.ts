@@ -69,6 +69,12 @@ export interface PositionEntry extends Taggable {
   summary?: string;
   bullets?: Bullet[];
   url?: string;
+  /**
+   * schema.org `@id` of the organization, when another site already defines
+   * it (e.g. `https://example.com/#organization`). Structured data only:
+   * worksFor then points at that node, joining the two graphs.
+   */
+  orgId?: string;
 }
 
 export interface EducationEntry extends Taggable {
