@@ -38,11 +38,23 @@ export interface DateRange {
 }
 
 /**
+ * A span of a bullet's text to render as a link. `text` is copied verbatim from
+ * the bullet, so the sentence still reads whole in the data file; the link only
+ * marks where the anchor goes.
+ */
+export interface BulletLink {
+  text: string;
+  href: string;
+}
+
+/**
  * A bullet with optional per-variant visibility. `only` restricts the bullet to
- * the listed variants; `not` hides it from them.
+ * the listed variants; `not` hides it from them. `links` turns spans of the
+ * text into links, listed in the order they appear.
  */
 export interface Bullet {
   text: string;
+  links?: BulletLink[];
   only?: VariantId[];
   not?: VariantId[];
 }

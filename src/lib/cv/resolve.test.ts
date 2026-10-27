@@ -94,6 +94,36 @@ describe("selectBullets", () => {
   it("treats a missing bullet list as empty", () => {
     expect(selectBullets(undefined, "master")).toEqual([]);
   });
+
+  it("links the spans a bullet names, in order, and keeps the rest as text", () => {
+    const [runs] = selectBullets(
+      [
+        {
+          text: "Read the guide and the source.",
+          links: [
+            { text: "the guide", href: "https://example.org/guide" },
+            { text: "the source", href: "https://example.org/source" },
+          ],
+        },
+      ],
+      "master",
+    );
+    expect(runs).toEqual([
+      { text: "Read " },
+      { text: "the guide", href: "https://example.org/guide" },
+      { text: " and " },
+      { text: "the source", href: "https://example.org/source" },
+      { text: "." },
+    ]);
+  });
+
+  it("refuses a link whose text is not in the bullet", () => {
+    const bullet = {
+      text: "Read the guide.",
+      links: [{ text: "the docs", href: "https://example.org/docs" }],
+    };
+    expect(() => selectBullets([bullet], "master")).toThrow(/does not match/);
+  });
 });
 
 /** A second variant, defined here so the resolver keeps coverage of

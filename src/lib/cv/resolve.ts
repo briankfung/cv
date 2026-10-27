@@ -12,7 +12,7 @@ import {
   formatRange,
   formatUnfinished,
 } from "./dates";
-import { bold, link, rich, text } from "./rich";
+import { bold, link, linkSpans, rich, text } from "./rich";
 import type {
   Bullet,
   CvData,
@@ -187,7 +187,14 @@ export function selectBullets(
     return true;
   });
   const capped = max === undefined ? visible : visible.slice(0, max);
-  return capped.map((bullet) => rich(text(bullet.text)));
+  return capped.map((bullet) => {
+    const runs = linkSpans(bullet.text, bullet.links);
+    // `pnpm validate` rejects this first; the throw covers callers that skip it.
+    if (!runs) {
+      throw new Error(`A link in the bullet "${bullet.text}" does not match its text`);
+    }
+    return runs;
+  });
 }
 
 function dateFields(dates: DateRange | undefined) {

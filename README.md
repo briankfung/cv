@@ -87,6 +87,34 @@ so a data change that was never regenerated cannot merge unnoticed. The
 compiled PDF itself is not diffed — xelatex output is not byte-reproducible —
 so regenerate with `pnpm build:pdf` rather than `pnpm generate:tex` alone.
 
+### Links in bullets
+
+A bullet is a plain sentence. To link part of it, list the span in `links`,
+copied verbatim from the text:
+
+```ts
+bullets: [
+  {
+    text: "Wrote the user guide and published the source on GitHub.",
+    links: [
+      { text: "the user guide", href: "https://example.org/guide" },
+      { text: "the source", href: "https://github.com/example/project" },
+    ],
+  },
+],
+```
+
+Spans are matched left to right, so list them in the order they appear.
+`pnpm validate` rejects a span that is not in the text, so a typo fails the
+build instead of silently dropping a link. The resolver turns the bullet into
+the same rich-text runs citations use, so the link is an anchor on the web page
+and a clickable `\href` in the PDF.
+
+Why spans instead of markup such as `[text](url)` inside the string: the
+sentence stays readable in the data file, nothing needs escaping, and every
+string, `href` included, still passes through the privacy and canonical-link
+checks.
+
 ## Variants
 
 A variant is a filter over the same data, declared in
