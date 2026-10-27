@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CV_DATE_PATTERN, dateSortKey } from "./dates";
+import { linkSpans } from "./rich";
 import { SECTION_IDS, TAGS, VARIANT_IDS } from "./types";
 
 const cvDate = z
@@ -17,11 +18,24 @@ const dateRange = z
     message: "start date must not be after end date",
   });
 
-const bullet = z.object({
+const bulletLink = z.object({
   text: z.string().min(1),
-  only: z.array(variantId).nonempty().optional(),
-  not: z.array(variantId).nonempty().optional(),
+  href: z.url(),
 });
+
+const bullet = z
+  .object({
+    text: z.string().min(1),
+    links: z.array(bulletLink).nonempty().optional(),
+    only: z.array(variantId).nonempty().optional(),
+    not: z.array(variantId).nonempty().optional(),
+  })
+  // The same function the resolver uses, so validation and rendering agree on
+  // what counts as a match.
+  .refine((b) => linkSpans(b.text, b.links) !== null, {
+    message: "each link's text must appear in the bullet's text, in order",
+    path: ["links"],
+  });
 
 const identified = {
   id: z.string().regex(/^[a-z0-9-]+$/, "ids are lowercase kebab-case"),
