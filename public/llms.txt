@@ -29,6 +29,7 @@ Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21
 - [haau3 platform](https://platform.haau3.com): six FHIR APIs, in preview, that power haau3 and are open to other builders
 - [haau3 FHIR Implementation Guide](https://fhir.haau3.com): profiles, extensions, and operations behind the haau3 app and platform
 - [Unscripted Rx](https://www.unscripted-rx.com): modern pharmacy residency directory and recruiting events platform
+- [US Pharmacy FHIR Implementation Guide](https://build.fhir.org/ig/unscripted-rx/us-pharmacy-fhir-ig/): work-in-progress FHIR R4 implementation guide for US pharmacy, published by Unscripted Rx and built live on stream
 - [Phantom Codes](https://github.com/briankfung/phantom-codes): benchmark of hallucination, accuracy and cost in LLM-based medical concept normalization
 - [@briankfung/fhir-types](https://www.npmjs.com/package/@briankfung/fhir-types): hand-rolled HL7 FHIR R4 TypeScript types on npm
 - [Public FHIR Server](https://public-fhir-server.vercel.app): FHIR R4 resource operations on Postgres, deployed for learning and reference
