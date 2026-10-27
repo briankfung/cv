@@ -63,6 +63,28 @@ export const projects: ProjectEntry[] = [
     tags: ["product", "engineering"],
   },
   {
+    id: "proj-us-pharmacy-ig",
+    name: "US Pharmacy FHIR Implementation Guide",
+    partOf: "proj-unscripted-rx",
+    tagline:
+      "Work-in-progress FHIR R4 implementation guide for US pharmacy, published by Unscripted Rx and built live on stream, starting with pharmacists and their licenses, degrees, and board certifications.",
+    url: "https://build.fhir.org/ig/unscripted-rx/us-pharmacy-fhir-ig/",
+    dates: { start: "2026-10", end: "present" },
+    bullets: [
+      {
+        text: "Building it live in the Modeling US Pharmacy using HL7 FHIR series, streamed to YouTube, LinkedIn, Facebook, and Twitch.",
+        links: [
+          {
+            text: "Modeling US Pharmacy using HL7 FHIR",
+            href: "https://www.youtube.com/playlist?list=PLP28Q1m8c58E",
+          },
+        ],
+      },
+    ],
+    stack: ["FHIR", "FHIR Shorthand"],
+    tags: ["standards", "teaching"],
+  },
+  {
     id: "proj-medlistiq",
     name: "medlistIQ",
     tagline:
