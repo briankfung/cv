@@ -11,7 +11,7 @@
  * Add an id here and a config in src/data/variants to publish another document.
  * The PDF build, the download links, and the sitemap all read from that list.
  */
-export const VARIANT_IDS = ["master"] as const;
+export const VARIANT_IDS = ["master", "research"] as const;
 export type VariantId = (typeof VARIANT_IDS)[number];
 
 export const TAGS = [
@@ -377,6 +377,8 @@ export interface VariantConfig {
   description: string;
   /** Replaces `profile.summary` for this variant. */
   summaryOverride?: string;
+  /** Replaces `profile.highlights` for this variant. */
+  highlightsOverride?: string[];
   /** Soft page budget; `build-pdf` warns when the PDF exceeds it. */
   maxPages?: number;
   /** Render order. A section omitted here does not appear in this variant. */

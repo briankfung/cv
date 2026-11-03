@@ -222,6 +222,7 @@ export const variantConfigSchema = z.object({
   filename: z.string().regex(/^[a-z0-9-]+$/),
   description: z.string().min(1),
   summaryOverride: z.string().optional(),
+  highlightsOverride: z.array(z.string().min(1)).nonempty().optional(),
   maxPages: z.number().int().positive().optional(),
   sections: z
     .array(

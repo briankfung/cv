@@ -363,9 +363,13 @@ export function resolveVariant(
   data: CvData,
   variant: VariantConfig,
 ): ResolvedCv {
-  const profile = variant.summaryOverride
-    ? { ...data.profile, summary: variant.summaryOverride }
-    : data.profile;
+  const profile = {
+    ...data.profile,
+    ...(variant.summaryOverride ? { summary: variant.summaryOverride } : {}),
+    ...(variant.highlightsOverride
+      ? { highlights: variant.highlightsOverride }
+      : {}),
+  };
 
   const sections: RenderSection[] = [];
 
