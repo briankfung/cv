@@ -13,6 +13,12 @@ export const experience: PositionEntry[] = [
     summary:
       "Consumer caregiving app and the B2B healthcare API platform behind it, started during a period of full-time family caregiving.",
     bullets: [
+      // The research variant leads with the evaluation work; the master keeps
+      // the product-first order. One sentence, shown once in each variant.
+      {
+        text: "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
+        only: ["research"],
+      },
       {
         text: "Conceived and built haau3, a FHIR-native app that gathers a loved one's health records in one place, explains them in plain language, and shares exactly what the caregiver chooses with care teams.",
       },
@@ -45,6 +51,7 @@ export const experience: PositionEntry[] = [
       },
       {
         text: "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
+        not: ["research"],
       },
     ],
   },

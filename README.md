@@ -123,14 +123,14 @@ A variant is a filter over the same data, declared in
 | Variant  | Output              | Contents                       |
 | -------- | ------------------- | ------------------------------ |
 | `master` | `brian-fung-cv.pdf` | Full academic CV, all sections |
+| `research` | `brian-fung-research-cv.pdf` | The same sections ordered for research roles, with their own summary and highlights |
 
-Only the `master` variant exists today, but the machinery is general: every
-registered variant gets its own PDF, download link, and sitemap entry
-automatically.
+The machinery is general: every registered variant gets its own PDF,
+download link, and sitemap entry automatically.
 
 A variant config chooses which sections appear and in what order, which entries
 to include (by id or by tag), how many entries and bullets to keep, and can
-override the summary. Individual bullets can opt in or out of a variant with
+override the summary and highlights. Individual bullets can opt in or out of a variant with
 `only` and `not`.
 
 To add a variant, add its id to `VARIANT_IDS` in
