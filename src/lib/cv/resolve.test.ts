@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { cvData } from "@/data/cv";
-import { master } from "@/data/variants";
+import { master, research } from "@/data/variants";
 import { richToPlain } from "./rich";
 import { resolveVariant, selectBullets, selectEntries } from "./resolve";
 import type { Bullet, CvData, SectionConfig, VariantConfig } from "./types";
@@ -198,6 +198,17 @@ describe("resolveVariant", () => {
     expect(cvData.profile.summary).not.toBe("Short summary.");
   });
 
+  it("applies highlightsOverride without mutating the source data", () => {
+    const variant: VariantConfig = {
+      ...master,
+      highlightsOverride: ["One line."],
+    };
+    const resolved = resolveVariant(cvData, variant);
+    expect(resolved.profile.highlights).toEqual(["One line."]);
+    expect(resolved.sections[0].bullets?.map(richToPlain)).toEqual(["One line."]);
+    expect(cvData.profile.highlights).not.toEqual(["One line."]);
+  });
+
   it("drops a section whose entries all filter out", () => {
     const variant: VariantConfig = {
       ...master,
@@ -357,6 +368,55 @@ describe("resolveVariant", () => {
       (e) => e.id === "svc-smart-scheduling-links",
     );
     expect(smart?.dates).toBeUndefined();
+  });
+});
+
+describe("research variant", () => {
+  const founderBullets = (variant: VariantConfig) =>
+    resolveVariant(cvData, variant)
+      .sections.find((s) => s.id === "experience")!
+      .entries.find((e) => e.id === "founder-haau3")!
+      .bullets.map(richToPlain);
+
+  it("keeps every section, ordered for research roles", () => {
+    const ids = resolveVariant(cvData, research).sections.map((s) => s.id);
+    expect(ids).toEqual([
+      "profile",
+      "research",
+      "experience",
+      "publications",
+      "presentations",
+      "education",
+      "training",
+      "credentials",
+      "appointments",
+      "teaching",
+      "service",
+      "honors",
+      "projects",
+      "media",
+      "memberships",
+      "skills",
+    ]);
+    expect(new Set(ids)).toEqual(
+      new Set(resolveVariant(cvData, master).sections.map((s) => s.id)),
+    );
+  });
+
+  it("carries its own summary and highlights", () => {
+    const [profile] = resolveVariant(cvData, research).sections;
+    expect(profile.prose).toBe(research.summaryOverride);
+    expect(profile.bullets?.map(richToPlain)).toEqual(research.highlightsOverride);
+    expect(resolveVariant(cvData, master).sections[0].bullets).toBeUndefined();
+  });
+
+  it("leads the founder role with the Smart 40 bullet, shown once per variant", () => {
+    expect(founderBullets(research)[0]).toMatch(/^Designed Cora's Smart 40 evaluation/);
+    expect(founderBullets(master)[0]).toMatch(/^Conceived and built haau3/);
+    for (const variant of [master, research]) {
+      const smart40 = founderBullets(variant).filter((b) => /Smart 40/.test(b));
+      expect(smart40).toHaveLength(1);
+    }
   });
 });
 
