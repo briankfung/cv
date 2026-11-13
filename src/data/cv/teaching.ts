@@ -10,7 +10,7 @@ export const teaching: PositionEntry[] = [
     dates: { start: "2023", end: "present" },
     tags: ["teaching", "ai", "engineering"],
     summary:
-      "Nine self-paced courses and 137 lessons on AI, APIs, interoperability, and software development for clinicians entering engineering, now extended with live cohort instruction.",
+      "Ten self-paced courses and 143 lessons on FHIR, clinical informatics, AI, and software development for clinicians entering engineering. Led two live cohorts of the Clinician-Engineer Bootcamp, a two-week course that requires no prior coding, coaching 12 clinicians, including physicians, pharmacists, and dentists, one-on-one; 10 shipped their own full-stack apps with Claude Code.",
   },
   {
     id: "teach-jhu-fhir",

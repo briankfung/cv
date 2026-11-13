@@ -7,10 +7,10 @@ export const service: PositionEntry[] = [
     // SMART Scheduling Links project as a whole.
     title: "Lead Author, FHIR Implementation Guide",
     org: "HL7 SMART Scheduling Links",
-    url: "https://build.fhir.org/ig/HL7/smart-scheduling-links/en/",
+    url: "https://hl7.org/fhir/uv/smart-scheduling-links/",
     tags: ["standards", "leadership"],
     summary:
-      "Workgroup contributor. Translated multi-organization scheduling workflows into a balloted FHIR implementation guide with examples and developer-facing artifacts.",
+      "Workgroup contributor. Translated multi-organization scheduling workflows into a FHIR implementation guide with examples and developer-facing artifacts, published by HL7 as an international Standard for Trial Use (STU 1) in October 2026.",
   },
   {
     id: "svc-cms-health-tech-ecosystem",

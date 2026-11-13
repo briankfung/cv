@@ -15,7 +15,7 @@ export const projects: ProjectEntry[] = [
     id: "proj-haau3-platform",
     name: "haau3 platform",
     tagline:
-      "Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: six FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.",
+      "Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits, with open-source SDKs in TypeScript, Python, and Go and a CLI that sets up coding agents.",
     url: "https://platform.haau3.com",
     dates: { start: "2026-06", end: "present" },
     stack: ["FHIR", "SMART Scheduling Links", "LOINC", "RxNorm", "OpenAPI", "TypeScript"],
