@@ -32,7 +32,10 @@ export const experience: PositionEntry[] = [
         text: "Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.",
       },
       {
-        text: "Launched the haau3 platform in preview with a free developer plan: six FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.",
+        text: "Launched the haau3 platform in preview with a free developer plan: eight FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits.",
+      },
+      {
+        text: "Shipped open-source SDKs in TypeScript, Python, and Go and an open-source CLI whose init command installs the SDK and sets up a project's coding agents (Claude Code, Cursor, Codex, VS Code, or Gemini CLI) with the platform's Agent Skill and docs MCP server; API keys reach the project's env file without passing through the chat, and an agent cannot revoke a key without confirmation.",
       },
       {
         text: "Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.",

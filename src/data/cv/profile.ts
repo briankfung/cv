@@ -8,7 +8,7 @@ export const profile: Profile = {
   email: "brian@briankfung.com",
   location: "Brandon, FL",
   selfAuthor: "Fung",
-  updated: "2026-11-02T19:30:00-05:00",
+  updated: "2026-11-13T02:29:00-05:00",
   links: [
     {
       label: "Website",

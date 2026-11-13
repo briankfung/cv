@@ -17,8 +17,8 @@ export const research: VariantConfig = {
     "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
     "Built Phantom Codes, an open benchmark of hallucination, hierarchical accuracy, abstention, robustness, and cost across 24 LLM and prompting configurations for medical concept normalization, with retrieval, classification, and string-matching baselines.",
     "Designed evaluation frameworks at Verily comparing deterministic clinical reasoning with frontier LLM approaches for AI-assisted type 2 diabetes decision support, and partnered with data science teams to build, train, and evaluate machine-learning models across care programs.",
-    "Lead author of the HL7 SMART Scheduling Links FHIR Implementation Guide, and author of the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, with 39 profiles, 16 extensions, and 3 operations.",
-    "Founder of haau3, generally available in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library, and of the haau3 platform, six FHIR APIs in preview with a free developer plan.",
+    "Lead author of the HL7 SMART Scheduling Links FHIR Implementation Guide, published as STU 1 in October 2026, and author of the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, with 39 profiles, 16 extensions, and 3 operations.",
+    "Founder of haau3, generally available in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library, and of the haau3 platform, eight FHIR APIs in preview with a free developer plan, open-source SDKs, and a CLI that sets up coding agents.",
   ],
   sections: [
     { section: "profile", title: "Summary" },

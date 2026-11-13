@@ -246,8 +246,8 @@
   \item Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.
   \item Built Phantom Codes, an open benchmark of hallucination, hierarchical accuracy, abstention, robustness, and cost across 24 LLM and prompting configurations for medical concept normalization, with retrieval, classification, and string-matching baselines.
   \item Designed evaluation frameworks at Verily comparing deterministic clinical reasoning with frontier LLM approaches for AI-assisted type 2 diabetes decision support, and partnered with data science teams to build, train, and evaluate machine-learning models across care programs.
-  \item Lead author of the HL7 SMART Scheduling Links FHIR Implementation Guide, and author of the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, with 39 profiles, 16 extensions, and 3 operations.
-  \item Founder of haau3, generally available in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library, and of the haau3 platform, six FHIR APIs in preview with a free developer plan.
+  \item Lead author of the HL7 SMART Scheduling Links FHIR Implementation Guide, published as STU 1 in October 2026, and author of the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, with 39 profiles, 16 extensions, and 3 operations.
+  \item Founder of haau3, generally available in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library, and of the haau3 platform, eight FHIR APIs in preview with a free developer plan, open-source SDKs, and a CLI that sets up coding agents.
 \end{itemize}
 
 \needspace{6.5\baselineskip}
@@ -271,7 +271,8 @@
   \item Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026, and listed it in the CMS Medicare App Library; earned the DiMe Seal in April 2026.
   \item Shipped Kill the Clipboard sharing, which sends a curated record summary to a provider as an encrypted SMART Health Link or QR code, drawing on records retrieved through a partner connected to TEFCA and a CMS Aligned Network.
   \item Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.
-  \item Launched the haau3 platform in preview with a free developer plan: six FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.
+  \item Launched the haau3 platform in preview with a free developer plan: eight FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits.
+  \item Shipped open-source SDKs in TypeScript, Python, and Go and an open-source CLI whose init command installs the SDK and sets up a project's coding agents (Claude Code, Cursor, Codex, VS Code, or Gemini CLI) with the platform's Agent Skill and docs MCP server; API keys reach the project's env file without passing through the chat, and an agent cannot revoke a key without confirmation.
   \item Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.
   \item Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, and a pinned RxNorm release.
   \item Evolved medlistIQ into the platform's MedList API, which turns one patient's medication records into a single reconciled FHIR medication list with the source records behind every entry.
@@ -423,7 +424,7 @@
 \needspace{6.5\baselineskip}
 \section{Teaching}
 \cventry{2023 – Present}{\textbf{Founder and Instructor}}{\href{https://openclintech.com}{OpenClinTech}}{}
-\cvnote{Nine self-paced courses and 137 lessons on AI, APIs, interoperability, and software development for clinicians entering engineering, now extended with live cohort instruction.}
+\cvnote{Ten self-paced courses and 143 lessons on FHIR, clinical informatics, AI, and software development for clinicians entering engineering. Led two live cohorts of the Clinician-Engineer Bootcamp, a two-week course that requires no prior coding, coaching 12 clinicians, including physicians, pharmacists, and dentists, one-on-one; 10 shipped their own full-stack apps with Claude Code.}
 \cventry{2022 – Present}{\textbf{Guest Lecturer — ENP 109, Medical Fundamentals}}{Tufts University, Engineering Psychology and Human Factors Engineering}{}
 \cventry{Feb 2026, Feb 2025}{\textbf{Guest Lecturer — ME 250.778, Implementing Fast Healthcare Interoperability Resources}}{Johns Hopkins University School of Medicine}{}
 \cventry{Mar 2025}{\textbf{Guest Lecturer — ME 250.955, Applied Clinical Informatics}}{Johns Hopkins University School of Medicine}{}
@@ -444,8 +445,8 @@
 \cventry{2023}{\textbf{Research Mentor, Computer Science Mentorship Program}}{Google}{}
 \cventry{2018 – 2020}{\textbf{Committee Member, Social Media}}{Society of Infectious Diseases Pharmacists}{}
 \cventry{2016 – 2020}{\textbf{Member, Section Advisory Group for Pharmacy Informatics and Technology on Professional Development}}{American Society of Health-System Pharmacists}{}
-\cventry{}{\textbf{Lead Author, FHIR Implementation Guide}}{\href{https://build.fhir.org/ig/HL7/smart-scheduling-links/en/}{HL7 SMART Scheduling Links}}{}
-\cvnote{Workgroup contributor. Translated multi-organization scheduling workflows into a balloted FHIR implementation guide with examples and developer-facing artifacts.}
+\cventry{}{\textbf{Lead Author, FHIR Implementation Guide}}{\href{https://hl7.org/fhir/uv/smart-scheduling-links/}{HL7 SMART Scheduling Links}}{}
+\cvnote{Workgroup contributor. Translated multi-organization scheduling workflows into a FHIR implementation guide with examples and developer-facing artifacts, published by HL7 as an international Standard for Trial Use (STU 1) in October 2026.}
 
 \needspace{6.5\baselineskip}
 \section{Honors \& Awards}
@@ -471,7 +472,7 @@
 \cvnote{Open-source CV pipeline that renders one typed data source as both an indexable website and a LaTeX-typeset PDF, published as a reference implementation others can fork.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} LaTeX \textperiodcentered{} Vercel}
 \cventry{Jun 2026 – Present}{\href{https://platform.haau3.com}{\textbf{haau3 platform}}}{}{}
-\cvnote{Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: six FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, and Medicare Advantage and ACA plan benefits.}
+\cvnote{Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits, with open-source SDKs in TypeScript, Python, and Go and a CLI that sets up coding agents.}
 \cvchips{FHIR \textperiodcentered{} SMART Scheduling Links \textperiodcentered{} LOINC \textperiodcentered{} RxNorm \textperiodcentered{} OpenAPI \textperiodcentered{} TypeScript}
 \cventry{May 2026 – Present}{\href{https://fhir.haau3.com}{\textbf{haau3 FHIR Implementation Guide}}}{Component of haau3 platform}{}
 \cvnote{FHIR implementation guide on US Core 6.1.0 and SDC 4.0.0 defining the profiles, extensions, operations, and terminology behind the haau3 app and platform.}
