@@ -241,7 +241,7 @@
 
 \needspace{6.5\baselineskip}
 \section{Summary}
-\cvprose{Founder building haau3, a consumer caregiving app, and the haau3 platform, a suite of FHIR APIs that powers it and serves other healthcare organizations. Previously Staff Clinical Informatics Data Architect at Verily and an informatics pharmacist on Mayo Clinic's Epic transformation across 80 hospitals and clinics. Residency-trained pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule.}
+\cvprose{Founder building haau3, a consumer caregiving app; the haau3 platform, a suite of FHIR APIs that powers it and serves other healthcare organizations; and haau3 Research, open research on caregiving with and without AI. Previously Staff Clinical Informatics Data Architect at Verily and an informatics pharmacist on Mayo Clinic's Epic transformation across 80 hospitals and clinics. Residency-trained pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule.}
 
 \needspace{6.5\baselineskip}
 \section{Education}
@@ -292,14 +292,16 @@
   \item Took haau3 to general availability in the CMS Health Tech Ecosystem for both the Conversational AI and Kill the Clipboard use cases, recognized by CMS at the program's first-anniversary event in July 2026, and listed it in the CMS Medicare App Library; earned the DiMe Seal in April 2026.
   \item Shipped Kill the Clipboard sharing, which sends a curated record summary to a provider as an encrypted SMART Health Link or QR code, drawing on records retrieved through a partner connected to TEFCA and a CMS Aligned Network.
   \item Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.
-  \item Launched the haau3 platform in preview with a free developer plan: eight FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits.
+  \item Launched the haau3 platform in preview with a free developer plan: eight healthcare APIs, each built on FHIR, that power haau3. Seven are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, and Medicare Advantage and ACA plan benefits; the real-time pharmacy benefit check answers in the Sandbox until it opens to customers.
   \item Shipped open-source SDKs in TypeScript, Python, and Go and an open-source CLI whose init command installs the SDK and sets up a project's coding agents (Claude Code, Cursor, Codex, VS Code, or Gemini CLI) with the platform's Agent Skill and docs MCP server; API keys reach the project's env file without passing through the chat, and an agent cannot revoke a key without confirmation.
-  \item Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.
-  \item Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, and a pinned RxNorm release.
+  \item Opened a Sandbox, at sandbox.haau3.com, that takes production's paths with no key and no account: every operation answers its documented example, and a test insurer answers the pharmacy benefit check for synthetic members.
+  \item Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Medical Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.
+  \item Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, RxNorm and ICD-10-CM held at named releases, and pharmacies held from CMS's monthly and weekly NPPES files.
   \item Evolved medlistIQ into the platform's MedList API, which turns one patient's medication records into a single reconciled FHIR medication list with the source records behind every entry.
   \item Authored the haau3 FHIR Implementation Guide on US Core 6.1.0 and SDC 4.0.0, defining 39 profiles, 16 extensions, 3 operations, and 40 code systems and value sets behind the app and platform.
   \item Built Cora, haau3's English and Spanish text and voice assistant on Google Gemini under a HIPAA business associate agreement, grounded in a person's own records and vetted public reference material and storing no conversations; moved its UX from text to speech-to-speech on caregiver feedback.
   \item Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.
+  \item Started \href{https://research.haau3.com}{haau3 Research}, open research on caregiving with and without AI, publishing each experiment with its code, run logs, and cost; the first note compared Claude Opus 5.5 with Gemma 3 12B on a laptop on HealthBench's expertise-tailored communication, after checking candidate LLM judges against physician grades.
 \end{itemize}
 \cventry{Jun 2025 – Present}{\textbf{Founder \& AI Product Lead}}{Brian K. Fung Media LLC}{Brandon, FL}
 \cvnote{Parent company of haau3, and home to independent products and advisory work. Part-time alongside full-time caregiving until January 2026.}
@@ -373,6 +375,8 @@
 
 \needspace{6.5\baselineskip}
 \section{Research Projects}
+\cventry{Nov 2026}{\href{https://doi.org/10.5281/zenodo.24573238}{\textbf{A frontier model and a small open-weight model on a laptop, compared on HealthBench's expertise-tailored communication}}}{haau3 Research}{}
+\cvnote{Open note with its code, run logs, and cost, archived on Zenodo with a DOI; candidate LLM judges were checked against physician grades before the main runs.}
 \cventry{May 2026}{\href{https://github.com/briankfung/phantom-codes}{\textbf{Phantom Codes: benchmarking hallucination, hierarchical accuracy, abstention, robustness, and cost across 24 LLM and prompting configurations for medical concept normalization}}}{}{}
 \cvnote{Independent research; open evaluation harness released publicly, with retrieval, classification, and string-matching baselines.}
 \cventry{2019 – 2020}{\textbf{Analysis of the 21st Century Cures Act on reducing clinician burden attributable to health information technology and electronic health records}}{}{}
@@ -488,6 +492,9 @@
 
 \needspace{6.5\baselineskip}
 \section{Projects \& Product Portfolio}
+\cventry{Nov 2026 – Present}{\href{https://research.haau3.com}{\textbf{haau3 Research}}}{}{}
+\cvnote{Open research on caregiving, with and without AI. Each note is a short write-up of a small experiment with its code, run logs, and cost; the code is MIT-licensed and the writing and results are CC BY 4.0.}
+\cvchips{Inspect \textperiodcentered{} Python \textperiodcentered{} Quarto}
 \cventry{Jul 2026 – Present}{\href{https://www.ovant.org}{\textbf{Ovant}}}{}{}
 \cvnote{Job search tool, open to everyone, that builds a knowledge base of a candidate's career from an imported resume and what they say or type about each role, then writes a resume for any job they paste, tracks applications, ranks the terms their saved postings reward, and finds warm-intro paths.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} Postgres \textperiodcentered{} Anthropic API}
@@ -495,8 +502,8 @@
 \cvnote{Open-source CV pipeline that renders one typed data source as both an indexable website and a LaTeX-typeset PDF, published as a reference implementation others can fork.}
 \cvchips{Next.js \textperiodcentered{} TypeScript \textperiodcentered{} LaTeX \textperiodcentered{} Vercel}
 \cventry{Jun 2026 – Present}{\href{https://platform.haau3.com}{\textbf{haau3 platform}}}{}{}
-\cvnote{Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits, with open-source SDKs in TypeScript, Python, and Go and a CLI that sets up coding agents.}
-\cvchips{FHIR \textperiodcentered{} SMART Scheduling Links \textperiodcentered{} LOINC \textperiodcentered{} RxNorm \textperiodcentered{} OpenAPI \textperiodcentered{} TypeScript}
+\cvnote{Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight healthcare APIs, each built on FHIR, for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits (in the Sandbox until it opens to customers), with open-source SDKs in TypeScript, Python, and Go, a CLI that sets up coding agents, and a Sandbox that needs no key.}
+\cvchips{FHIR \textperiodcentered{} SMART Scheduling Links \textperiodcentered{} LOINC \textperiodcentered{} RxNorm \textperiodcentered{} ICD-10-CM \textperiodcentered{} OpenAPI \textperiodcentered{} TypeScript}
 \cventry{May 2026 – Present}{\href{https://fhir.haau3.com}{\textbf{haau3 FHIR Implementation Guide}}}{Component of haau3 platform}{}
 \cvnote{FHIR implementation guide on US Core 6.1.0 and SDC 4.0.0 defining the profiles, extensions, operations, and terminology behind the haau3 app and platform.}
 \cvchips{FHIR \textperiodcentered{} US Core \textperiodcentered{} SDC \textperiodcentered{} FHIR Shorthand}
@@ -545,7 +552,7 @@
 \needspace{19\baselineskip}
 \section{Skills}
 \cvskill{Product}{Product strategy, Discovery, Roadmaps, User research, Rapid prototyping, Experimentation, Success metrics, Go-to-market, Product-led growth, Executive communication}
-\cvskill{AI and machine learning}{LLMs, RAG, Conversational and multimodal AI, Model evaluation, LLM evaluation design, Benchmark design, Prompt and model orchestration, Agentic workflows, Synthetic data, Clinical NLP, Fine-tuning, Gemini, Vertex AI}
+\cvskill{AI and machine learning}{LLMs, RAG, Conversational and multimodal AI, Model evaluation, LLM evaluation design, Benchmark design, Inspect, LLM-as-judge validation, Open-weight models (local inference), Prompt and model orchestration, Agentic workflows, Synthetic data, Clinical NLP, Fine-tuning, Gemini, Vertex AI}
 \cvskill{Engineering}{Python, TypeScript, SQL, Go, R, Next.js, Tailwind CSS, Prisma, Supabase, FastAPI, PyTorch, REST APIs, GCP, BigQuery, Cloud Healthcare API, Cloud Storage, Cloud Run, Vercel, Docker, OpenTofu, CI/CD, OAuth 2.0}
 \cvskill{Data and healthcare}{Semantic modeling, Knowledge graphs, ETL pipelines, FHIR, US Core, SDC, FHIR Shorthand, SMART on FHIR, SMART Health Links, SMART Health Check-in, SMART Scheduling Links, CDS Hooks, C-CDA, NCPDP SCRIPT, BPM+, CMMN, BPMN, DMN, SNOMED CT, LOINC, RxNorm, UMLS, ICD-10, WHO ATC, NDC}
 \cvskill{Electronic health records}{Epic, Cerner, McKesson, Allscripts}

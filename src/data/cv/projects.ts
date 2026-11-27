@@ -15,11 +15,21 @@ export const projects: ProjectEntry[] = [
     id: "proj-haau3-platform",
     name: "haau3 platform",
     tagline:
-      "Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight FHIR APIs for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits, with open-source SDKs in TypeScript, Python, and Go and a CLI that sets up coding agents.",
+      "Healthcare API platform, in preview with a free developer plan, that powers haau3 and is open to other builders: eight healthcare APIs, each built on FHIR, for scheduling (HL7 SMART Scheduling Links), terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits (in the Sandbox until it opens to customers), with open-source SDKs in TypeScript, Python, and Go, a CLI that sets up coding agents, and a Sandbox that needs no key.",
     url: "https://platform.haau3.com",
     dates: { start: "2026-06", end: "present" },
-    stack: ["FHIR", "SMART Scheduling Links", "LOINC", "RxNorm", "OpenAPI", "TypeScript"],
+    stack: ["FHIR", "SMART Scheduling Links", "LOINC", "RxNorm", "ICD-10-CM", "OpenAPI", "TypeScript"],
     tags: ["standards", "engineering", "product"],
+  },
+  {
+    id: "proj-haau3-research",
+    name: "haau3 Research",
+    tagline:
+      "Open research on caregiving, with and without AI. Each note is a short write-up of a small experiment with its code, run logs, and cost; the code is MIT-licensed and the writing and results are CC BY 4.0.",
+    url: "https://research.haau3.com",
+    dates: { start: "2026-11", end: "present" },
+    stack: ["Inspect", "Python", "Quarto"],
+    tags: ["ai", "research"],
   },
   {
     id: "proj-haau3-ig",

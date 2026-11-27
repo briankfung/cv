@@ -13,8 +13,14 @@ export const experience: PositionEntry[] = [
     summary:
       "Consumer caregiving app and the B2B healthcare API platform behind it, started during a period of full-time family caregiving.",
     bullets: [
-      // The research variant leads with the evaluation work; the master keeps
-      // the product-first order. One sentence, shown once in each variant.
+      // The research variant leads with the research and evaluation work; the
+      // master keeps the product-first order. Each of these two sentences is
+      // shown once in each variant.
+      {
+        text: "Started haau3 Research, open research on caregiving with and without AI, publishing each experiment with its code, run logs, and cost; the first note compared Claude Opus 5.5 with Gemma 3 12B on a laptop on HealthBench's expertise-tailored communication, after checking candidate LLM judges against physician grades.",
+        links: [{ text: "haau3 Research", href: "https://research.haau3.com" }],
+        only: ["research"],
+      },
       {
         text: "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
         only: ["research"],
@@ -32,16 +38,19 @@ export const experience: PositionEntry[] = [
         text: "Built an early SMART Health Check-in flow in which a provider's check-in page asks haau3 for records and forms before a visit, extending Kill the Clipboard from sharing into intake.",
       },
       {
-        text: "Launched the haau3 platform in preview with a free developer plan: eight FHIR APIs that power haau3 and are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, Medicare Advantage and ACA plan benefits, and real-time pharmacy benefits.",
+        text: "Launched the haau3 platform in preview with a free developer plan: eight healthcare APIs, each built on FHIR, that power haau3. Seven are open to other builders, covering scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, and Medicare Advantage and ACA plan benefits; the real-time pharmacy benefit check answers in the Sandbox until it opens to customers.",
       },
       {
         text: "Shipped open-source SDKs in TypeScript, Python, and Go and an open-source CLI whose init command installs the SDK and sets up a project's coding agents (Claude Code, Cursor, Codex, VS Code, or Gemini CLI) with the platform's Agent Skill and docs MCP server; API keys reach the project's env file without passing through the chat, and an agent cannot revoke a key without confirmation.",
       },
       {
-        text: "Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Plan Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.",
+        text: "Opened a Sandbox, at sandbox.haau3.com, that takes production's paths with no key and no account: every operation answers its documented example, and a test insurer answers the pharmacy benefit check for synthetic members.",
       },
       {
-        text: "Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, and a pinned RxNorm release.",
+        text: "Built the Scheduling API as a slot aggregator for HL7 SMART Scheduling Links and the Medical Benefits API from the plan files CMS publishes, the capabilities behind haau3's CMS Early Adopter pledges for Modern Scheduling and Real-Time Benefits.",
+      },
+      {
+        text: "Designed the platform contract-first, with API-key authentication, an interactive reference generated from its contracts, and services built on public sources: the CMS National Provider Directory, CMS plan files, LOINC, RxNorm and ICD-10-CM held at named releases, and pharmacies held from CMS's monthly and weekly NPPES files.",
       },
       {
         text: "Evolved medlistIQ into the platform's MedList API, which turns one patient's medication records into a single reconciled FHIR medication list with the source records behind every entry.",
@@ -54,6 +63,11 @@ export const experience: PositionEntry[] = [
       },
       {
         text: "Designed Cora's Smart 40 evaluation: 40 scripted scenarios in text and voice, English and Spanish, run as hash-chained sealed runs and reviewed by a person against a pass bar set in advance; the latest run passed 39 of 40 with zero confirmed hard failures.",
+        not: ["research"],
+      },
+      {
+        text: "Started haau3 Research, open research on caregiving with and without AI, publishing each experiment with its code, run logs, and cost; the first note compared Claude Opus 5.5 with Gemma 3 12B on a laptop on HealthBench's expertise-tailored communication, after checking candidate LLM judges against physician grades.",
+        links: [{ text: "haau3 Research", href: "https://research.haau3.com" }],
         not: ["research"],
       },
     ],

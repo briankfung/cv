@@ -6,6 +6,16 @@ import type { ResearchEntry } from "@/lib/cv/types";
  */
 export const research: ResearchEntry[] = [
   {
+    id: "res-healthbench-expertise-tailored",
+    title:
+      "A frontier model and a small open-weight model on a laptop, compared on HealthBench's expertise-tailored communication",
+    org: "haau3 Research",
+    role: "Open note with its code, run logs, and cost, archived on Zenodo with a DOI; candidate LLM judges were checked against physician grades before the main runs.",
+    url: "https://doi.org/10.5281/zenodo.24573238",
+    dates: { start: "2026-11", end: "2026-11" },
+    tags: ["ai", "research"],
+  },
+  {
     id: "res-phantom-codes",
     title:
       "Phantom Codes: benchmarking hallucination, hierarchical accuracy, abstention, robustness, and cost across 24 LLM and prompting configurations for medical concept normalization",

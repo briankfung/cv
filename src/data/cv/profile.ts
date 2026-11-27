@@ -8,7 +8,7 @@ export const profile: Profile = {
   email: "brian@briankfung.com",
   location: "Brandon, FL",
   selfAuthor: "Fung",
-  updated: "2026-11-13T02:29:00-05:00",
+  updated: "2026-11-26T20:59:00-05:00",
   links: [
     {
       label: "Website",
@@ -27,5 +27,5 @@ export const profile: Profile = {
     },
   ],
   summary:
-    "Founder building haau3, a consumer caregiving app, and the haau3 platform, a suite of FHIR APIs that powers it and serves other healthcare organizations. Previously Staff Clinical Informatics Data Architect at Verily and an informatics pharmacist on Mayo Clinic's Epic transformation across 80 hospitals and clinics. Residency-trained pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule.",
+    "Founder building haau3, a consumer caregiving app; the haau3 platform, a suite of FHIR APIs that powers it and serves other healthcare organizations; and haau3 Research, open research on caregiving with and without AI. Previously Staff Clinical Informatics Data Architect at Verily and an informatics pharmacist on Mayo Clinic's Epic transformation across 80 hospitals and clinics. Residency-trained pharmacist who contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule.",
 };
