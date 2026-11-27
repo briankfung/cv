@@ -4,12 +4,13 @@
 
 This site is the curriculum vitae of Brian K. Fung (handle: briankfung), a residency-trained informatics pharmacist who builds clinical AI products. Not the technology journalist of the same name.
 
-Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products. The largest is haau3, a CMS-recognized caregiving app listed in the CMS Medicare App Library, built on the haau3 platform: six FHIR APIs for scheduling, terminology, provider directory, questionnaires, medication reconciliation, and plan benefits that other builders can use too. As a member of the HL7 SMART Scheduling Links work group, he created and maintains its FHIR implementation guide.
+Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21st Century Cures Act Final Rule, modernized enterprise clinical systems across 80 hospitals and clinics at Mayo Clinic, and served as Staff Clinical Informatics Data Architect at Verily. He is now a founder shipping clinical AI products. The largest is haau3, a CMS-recognized caregiving app listed in the CMS Medicare App Library, built on the haau3 platform: eight healthcare APIs, each built on FHIR, for scheduling, terminology, provider directory, questionnaires, medication reconciliation, structured prescription directions, medical benefits, and pharmacy benefits, seven of them open to other builders today. He also runs haau3 Research, which publishes open research on caregiving with and without AI. As a member of the HL7 SMART Scheduling Links work group, he is the lead author of its FHIR implementation guide, published by HL7 as STU 1 in October 2026.
 
 ## Curriculum vitae
 
 - [CV, web](https://cv.briankfung.com/): experience, education, credentials, publications, presentations, media, teaching, projects
 - [CV, PDF](https://cv.briankfung.com/pdf/brian-fung-cv.pdf): the same CV typeset with LaTeX
+- [Research CV, PDF](https://cv.briankfung.com/pdf/brian-fung-research-cv.pdf): the same content ordered for research roles
 
 ## Profiles
 
@@ -26,7 +27,10 @@ Brian K. Fung contributed to the electronic prescribing sections of the ONC's 21
 ## Selected work
 
 - [haau3](https://haau3.com): caregiving app recognized in the CMS Health Tech Ecosystem and listed in the CMS Medicare App Library
-- [haau3 platform](https://platform.haau3.com): six FHIR APIs, in preview, that power haau3 and are open to other builders
+- [haau3 platform](https://platform.haau3.com): eight healthcare APIs built on FHIR, in preview, that power haau3; seven are open to other builders, and the pharmacy benefit check answers in the Sandbox until it opens
+- [haau3 SDKs](https://github.com/haau3/haau3-node) and [CLI](https://github.com/haau3/haau3-cli): open-source clients for the haau3 platform in TypeScript, Python, and Go, and a command line that sets up a project and its coding agents
+- [haau3 Research](https://research.haau3.com): open research on caregiving, with and without AI, each note with its code, run logs, and cost
+- [A frontier model and a small open-weight model on a laptop, compared on HealthBench's expertise-tailored communication](https://research.haau3.com/notes/healthbench-expertise-tailored/): the first haau3 Research note, DOI 10.5281/zenodo.24573238
 - [haau3 FHIR Implementation Guide](https://fhir.haau3.com): profiles, extensions, and operations behind the haau3 app and platform
 - [Unscripted Rx](https://www.unscripted-rx.com): modern pharmacy residency directory and recruiting events platform
 - [US Pharmacy FHIR Implementation Guide](https://build.fhir.org/ig/unscripted-rx/us-pharmacy-fhir-ig/): work-in-progress FHIR R4 implementation guide for US pharmacy, published by Unscripted Rx and built live on stream
