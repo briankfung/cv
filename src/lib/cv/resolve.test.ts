@@ -410,12 +410,14 @@ describe("research variant", () => {
     expect(resolveVariant(cvData, master).sections[0].bullets).toBeUndefined();
   });
 
-  it("leads the founder role with the Smart 40 bullet, shown once per variant", () => {
-    expect(founderBullets(research)[0]).toMatch(/^Designed Cora's Smart 40 evaluation/);
+  it("leads the founder role with the research and Smart 40 bullets, each shown once per variant", () => {
+    expect(founderBullets(research)[0]).toMatch(/^Started haau3 Research/);
+    expect(founderBullets(research)[1]).toMatch(/^Designed Cora's Smart 40 evaluation/);
     expect(founderBullets(master)[0]).toMatch(/^Conceived and built haau3/);
     for (const variant of [master, research]) {
-      const smart40 = founderBullets(variant).filter((b) => /Smart 40/.test(b));
-      expect(smart40).toHaveLength(1);
+      const bullets = founderBullets(variant);
+      expect(bullets.filter((b) => /Smart 40/.test(b))).toHaveLength(1);
+      expect(bullets.filter((b) => /^Started haau3 Research/.test(b))).toHaveLength(1);
     }
   });
 });
